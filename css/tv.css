@@ -1,0 +1,165 @@
+#ukmtv_logo {
+	margin-bottom: 10px;
+}
+/* HUGE DESKTOP */
+/* NORMAL DESKTOP */
+@media (min-width: 1024px) {
+	body {
+		background: url('http://tv.ukm.no/img/tiril-einarsdotter_2048.jpg') no-repeat center center fixed; 
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		padding: 20px 10px 0px 10px;
+	}
+	#ukmtv_logo_mini {
+		margin: -10px 0px -10px 10px;
+		padding: 0px;
+		height: 50px;
+	}
+	#my-video {
+		margin-top: 0px;
+	}
+}
+/* PAD PORTRAIT */
+/* PAD LANDSCAPE */
+@media (min-width: 767px) and (max-width: 1024px) {
+	body {
+		background: url('http://tv.ukm.no/img/tiril-einarsdotter_1200.jpg') no-repeat center center fixed; 
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		padding: 20px 10px 0px 10px;
+	}
+	#ukmtv_logo {
+		width: 200px;
+		margin: 0px 2px 0px -10px;
+		float: left;
+	}
+
+}
+
+/* MOBILE LANDSCAPE */
+@media (min-width: 350px) and (max-width: 767px) {
+	body {
+		background: url('http://tv.ukm.no/img/tiril-einarsdotter_800.jpg') no-repeat center center fixed; 
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		padding: 5px 15px 0px 15px;
+	}
+	#ukmtv_container {
+		padding: 0px;
+		margin: 0px;
+		width: 100%;
+	}
+	#ukmtv_container .footer,
+	#ukmtv_container .wrapper {
+		padding: 0px 10px 10px 10px;
+	}
+	#tvsearch_mini {
+		margin: 4px 4px 0px 0px;
+	}
+	#ukmtv_logo {
+		width: 140px;
+		margin: 6px 2px 0px 10px;
+		float: left;
+	}
+	#my-video {
+		margin-top: -5px;
+	}
+}
+
+/* MOBILE PORTRAIT */
+@media (max-width: 350px) {
+	body {
+		background: url('http://tv.ukm.no/img/tiril-einarsdotter_800.jpg') no-repeat center center fixed; 
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		padding: 0px;
+	}
+	#ukmtv_container {
+		padding: 10px;
+		width: 100%;
+		margin: 5px 4px 0px 4px;
+	}
+	#tvsearch {
+		text-align: center;
+		margin-right: -7px; 
+	}
+	#my-video {
+		margin-top: -5px;
+	}
+}
+#ukmtv_logo_phone_container {
+	text-align: center;
+	margin-bottom: 10px;
+}
+#tvsearch {
+	margin: 3px 5px 0px 0px;
+}
+
+
+.opacity95 {
+	background-color:rgba(255,255,255,0.8);
+}
+.center-container {
+	max-width: 1000px;
+	margin: 0 auto;
+}
+.vertical-spacer {
+	height: 20px;
+}
+div.video > a > h5 {
+	color: #000;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+div.video > a > div.kat {
+ 	font-size: 12px;
+}
+
+.footer .cc {
+ font-size: 11.2px; 
+}
+
+.footer {
+	border-top: 1px solid #aaa;
+	margin-top: 10px;
+	padding-top: 10px;
+	border-top: 1px solid #aaa;
+	font-size: 13px;
+}
+
+
+#tvsearch div form {
+  margin: 4px 0px 4px 0px;
+}
+#tvsearch div.btn-group a {
+	width: 60px;
+}
+#tvsearch_mini input,
+#tvsearch input {
+  width: 188px; 
+  margin-left: -1px;
+  border-radius: 4px 0px 0px 4px;
+  margin-right: -1px;
+}
+#tvsearch_mini button,
+#tvsearch button {
+  border-radius: 0px 4px 4px 0px; 
+}
+
+#tvsearch_mini img {
+  height: 24px;
+  width: 53px;
+  padding: 0px;
+  margin: 0px;
+}
+#tvsearch_mini a.btn#logo{
+  padding-top: 0px;
+}
