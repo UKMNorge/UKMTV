@@ -48,6 +48,7 @@ window.fbAsyncInit = function() {
 <link href="<?= BASEURL ?>css/tv.css" rel="stylesheet" media="screen">
 <link rel="shortcut icon" href="http://tv.ukm.no/img/favicon.ico" />
 <?php
+echo 'test';
 if(isset($_GET['video'])) {
 	$TV = new tv($_GET['video']);
 	if($_GET['video'] == 4017)
