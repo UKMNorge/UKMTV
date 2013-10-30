@@ -50,8 +50,6 @@ window.fbAsyncInit = function() {
 <?php
 if(isset($_GET['video'])) {
 	$TV = new tv($_GET['video']);
-	if($_GET['video'] == 4017)
-		var_dump($TV);
 	echo $TV->meta;
 	echo '<title>'.$TV->title.' @ tv.UKM.no</title>';
 } else { ?>
