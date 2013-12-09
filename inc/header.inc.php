@@ -31,17 +31,17 @@ window.fbAsyncInit = function() {
 
 <script src="http://embed.ukm.no/jwplayer.js"></script>
 <script type="text/javascript">
-
+ 
   var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-27157707-10']);
+  _gaq.push(['_setAccount', 'UA-46216680-4']);
   _gaq.push(['_trackPageview']);
-
+ 
   (function() {
     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-
+ 
 </script>
 <link href="<?= BASEURL ?>css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="<?= BASEURL ?>css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
