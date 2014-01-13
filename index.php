@@ -1,5 +1,7 @@
 <?php
 
+require_once('server_upgrade.php');
+
 require_once('tvconfig.php');
 require_once('UKM/tv_files.class.php');
 require_once('UKM/innslag.class.php');
