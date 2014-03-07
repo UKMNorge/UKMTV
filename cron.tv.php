@@ -1,6 +1,8 @@
 <?php
-/* UKM LOADER */ if(!defined('UKM_HOME')) define('UKM_HOME', '/home/ukmno/public_html/UKM/'); require_once(UKM_HOME.'loader.php');
-UKM_loader('sql|api/innslag.class|api/monstring.class|api/person.class');
+require_once('UKM/sql.class.php');
+require_once('UKM/innslag.class.php');
+require_once('UKM/monstring.class.php');
+require_once('UKM/person.class.php');
 require_once('cron.functions.tv.php');
 ##################################################
 echo '<h2>Oppdaterer db for WP_related</h2>';
