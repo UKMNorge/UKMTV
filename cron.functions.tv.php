@@ -403,16 +403,16 @@ function video_calc_monstring($b_id, $pl_type, $kommune, $season) {
 			return array('pl' => $land->monstring_get(),
 						 'kategori' => 'UKM-Festivalen '.$season);
 		default:
-			$kommune = new SQL("SELECT `kommune`.`name`
+			$kommune_qry = new SQL("SELECT `kommune`.`name`
 							  FROM `smartukm_kommune` AS `kommune`
 							  WHERE `kommune`.`id` = '#kommune'
 							  ",
 							  array('kommune' => $kommune));
 #			echo $kommune->debug();
-			$kommune = $kommune->run('array');
+			$kommune_name = $kommune_qry->run('field', 'name');
 			$monstring = new kommune_monstring($kommune, $season);
 			return array('pl' => $monstring->monstring_get(),
-						 'kategori' => utf8_encode($kommune['name']).' '.$season);
+						 'kategori' => utf8_encode($kommune_name).' '.$season);
 	}
 }
 function video_calc_tag_standalone($res) {
