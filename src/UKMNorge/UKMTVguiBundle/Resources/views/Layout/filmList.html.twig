@@ -1,0 +1,7 @@
+{% for category, list in files %}
+    {% if category != false %}
+        <h2>{{category}}</h2>
+    {% endif %}
+    
+    {% embed "UKMNtvguiBundle:Layout:filmListContent.html.twig" %}{% endembed %}
+{% endfor %}

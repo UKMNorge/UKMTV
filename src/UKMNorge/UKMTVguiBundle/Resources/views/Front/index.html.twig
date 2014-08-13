@@ -1,0 +1,30 @@
+{% extends "UKMNtvguiBundle:Layout:layout.html.twig" %}
+
+{% block content %}
+	<div class="row post_top">
+		<div class="hidden-xs hidden-sm col-md-7">
+            {% embed "UKMNtvguiBundle:Front:carousel.html.twig" with { sliderId: 'sliderOne', slides: popular } %}{% endembed %}
+		</div>
+				
+		<div id="infosquare" class="col-xs-12 col-md-5">
+			<div class="">
+	        	<ol>
+				{% for nav in page_nav %}
+					{% embed "UKMNtvguiBundle:Layout:nav_page.html.twig" %}{% endembed %}
+				{% endfor %}
+				</ol>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="visible-xs visible-sm col-md-7">
+            {% embed "UKMNtvguiBundle:Front:carousel.html.twig" with { sliderId: 'sliderTwo', slides: popular } %}{% endembed %}
+		</div>
+	</div>
+	
+	<div class="clearfix"></div>
+	
+	<h2>Siste hendelser i UKM-TV</h2>
+	<div class="row">
+        {% embed "UKMNtvguiBundle:Front:events.html.twig" %}{% endembed %}
+    </div>
+{% endblock %}

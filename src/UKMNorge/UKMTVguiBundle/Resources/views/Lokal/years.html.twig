@@ -1,0 +1,10 @@
+{% extends "UKMNtvguiBundle:Layout:layout.html.twig" %}
+
+{% block jumbo_header %}
+    UKM-TV: {{ kommune }}
+{% endblock %}
+
+{% block content %}
+    <h1>Velg år</h1>
+    {% embed "UKMNtvguiBundle:Layout:yearList.html.twig" with {years: years} %}{% endembed %}
+{% endblock %}

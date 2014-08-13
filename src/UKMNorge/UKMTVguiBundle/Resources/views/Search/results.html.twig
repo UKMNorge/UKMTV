@@ -1,0 +1,7 @@
+{% extends "UKMNtvguiBundle:Layout:layout.html.twig" %}
+
+{% block content %}
+<h1>Søkeresultater</h1>
+<p class="lead">Viser treff for "{{ doSearchFor }}"</p>
+    {% embed "UKMNtvguiBundle:Layout:filmListContent.html.twig" %}{% endembed %}
+{% endblock %}

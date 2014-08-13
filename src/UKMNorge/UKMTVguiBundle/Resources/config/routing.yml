@@ -1,0 +1,76 @@
+ukmn_tvgui_homepage:
+    path:   /tv/
+    defaults: { _controller: UKMNtvguiBundle:Default:index }
+
+#   RELATERTE FILMER
+#       Person
+ukmn_tvgui_person:
+    path:   /tv/related/p_{id}
+    defaults: { _controller: UKMNtvguiBundle:Related:person }
+#       Innslag
+ukmn_tvgui_band:
+    path:   /tv/related/b_{id}
+    defaults: { _controller: UKMNtvguiBundle:Related:band }
+
+#  FESTIVALEN
+ukmn_tvgui_festivalen_homepage:
+    path:   /tv/festivalen/
+    defaults: { _controller: UKMNtvguiBundle:Festivalen:index }
+ukmn_tvgui_festivalen_year:
+    path:   /tv/festivalen/{year}/
+    defaults: { _controller: UKMNtvguiBundle:Festivalen:year }
+
+
+#   FYLKESMØNSTRINGER
+ukmn_tvgui_fylke_homepage:
+    path:   /tv/fylke/
+    defaults: { _controller: UKMNtvguiBundle:Fylke:index }
+ukmn_tvgui_fylke_years:
+    path:   /tv/fylke/{fylke}/
+    defaults: { _controller: UKMNtvguiBundle:Fylke:years }
+ukmn_tvgui_fylke_year:
+    path:   /tv/fylke/{fylke}/{year}/
+    defaults: { _controller: UKMNtvguiBundle:Fylke:year }
+
+
+#   LOKALMØNSTRINGER
+ukmn_tvgui_lokal_homepage:
+    path:   /tv/lokal/
+    defaults: { _controller: UKMNtvguiBundle:Lokal:index }
+ukmn_tvgui_lokal_year:
+    path:   /tv/lokal/pl{plid}-{name}/
+    defaults: { _controller: UKMNtvguiBundle:Lokal:year }
+    requirements:
+        plid: ([0-9])+
+ukmn_tvgui_lokal_years:
+    path:   /tv/lokal/{kommune}-{name}/
+    defaults: { _controller: UKMNtvguiBundle:Lokal:years }
+    requirements:
+        kommune: ([0-9])+
+
+
+#   INFOVIDEOER
+ukmn_tvgui_info_homepage:
+    path:   /tv/info/
+    defaults: { _controller: UKMNtvguiBundle:Info:index }
+
+
+#   GITT FILM
+ukmn_tvgui_film:
+    path:   /tv/{title}/{id}
+    defaults: { _controller: UKMNtvguiBundle:Film:index }    
+
+#   SØK
+ukmn_tvgui_search:
+    path:   /tv/search/
+    defaults: { _controller: UKMNtvguiBundle:Search:index }    
+    requirements:
+        _method:  GET
+ukmn_tvgui_search_redir:
+    path:   /tv/search/
+    defaults: { _controller: UKMNtvguiBundle:Search:doSearch }    
+    requirements:
+        _method:  POST
+ukmn_tvgui_searchfor:
+    path:   /tv/search/{doSearchFor}/
+    defaults: { _controller: UKMNtvguiBundle:Search:result }

@@ -1,0 +1,15 @@
+{% extends "UKMNtvguiBundle:Layout:layout.html.twig" %}
+
+{% block content %}
+    {% for fylke in monstringer %}
+    <h3>{{fylke.name}}</h3>
+    
+    <ol class="list-unstyled">
+    {% for kommune in fylke.kommuner %}
+        <li class="kommune">
+            <a href="{{kommune.url}}">{{kommune.name}}</a>
+        </li>
+    {% endfor %}
+    </ol>
+    {% endfor %}
+{% endblock %}
