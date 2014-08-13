@@ -4,8 +4,8 @@ parameters:
     database_host: 127.0.0.1
     database_port: null
     database_name: ukmdev_dev_ss3
-    database_user: ukmdev_devwrite
-    database_password: Fjord17010Trheim
+    database_user: root
+    database_password: dev
     mailer_transport: smtp
     mailer_host: 127.0.0.1
     mailer_user: null
