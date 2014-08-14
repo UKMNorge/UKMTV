@@ -1,3 +1,6 @@
+<?=
+require_once('UKMconfig.inc.php');
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +32,7 @@ window.fbAsyncInit = function() {
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
 <script src="<?= BASEURL ?>js/bootstrap.min.js"></script>
 
-<script src="http://embed.ukm.no/jwplayer.js"></script>
+<script src="http://embed.<?= UKM_HOSTNAME ?>/jwplayer.js"></script>
 <script type="text/javascript">
  
   var _gaq = _gaq || [];
@@ -46,7 +49,7 @@ window.fbAsyncInit = function() {
 <link href="<?= BASEURL ?>css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="<?= BASEURL ?>css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
 <link href="<?= BASEURL ?>css/tv.css" rel="stylesheet" media="screen">
-<link rel="shortcut icon" href="http://tv.ukm.no/img/favicon.ico" />
+<link rel="shortcut icon" href="/img/favicon.ico" />
 <?php
 if(isset($_GET['video'])) {
 	$TV = new tv($_GET['video']);

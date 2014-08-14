@@ -1,8 +1,9 @@
 <?php
 $related = new tv_files('related', $TV);
 require_once('UKM/person.class.php');
+require_once('UKMconfig.inc.php');
 ?>
-<script language="javascript" src="http://embed.ukm.no/info/<?= $TV->id ?>"></script>
+<script language="javascript" src="http://embed.<?= UKM_HOSTNAME ?>/info/<?= $TV->id ?>"></script>
 <div id="my-video" width="100%"></div>
 <div class="fb-like pull-right" data-send="true" data-layout="box_count" data-width="100" data-show-faces="false" data-font="arial"></div>
 <div class="wrapper">
