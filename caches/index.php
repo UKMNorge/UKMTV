@@ -23,13 +23,27 @@ $res = $caches_query->run( $caches_query );
 
 <?php
 
+function humanizeSize($size) {
+    if ($size < 1024) {
+        return $size .' B';
+    } elseif ($size < 1048576) {
+        return round($size / 1024, 2) .' kB';
+    } elseif ($size < 1073741824) {
+        return round($size / 1048576, 2) . ' MB';
+    } elseif ($size < 1099511627776) {
+        return round($size / 1073741824, 2) . ' GB';
+    } elseif ($size < 1125899906842624) {
+        return round($size / 1099511627776, 2) .' TB';
+    } 
+}
+
 while ( $row = mysql_fetch_assoc( $res ) ) {
     $cache_id = $row['id'];
     $ip = $row['ip'];
     $status = $row['status'];
     $last_heartbeat = $row['last_heartbeat'];
-    $space_total = $row['space_total'];
-    $space_used = $row['space_used'];
+    $space_total = humanizeSize($row['space_total']);
+    $space_used = humanizeSize($row['space_used']);
     echo "<tr><td>$cache_id</td><td>$ip</td><td>$status</td><td>$last_heartbeat</td><td>$space_total</td><td>$space_used</td></tr>"; 
 }
 
