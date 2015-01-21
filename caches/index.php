@@ -19,7 +19,7 @@ $res = $caches_query->run( $caches_query );
 <body class="container">
 <h1>Caches</h1>
 <table class="table">
-    <tr><th>ID</th><th>IP</th><th>Status</th><th>Last heartbeat</th><th>Space total</th><th>Space used</th></tr>
+    <tr><th>ID</th><th>IP</th><th>Status</th><th>Last heartbeat</th></tr>
 
 <?php
 
