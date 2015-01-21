@@ -1,4 +1,7 @@
 <?php
+
+require_once('UKMconfig.inc.php');
+
 global $looped_videos;
 $looped_videos = array();
 
@@ -190,7 +193,7 @@ function video_calc_data($algorithm, $res) {
 					if(!$type) {
 						echo 'USER: '. $ss3u 
 								   . ' SEASON: '. $season 
-								   .' => <a href="http://video.ukm.no/'.$res['file'].'/'.$res['id'].'.flv">'.$res['id'].'</a>'
+								   .' => <a href="http://video.' . UKM_HOSTNAME . '/'.$res['file'].'/'.$res['id'].'.flv">'.$res['id'].'</a>'
 								   .'<br /><br />';
 						die();
 					}
@@ -251,7 +254,7 @@ function video_calc_data($algorithm, $res) {
 					if(!$type) {
 						echo 'USER: '. $ss3u 
 								   . ' SEASON: '. $season 
-								   .' => <a href="http://video.ukm.no/'.$res['file'].'/'.$res['id'].'.flv">'.$res['id'].'</a>'
+								   .' => <a href="http://video.' . UKM_HOSTNAME . '/'.$res['file'].'/'.$res['id'].'.flv">'.$res['id'].'</a>'
 								   .'<br /><br />';
 						die();
 					}
@@ -300,7 +303,7 @@ function video_calc_data($algorithm, $res) {
 					if(!$type) {
 						echo 'USER: '. $ss3u 
 								   . ' SEASON: '. $season 
-								   .' => <a href="http://video.ukm.no/'.$res['file'].'/'.$res['id'].'.flv">'.$res['id'].'</a>'
+								   .' => <a href="http://video.' . UKM_HOSTNAME . '/'.$res['file'].'/'.$res['id'].'.flv">'.$res['id'].'</a>'
 								   .'<br /><br />';
 						die();
 					}
@@ -308,7 +311,7 @@ function video_calc_data($algorithm, $res) {
 				default:
 					echo 'MANGLER SESONG USER: '. $ss3u 
 								   . ' SEASON: '. $season 
-								   .' => <a href="http://video.ukm.no/'.$res['file'].'/'.$res['id'].'.flv">'.$res['id'].'</a>'
+								   .' => <a href="http://video.' . UKM_HOSTNAME . '/'.$res['file'].'/'.$res['id'].'.flv">'.$res['id'].'</a>'
 								   .'<br /><br />';
 						die();
 			}
@@ -358,7 +361,7 @@ function video_calc_img($post_meta) {
 		$video = $post_meta['file'];
 		$ext = strrpos($video, '.');
 		$img = substr($video, 0, $ext).'.jpg';
-		$test = img_exists('http://video.ukm.no/'.$img);
+		$test = img_exists('http://video.' . UKM_HOSTNAME . '/'.$img);
 		if(!$test)
 			return $video.'.jpg';
 		

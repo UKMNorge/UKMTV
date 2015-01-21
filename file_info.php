@@ -1,6 +1,9 @@
 <?php
+
+require_once('UKMconfig.inc.php');
+
 header('Access-Control-Allow-Headers: true');
-header('Access-Control-Allow-Origin: http://ukm.no');
+header('Access-Control-Allow-Origin: http://' . UKM_HOSTNAME);
 header('Access-Control-Request-Method: OPTIONS, HEAD, GET, POST, PUT, PATCH, DELETE');
 header('Access-Control-Allow-Credentials: true');
 
