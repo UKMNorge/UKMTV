@@ -1,6 +1,6 @@
 <?php
 if(!isset($_GET['q']) || empty($_GET['q'])) { ?>
-<form class="span12 form-search" action="<?= BASEURL ?>" method="get">
+<form class="span12 form-search" action="/" method="get">
 		<div class="input-append">
 			<input type="text" name="q" class="span9 search-query" placeholder="Søk i UKM-tv">
 			<button type="submit" class="btn"><i class="icon-search"></i></button>

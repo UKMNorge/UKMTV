@@ -1,6 +1,6 @@
 <div class="hidden-phone">
 	<div class="span3 pull-left" id="logocontainer">
-		<a href="<?= BASEURL ?>"><img src="<?= BASEURL ?>img/ukmtv_logo.png" id="ukmtv_logo" /></a>
+		<a href="/"><img src="/img/ukmtv_logo.png" id="ukmtv_logo" /></a>
 	</div>
 	<div class="pull-right" id="tvsearch">
 		<div class="btn-group" style="width: 100%;" align="right">
@@ -10,7 +10,7 @@
 			<a class="btn" href="/om/">Om</a>
 		</div>
 		<div style="width: 100%;" align="right">
-			<form class="form-search" action="<?= BASEURL ?>" method="get">
+			<form class="form-search" action="/" method="get">
 				<div class="input-append">
 					<input type="text" name="q" class="search-query" placeholder="Søk i UKM-tv">
 					<button type="submit" class="btn"><i class="icon-search"></i></button>
@@ -24,7 +24,7 @@
 </div>
 <div class="visible-phone">
 	<div id="ukmtv_logo_phone_container">
-		<a href="<?= BASEURL ?>"><img src="<?= BASEURL ?>img/ukmtv_logo.png" align="center" /></a>
+		<a href="/"><img src="/img/ukmtv_logo.png" align="center" /></a>
 	</div>
 	<div id="tvsearch_mini">
 		<div class="btn-group" style="width: 100%;" align="center">

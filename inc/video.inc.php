@@ -21,7 +21,7 @@ require_once('UKMconfig.inc.php');
 			foreach($inn->personer() as $pers) {
 				$i++;
 				$p = new person($pers['p_id']); ?>
-				<a href="<?= BASEURL ?>relatert/p_<?= $p->g('p_id') ?>"><?= $p->g('name') ?></a><?= $i < sizeof($inn->personer()) ? ', ' : ''?>
+				<a href="/relatert/p_<?= $p->g('p_id') ?>"><?= $p->g('name') ?></a><?= $i < sizeof($inn->personer()) ? ', ' : ''?>
 			<?php
 			} ?>
 		</div>
