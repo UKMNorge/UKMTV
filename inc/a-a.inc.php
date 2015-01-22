@@ -44,6 +44,6 @@ if( sizeof( $videos ) == 0 ) { ?>
 } ?>
 <script language="javascript">
 jQuery('#a-z-chooser').change(function(){
-	window.location.href = '<?= BASEURL ?>a-a/' + jQuery('#a-z-chooser option:selected').val();
+	window.location.href = '/a-a/' + jQuery('#a-z-chooser option:selected').val();
 });
 </script>

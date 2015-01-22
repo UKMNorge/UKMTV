@@ -30,7 +30,7 @@ window.fbAsyncInit = function() {
 </script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-<script src="<?= BASEURL ?>js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <script src="http://embed.<?= UKM_HOSTNAME ?>/jwplayer.js"></script>
 <script type="text/javascript">
@@ -46,9 +46,9 @@ window.fbAsyncInit = function() {
   })();
  
 </script>
-<link href="<?= BASEURL ?>css/bootstrap.min.css" rel="stylesheet" media="screen">
-<link href="<?= BASEURL ?>css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
-<link href="<?= BASEURL ?>css/tv.css" rel="stylesheet" media="screen">
+<link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+<link href="/css/tv.css" rel="stylesheet" media="screen">
 <link rel="shortcut icon" href="/img/favicon.ico" />
 <?php
 if(isset($_GET['video'])) {
