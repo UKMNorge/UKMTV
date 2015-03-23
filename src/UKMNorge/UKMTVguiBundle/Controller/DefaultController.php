@@ -10,6 +10,13 @@ use monstring;
 
 class DefaultController extends Controller
 {
+	private function _safeURL($string) {
+		$string = str_replace(array(' ','Æ','æ','Ø','ø','Å','å'), array('-','Ae','ae','O','o','A','a'), $string);
+		$string = preg_replace('/[^a-z0-9A-Z-_]+/', '', $string);
+		return str_replace('--','-', $string);
+	}
+
+
     public function indexAction()
     {
         require_once('UKM/tv_files.class.php');
@@ -123,7 +130,11 @@ class DefaultController extends Controller
             switch( $type ) {
                 case 'kommune':
                     $route = 'ukmn_tvgui_lokal_year';
-                    $route_data = array('kommune' => $TV->tag('k') , 'name' => 'kommer..', 'season' => $monstring->get('season'));
+					$kommune_id = $TV->tag('k');					
+		            $kommune_qry = new SQL( "SELECT `name` FROM `smartukm_kommune` WHERE `id` = '#id'", array('id'=> $kommune_id) );
+		            $kommune = $this->_safeURL($kommune_qry->run('field','name'));
+                    
+                    $route_data = array('kommune' => $TV->tag('k') , 'name' => $kommune, 'season' => $TV->tag('s'));
                     $title = 'UKM '. $monstring->get('pl_name') .' '. $monstring->get('season');
                     break;
                 case 'fylke':
