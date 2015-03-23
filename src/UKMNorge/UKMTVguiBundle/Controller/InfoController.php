@@ -19,7 +19,7 @@ class InfoController extends Controller
                 continue;
             }       
             $category = $file->set;         
-            $file->full_url = $this->get('router')->generate('ukmn_tvgui_film', array('title' => $file->title_urlsafe, 'id' => $file->id) );
+            $file->full_url = $this->get('router')->generate('ukmn_tvgui_info_film', array('title' => $file->title_urlsafe, 'id' => $file->id) );
             $files[ $category ][] = $file;
             
         }

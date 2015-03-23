@@ -8,6 +8,8 @@
 		<link rel="shortcut icon" href="http://grafikk.ukm.no/favicon.ico" />
 {# 		{% embed "element/seo.twig.html" %}{% endembed %} #}
 		
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
 		<link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700,300' type='text/css'>		
 		<link href="http://ukm.no/wp-content/themes/UKMresponsive/vendor/bootstrap/3.0.1/css/bootstrap.css" rel="stylesheet">
 		<link href="http://ukm.no/wp-content/themes/UKMresponsive/less/css/UKMresponsive.css?v13052014" rel="stylesheet">
@@ -32,23 +34,10 @@
 		</script>
 		{% block javascript %}
 		{% endblock %}
-{#		{% if isMobile is defined and isMobile == true %}
-        <style type="text/css"> 
-            body {
-                overflow-y: scroll; /* has to be scroll, not auto */
-                -webkit-overflow-scrolling: touch;
-            }
-        </style>
-        {% endif %}
-#}
 		<style type="text/css">{% block additional_css %}{% endblock %}</style>
 		<script type="text/javascript">{% block additional_js %}{% endblock %}</script>
 	</head>
 	<body>
-{#	{% if isMobile %}
-	<div class="scrollable vertical">
-	{% endif %}
-#}
 	{# FACEBOOK #}
 	<div id="fb-root"></div>
 
@@ -70,8 +59,8 @@
 				{% endblock %}
 				{% block navbar_logo %}
 				<div class="navbar-header">
-					<a href="/" class="navbar-brand">
-						<img src="http://grafikk.ukm.no/profil/logo/UKM_logo.png" width="70" />
+					<a href="{{ url('ukmn_tvgui_homepage') }}" class="navbar-brand">
+						<img src="http://grafikk.ukm.no/tv/logo/UKM-TVsmall.png" width="80" />
 					</a>
 				</div>
 				{% endblock %}

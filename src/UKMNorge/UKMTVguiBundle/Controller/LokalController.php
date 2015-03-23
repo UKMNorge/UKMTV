@@ -5,9 +5,17 @@ namespace UKMNorge\UKMTVguiBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use stdClass;
 use monstring;
+use kommune_monstring;
+use sql;
 
 class LokalController extends Controller
 {
+	private function _safeURL($string) {
+		$string = mb_convert_encoding( $string, 'UTF-8');
+		$string = str_replace(array(' ','Æ','æ','Ø','ø','Å','å'), array('-','Ae','ae','O','o','A','a'), $string);
+		$string = preg_replace('/[^a-z0-9A-Z-_]+/', '', $string);
+		return str_replace('--','-', $string);
+	}
     public function indexAction()
     {
         $kommune_id = "";
@@ -49,7 +57,7 @@ class LokalController extends Controller
             $kommune = new stdClass();
             $kommune->name = $data['kommune'];
             $kommune->id   = $data['kommune_id'];
-            $kommune->url  = $this->get('router')->generate('ukmn_tvgui_lokal_years', array('kommune' => $data['kommune_id'], 'name' => $data['kommune']) );
+            $kommune->url  = $this->get('router')->generate('ukmn_tvgui_lokal_years', array('kommune' => $data['kommune_id'], 'name' => $this->_safeURL($data['kommune'])) );
             
             $monstringer[ $data['fylke_id'] ]->kommuner[] = $kommune;
         }
@@ -77,7 +85,7 @@ class LokalController extends Controller
                 $year = new stdClass();
                 $year->year = $i;
                 $year->title = $monstring->g('pl_name');
-                $year->url = $this->get('router')->generate('ukmn_tvgui_lokal_year', array('plid' => $monstring->g('pl_id'), 'name' => $monstring->g('pl_name') ) );
+                $year->url = $this->get('router')->generate('ukmn_tvgui_lokal_year', array('kommune' => $kommune, 'name' => $name, 'season' => $year->year ) );
                 $all_years[] = $year;
             }
         }
@@ -86,10 +94,11 @@ class LokalController extends Controller
         return $this->render('UKMNtvguiBundle:Lokal:years.html.twig', array('kommune' => $name, 'years' => $all_years ));        
     }
     
-    public function yearAction($plid, $name) {
+    public function yearAction($kommune, $name, $season) {
         
         require_once('UKM/monstring.class.php');
-        $monstring = new monstring( $plid );
+        $monstring = new kommune_monstring( $kommune, $season );
+        $monstring = $monstring->monstring_get();
         
         if( $monstring->g('pl_id') == false ) {
             throw $this->createNotFoundException('Beklager, vi finner ikke lokalmønstringen for '. $year .'. Sikker på at du har skrevet inn riktig URL?');
@@ -103,8 +112,12 @@ class LokalController extends Controller
             if( !$file->id ) {
                 continue;
             }       
-            $category = $file->set;         
-            $file->full_url = $this->get('router')->generate('ukmn_tvgui_film', array('title' => $file->title_urlsafe, 'id' => $file->id) );
+            $category = $file->set;
+
+            $kommune_qry = new SQL("SELECT `name` FROM `smartukm_kommune` WHERE `id` = '#id'", array('id'=>$file->tag('k')));
+            $kommune_name = $this->_safeURL($kommune_qry->run('field','name'));
+           
+            $file->full_url = $this->get('router')->generate('ukmn_tvgui_lokal_film', array('kommune'=>$kommune,'name'=>$kommune_name,'season'=>$season,'title' => $file->title_urlsafe, 'id' => $file->id) );
             $files[ $category ][] = $file;
             
         }

@@ -3,6 +3,8 @@
 namespace UKMNorge\UKMTVguiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+
 use stdClass;
 use tv;
 use tv_files;
@@ -12,7 +14,13 @@ use monstring;
 
 class FilmController extends Controller
 { 
-    public function indexAction( $id, $title )
+	private function _safeURL($string) {
+		$string = str_replace(array(' ','Æ','æ','Ø','ø','Å','å'), array('-','Ae','ae','O','o','A','a'), $string);
+		$string = preg_replace('/[^a-z0-9A-Z-_]+/', '', $string);
+		return str_replace('--','-', $string);
+	}
+	
+    public function indexAction( Request $request, $id, $title )
     {
         require_once('UKM/tv.class.php');
         require_once('UKM/tv_files.class.php');
@@ -37,7 +45,7 @@ class FilmController extends Controller
     			$p = new person( $pers['p_id'] );
     			$person = new stdClass();
     			$person->navn = $p->get('name');
-    			$person->url = $this->get('router')->generate('ukmn_tvgui_person', array('id' => $p->get('p_id') ));
+    			$person->url = $this->get('router')->generate('ukmn_tvgui_person', array('id' => $p->get('p_id'), 'name' => $this->_safeURL($person->navn) ));
     
     			$metadata->personer[] = $person;
             }
@@ -54,7 +62,7 @@ class FilmController extends Controller
                 $metadata->band = new stdClass();
                 $metadata->band->title = $inn->g('b_name');
                 $metadata->band->url = $this->get('router')
-                                            ->generate('ukmn_tvgui_band', array('id' => $inn->g('b_id')) );
+                                            ->generate('ukmn_tvgui_band', array('id' => $inn->g('b_id'), 'name' => $this->_safeURL($metadata->band->title)) );
             }
             
             if( $pl_id == 0 ) {
@@ -91,8 +99,12 @@ class FilmController extends Controller
                     $metadata->category->parent->title = 'Fylkesmønstringer';
                     break;
                 case 'kommune':
+					$kommune = $request->attributes->get('kommune');
+					$name = $request->attributes->get('name');
+					$season = $request->attributes->get('season');
+					
                     $metadata->category->url = $this->get('router')
-                                                    ->generate('ukmn_tvgui_lokal_year', array('plid' => $monstring->get('pl_id'), 'name' => $monstring->get('pl_name') ) );
+                                                    ->generate('ukmn_tvgui_lokal_year', array('kommune' => $kommune, 'name'=>$name,'season'=>$season) );
                     $metadata->category->parent->url = $this->get('router')->generate('ukmn_tvgui_lokal_homepage');
                     $metadata->category->parent->title = 'Lokalmønstringer';
                     break;

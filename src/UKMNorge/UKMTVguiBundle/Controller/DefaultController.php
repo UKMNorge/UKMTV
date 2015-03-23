@@ -18,9 +18,13 @@ class DefaultController extends Controller
 
         $files = $this->_getPopular();        
         $page_nav = $this->_getPageNav();
-        $events = $this->_getEvents();      
+        $events = $this->_getEvents();   
+        
+        $jumbo = new stdClass();
+        $jumbo->header = 'UKM-TV';
+        $jumbo->content = 'UKM-filmer fra de siste '. (date("Y")-2009 ). ' årene';
      
-        return $this->render('UKMNtvguiBundle:Front:index.html.twig', array('page_nav' => $page_nav, 'popular' => $files, 'events' => $events ));
+        return $this->render('UKMNtvguiBundle:Front:index.html.twig', array('jumbo' => $jumbo, 'page_nav' => $page_nav, 'popular' => $files, 'events' => $events ));
     }
     
     private function _getPopular() {
@@ -57,7 +61,7 @@ class DefaultController extends Controller
         $page_nav = [];
         $page_nav[] = (object) array( 'url' 			=> $this->get('router')->generate('ukmn_tvgui_festivalen_homepage'),
 									  'title'		 	=> 'Festivalen',
-									  'icon'			=> 'file',
+									  'icon'			=> 'nav-rocket',
 									  'description'	=> ''
 									  );
 									  
@@ -75,12 +79,12 @@ class DefaultController extends Controller
 
 		$page_nav[] = (object) array( 'url' 			=> $this->get('router')->generate('ukmn_tvgui_info_homepage'),
 									  'title'		 	=> 'Infovideoer',
-									  'icon'			=> 'file',
+									  'icon'			=> 'nav-i',
 									  'description'	=> ''
 									  );
 		$page_nav[] = (object) array( 'url' 			=> $this->get('router')->generate('ukmn_tvgui_search'),
 									  'title'		 	=> 'Søk',
-									  'icon'			=> 'file',
+									  'icon'			=> 'nav-search',
 									  'description'	=> ''
 									  );
         return $page_nav;

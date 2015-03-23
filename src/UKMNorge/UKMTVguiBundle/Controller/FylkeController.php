@@ -16,7 +16,8 @@ class FylkeController extends Controller
     {
     
         $fylke_id = $this->get('ukmnorge.FylkeService')->name_to_id( $fylke );
-        
+        $fylke_name = 'Fylkesmønstringen i '. $this->get('ukmnorge.FylkeService')->id_to_human( $fylke_id );
+       
         require_once('UKM/monstring.class.php');
         
         $all_years = array();
@@ -35,7 +36,7 @@ class FylkeController extends Controller
                 $all_years[] = $year;
             }
         }
-        return $this->render('UKMNtvguiBundle:Festivalen:index.html.twig', array( 'years' => $all_years ));
+        return $this->render('UKMNtvguiBundle:Festivalen:index.html.twig', array('jumbotitle' => $fylke_name, 'years' => $all_years ));
     }
     
     public function yearAction( $fylke,  $year ) {
@@ -58,12 +59,18 @@ class FylkeController extends Controller
             if( !$file->id ) {
                 continue;
             }       
-            $category = $file->set;         
-            $file->full_url = $this->get('router')->generate('ukmn_tvgui_film', array('title' => $file->title_urlsafe, 'id' => $file->id) );
+            $category = $file->set;
+            if( $category == 'Fylkesmønstringen i '. $monstring->get('fylke_name') .' '. $year ) {
+	            $category = 'Alle innslag';
+            } else {
+	            $category = mb_convert_case( str_replace( $monstring->get('fylke_name') .' '. $year, '', $category ), MB_CASE_TITLE);
+            }
+            
+            $file->full_url = $this->get('router')->generate('ukmn_tvgui_fylke_film', array('fylke'=>$fylke, 'year'=>$year, 'title' => $file->title_urlsafe, 'id' => $file->id) );
             $files[ $category ][] = $file;
             
         }
       
-        return $this->render('UKMNtvguiBundle:Festivalen:year.html.twig', array( 'year' => $year, 'files' => $files ) );
+        return $this->render('UKMNtvguiBundle:Fylke:year.html.twig', array( 'year' => $year, 'fylke' => $monstring->get('fylke_name'), 'files' => $files ) );
     }
 }

@@ -29,7 +29,7 @@ class SearchController extends Controller
     
         require_once('UKM/tv_files.class.php');
         require_once('UKM/tv.class.php');
-
+		$files = array();
         $tv_files = new tv_files('search', $doSearchFor );
         while( $file = $tv_files->fetch() ) {
             if( !$file->id ) {

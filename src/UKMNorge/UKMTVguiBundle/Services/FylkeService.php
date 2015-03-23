@@ -66,4 +66,33 @@ class FylkeService {
         }
     }
     
+    public function id_to_human( $id ) {
+        $id = (int) $id;
+        switch( $id ) {
+            case 1:  return 'Østfold'; 
+            case 2:  return  'Akershus';
+            case 3:  return  'Oslo';
+            case 4:  return  'Hedmark';
+            case 5:  return  'Oppland';
+            case 6:  return  'Buskerud';
+            case 7:  return  'Vestfold';
+            case 8:  return  'Telemark';
+            case 9:  return  'Aust-Agder';
+            case 10: return  'Vest-Agder';
+            case 11: return  'Rogaland';
+            case 12: return  'Hordaland';
+            case 14: return  'Sogn og Fjordane';
+            case 15: return  'Møre og Romsdal';
+            case 16: return  'Sør-Trøndelag';
+            case 17: return  'Nord-Trøndelag';
+            case 18: return  'Nordland';
+            case 19: return  'Troms';
+            case 20: return  'Finnmark';
+            case 21: return  'Testfylke';
+            case 30: return  'Svalbard';
+            case 31: return  'Internasjonalt';
+            case 32: return  'Gjester';
+        }
+    }
+    
 }
