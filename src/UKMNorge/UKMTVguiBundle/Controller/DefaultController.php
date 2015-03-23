@@ -125,6 +125,8 @@ class DefaultController extends Controller
                     $route = 'ukmn_tvgui_lokal_year';
                     $route_data = array('plid' => $monstring->get('pl_id') , 'name' => $monstring->get('pl_name'));
                     $title = 'UKM '. $monstring->get('pl_name') .' '. $monstring->get('season');
+                    continue;
+
                     break;
                 case 'fylke':
                     $route = 'ukmn_tvgui_fylke_year';
