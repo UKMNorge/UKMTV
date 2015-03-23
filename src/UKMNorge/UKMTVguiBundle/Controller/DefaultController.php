@@ -123,10 +123,8 @@ class DefaultController extends Controller
             switch( $type ) {
                 case 'kommune':
                     $route = 'ukmn_tvgui_lokal_year';
-                    $route_data = array('plid' => $monstring->get('pl_id') , 'name' => $monstring->get('pl_name'));
+                    $route_data = array('kommune' => $TV->tag('k') , 'name' => 'kommer..', 'season' => $monstring->get('season'));
                     $title = 'UKM '. $monstring->get('pl_name') .' '. $monstring->get('season');
-                    continue;
-
                     break;
                 case 'fylke':
                     $route = 'ukmn_tvgui_fylke_year';
