@@ -1,5 +1,4 @@
 app/config/parameters.yml
-app/config/config.yml
 var/cache
 var/logs
 vendor/

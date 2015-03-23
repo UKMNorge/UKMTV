@@ -31,6 +31,7 @@ twig:
     globals:
         ga_tracking: %ga_tracking%
         nav: %nav%
+        facebook_app_id: %facebook_app_id%
 
 # Assetic Configuration
 assetic:
