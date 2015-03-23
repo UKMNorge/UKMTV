@@ -130,6 +130,7 @@ class DefaultController extends Controller
             $type = $monstring->get('type');
             switch( $type ) {
                 case 'kommune':
+	                require_once('UKM/sql.class.php');
                     $route = 'ukmn_tvgui_lokal_year';
 					$kommune_id = $TV->tag('k');					
 		            $kommune_qry = new SQL( "SELECT `name` FROM `smartukm_kommune` WHERE `id` = '#id'", array('id'=> $kommune_id) );
