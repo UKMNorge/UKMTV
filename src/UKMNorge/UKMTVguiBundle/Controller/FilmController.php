@@ -114,7 +114,7 @@ class FilmController extends Controller
                     break;
             }
 
-        $TV->description = mb_convert_encoding($TV->description, 'UTF-8' );
+#        $TV->description = mb_convert_encoding($TV->description, 'UTF-8' );
 
         // RENDER
         return $this->render('UKMNtvguiBundle:Film:index.html.twig', array( 'tv' => $TV, 'jumbo_title' => $predashtitle, 'jumbo_description' => $postdashtitle, 'meta' => $metadata, 'files' => $files ));
