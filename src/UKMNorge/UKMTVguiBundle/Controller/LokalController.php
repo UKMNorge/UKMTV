@@ -20,7 +20,7 @@ class LokalController extends Controller
     {
         $kommune_id = "";
 
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $connection = $em->getConnection();
         $statement = $connection->prepare("SELECT `k`.`name` AS `kommune`,
                                                   `k`.`id` AS `kommune_id`,
