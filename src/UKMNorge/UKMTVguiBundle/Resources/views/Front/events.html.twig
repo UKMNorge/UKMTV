@@ -1,0 +1,9 @@
+<ol class="list-unstyled">
+    {% for event in events %}
+        <li class="col-xs-6 col-sm-4 col-md-4 col-lg-2">
+            <a href="{{event.url}}">
+                {{event.title}}
+            </a>
+        </li>
+    {% endfor %}
+</ol>

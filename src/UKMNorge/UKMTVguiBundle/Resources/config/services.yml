@@ -1,0 +1,11 @@
+parameters:
+#    ukm_ntvgui.example.class: UKMNorge\UKMTVguiBundle\Example
+
+services:
+#    ukm_ntvgui.example:
+#        class: %ukm_ntvgui.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+    ukmnorge.FylkeService:
+        class: UKMNorge\UKMTVguiBundle\Services\FylkeService
+        arguments:
+            - @service_container

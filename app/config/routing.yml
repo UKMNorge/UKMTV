@@ -1,0 +1,4 @@
+ukm_ntvgui:
+    resource: "@UKMNtvguiBundle/Resources/config/routing.yml"
+    prefix:   /
+

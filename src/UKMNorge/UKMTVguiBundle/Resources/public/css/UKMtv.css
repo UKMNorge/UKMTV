@@ -1,0 +1,14 @@
+.ukm_page_jumbo{
+    padding-top:23px;
+    padding-bottom:23px;
+    font-size:20px;
+    text-align:left;
+    background:#000 no-repeat center center;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+    background-size:cover;
+    background-image:url('http://grafikk.ukm.no/tv/UKMtvBanner.jpg'); /* https://farm4.staticflickr.com/3904/14335399030_435b82769c_h.jpg');*/
+    background-repeat:no-repeat;
+    background-position:0 70%;
+}

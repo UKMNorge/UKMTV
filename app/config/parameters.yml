@@ -1,0 +1,46 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: ukmdev_dev_ss3
+    database_user: root
+    database_password: dev
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    locale: en
+    secret: ThisTokenIsNotSoSecretChangeIt
+    debug_toolbar: true
+    debug_redirects: false
+    use_assetic_controller: true
+    ga_tracking: "UA-46216680-1"
+    nav:
+        top:
+            1:
+                url: http://ukm.no/
+                title: for ungdom
+                full_title: UKM for ungdom
+                active: false
+            2:
+                url: http://ukm.no/din_monstring
+                title: der du bor
+                full_title: UKM der du bor
+                active: false
+            3:
+                url: http://om/ukm.no/
+                title: for voksne og presse
+                full_title: UKM for voksne og presse
+                active: false
+            4:
+                url: http://tv.ukm.no/
+                title: TV
+                full_title: UKM-TV
+                active: true
+        top_right:
+            1: 
+                url: http://arrangor.ukm.no
+                title: for arrangører
+                full_title: UKM for arrangører
+                active: false

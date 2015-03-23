@@ -1,0 +1,10 @@
+<ol class="yearList list-unstyled">
+    {% for year in years %}
+        <li class="year" id="year-{{year.year}}">
+            <a href="{{year.url}}">
+                <h2>{{year.year}}</h2>
+                <p>{{year.title}}</p>
+            </a>
+        </li>
+    {% endfor %}
+</ol>

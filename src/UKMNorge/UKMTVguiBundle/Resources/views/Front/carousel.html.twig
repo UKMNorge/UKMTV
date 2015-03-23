@@ -1,0 +1,28 @@
+<div id="{{sliderId}}" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        {% for tv in slides %}
+            <li data-target="#myCarousel" data-slide-to="{{loop.index-1}}" {{ loop.first ? 'class="active"' : '' }}></li>
+        {% endfor %}
+    </ol>
+    
+    <div class="carousel-inner">
+
+        {% for tv in slides %}
+            <div class="item {{ loop.first ? 'active' : '' }}" style="background-image:url({{tv.image_url}})">
+                <div class="container">
+                <div class="playbutton">
+                    <a href="{{tv.url}}"><img src="http://grafikk.ukm.no/tv/spillav.png" alt="Spill av" /></a>
+                </div>
+                    <div class="carousel-caption">
+                        <h1><a href="{{tv.url}}">{{tv.predashtitle}}</a></h1>
+                        <p><a href="{{tv.url}}">{{tv.postdashtitle}}</a></p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <a class="left carousel-control" href="#{{sliderId}}" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+    <a class="right carousel-control" href="#{{sliderId}}" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+</div>
+<!-- /.carousel -->

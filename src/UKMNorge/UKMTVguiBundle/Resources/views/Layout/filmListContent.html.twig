@@ -1,0 +1,21 @@
+<ol class="filmList list-unstyled">
+    {% for film in list %}
+        <li class="tv col-xs-6 col-sm-4 col-md-3 col-lg-2" id="tv-{{film.id}}">
+            {% embed "UKMNtvguiBundle:Layout:filmGrid.html.twig" with {film: film} %}{% endembed %}
+        </li>
+        
+        {% if loop.index is divisibleby(6) %}
+            <div class="visible-lg clearfix"></div>
+        {% endif %}
+        {% if loop.index is divisibleby(4) %}
+            <div class="visible-md clearfix"></div>
+        {% endif %}
+        {% if loop.index is divisibleby(3) %}
+            <div class="visible-sm clearfix"></div>
+        {% endif %}
+        {% if loop.index is divisibleby(2) %}
+            <div class="visible-xs clearfix"></div>
+        {% endif %}
+    {% endfor %}
+</ol>
+<div class="clearfix"></div>
