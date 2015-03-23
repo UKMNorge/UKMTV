@@ -113,8 +113,10 @@ class FilmController extends Controller
                     $metadata->category->parent->title = 'Infovideoer';
                     break;
             }
-
-#        $TV->description = mb_convert_encoding($TV->description, 'UTF-8' );
+			
+		if( !mb_detect_encoding($TV->description, 'UTF-8', true) ) {
+	        $TV->description = mb_convert_encoding($TV->description, 'UTF-8' );
+	    }
 
         // RENDER
         return $this->render('UKMNtvguiBundle:Film:index.html.twig', array( 'tv' => $TV, 'jumbo_title' => $predashtitle, 'jumbo_description' => $postdashtitle, 'meta' => $metadata, 'files' => $files ));
