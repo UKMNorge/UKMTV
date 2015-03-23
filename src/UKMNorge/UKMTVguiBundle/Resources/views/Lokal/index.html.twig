@@ -1,9 +1,9 @@
 {% extends "UKMNtvguiBundle:Layout:layout.html.twig" %}
 
 {% block content %}
+    <p class="lead">Viser de lokalmønstringene som har lastet opp video</p>
     {% for fylke in monstringer %}
     <h3>{{fylke.name}}</h3>
-    
     <ol class="list-unstyled">
     {% for kommune in fylke.kommuner %}
         <li class="kommune">
