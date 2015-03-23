@@ -29,6 +29,9 @@ class FylkeController extends Controller
             $monstring = new \fylke_monstring( $fylke_id, $i );
             $monstring = $monstring->monstring_get();
             if( get_class( $monstring ) == 'monstring' && $monstring->g('pl_id') != false ) {
+                if( !$monstring->har_ukmtv() ) {
+                    continue;
+                }
                 $year = new stdClass();
                 $year->year = $i;
                 $year->title = $monstring->g('pl_name');
