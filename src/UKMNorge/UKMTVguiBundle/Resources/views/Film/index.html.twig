@@ -4,6 +4,18 @@
 {# {% block jumbo_content %}{{ tv.title }}{% endblock %} #}
 
 
+{% block OpenGraph %}
+	<meta property="fb:app_id" content="141016739323676">
+	<meta property="og:type" content="video.other">
+	<meta property="og:url" content="{{ tv.full_url }}">
+	<meta property="og:image" content="{{ tv.image_url }}">
+	<meta property="og:title" content="{{ tv.title }}">
+	<meta property="og:description" content="Fra {{ tv.category }}">
+	<meta property="video:actor" content="http://facebook.com/UKMNorge">
+	<meta property="video:tag" content="UKM-TV UKM UKM Norge">
+	<link rel="alternate" type="application/json+oembed" href="http://oembed.ukm.no/?url={{ tv.full_url|url_encode }}" title="UKM-TV oEmbed" />
+{% endblock %}
+
 {% block javascript %}
     <script language="javascript" src="http://embed.ukm.no/info/{{ tv.id }}"></script>
 	<script>
