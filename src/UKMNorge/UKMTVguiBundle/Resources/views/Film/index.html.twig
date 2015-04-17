@@ -7,7 +7,7 @@
 {% block OpenGraph %}
 	<meta property="fb:app_id" content="141016739323676">
 	<meta property="og:type" content="video.other">
-	<meta property="og:url" content="{{ tv.full_url }}">
+	<meta property="og:url" content="http://tv.ukm.no{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}">
 	<meta property="og:image" content="{{ tv.image_url }}">
 	<meta property="og:title" content="{{ tv.title }}">
 	<meta property="og:description" content="Fra {{ tv.category }}">
