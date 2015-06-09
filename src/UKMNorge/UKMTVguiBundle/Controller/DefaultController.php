@@ -17,13 +17,6 @@ class DefaultController extends Controller
 		return str_replace('--','-', $string);
 	}
 
-	public function dieAction() {
-        $jumbo = new stdClass();
-        $jumbo->header = 'UKM-TV';
-        $jumbo->content = 'Siden ikke tilgjengelig';
-
-        return $this->render('UKMNtvguiBundle:Front:die.html.twig', array('jumbo' => $jumbo));
-	}
 
     public function indexAction()
     {

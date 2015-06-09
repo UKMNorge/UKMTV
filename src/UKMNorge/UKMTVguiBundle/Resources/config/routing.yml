@@ -1,8 +1,7 @@
 #   GITT FILM
 old_redirect_film:
     path:   /{title}/{id}
-    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'homepage' }
-#    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'film' }    
+    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'film' }    
     requirements:
         id: ([0-9])+
         
@@ -11,64 +10,51 @@ old_redirect_kategorier:
     defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'homepage' }
 old_redirect_festivaler:
     path: kategorier/UKM-Festivaler/
-    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'homepage' }
-#    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'festivaler' }
-
+    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'festivaler' }
 old_redirect_fylkesmonstringer:
     path: /kategorier/Fylkesm{nordic}nstringer/
-    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'homepage' }
-#    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'fylkesmonstringer' }
+    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'fylkesmonstringer' }
 old_redirect_lokalmonstringer:    
     path: /kategorier/Lokalm{nordic}nstringer/
-    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'homepage' }
-#    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'lokalmonstringer' }    
+    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'lokalmonstringer' }    
 old_redirect_samling:
     path: /samling/{samling}
-    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'homepage' }
-#    defaults: {_controller: UKMNtvguiBundle:Redirect:go, goTo: 'samling' }    
+    defaults: {_controller: UKMNtvguiBundle:Redirect:go, goTo: 'samling' }    
 old_redirect_infovideoer:
     path: kategorier/Infovideoer/
     defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'info' }
-#    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'homepage' }
 
 
 ukmn_tvgui_film:
     path: /{id}-{title}/
-    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'homepage' }
-#    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'film' }    
+    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'film' }    
     requirements:
         id: ([0-9])+
 
 ukmn_tvgui_homepage:
     path:   /
-    defaults: { _controller: UKMNtvguiBundle:Default:die }
-#    defaults: { _controller: UKMNtvguiBundle:Default:index }
+    defaults: { _controller: UKMNtvguiBundle:Default:index }
 
 #   RELATERTE FILMER
 #       Person
 ukmn_tvgui_person:
     path:   /person/{id}-{name}/
-    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'homepage' }
-#    defaults: { _controller: UKMNtvguiBundle:Related:person }
+    defaults: { _controller: UKMNtvguiBundle:Related:person }
 #       Innslag
 ukmn_tvgui_band:
     path:   /innslag/{id}-{name}/
-    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'homepage' }
-#    defaults: { _controller: UKMNtvguiBundle:Related:band }
+    defaults: { _controller: UKMNtvguiBundle:Related:band }
 
 #  FESTIVALEN
 ukmn_tvgui_festivalen_homepage:
     path:   /festivalen/
-    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'homepage' }
-#    defaults: { _controller: UKMNtvguiBundle:Festivalen:index }
+    defaults: { _controller: UKMNtvguiBundle:Festivalen:index }
 ukmn_tvgui_festivalen_year:
     path:   /festivalen/{year}/
-    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'homepage' }
-#    defaults: { _controller: UKMNtvguiBundle:Festivalen:year }
+    defaults: { _controller: UKMNtvguiBundle:Festivalen:year }
 ukmn_tvgui_festivalen_film:
     path:   /festivalen/{year}/{id}-{title}/
-    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'homepage' }
-#    defaults: { _controller: UKMNtvguiBundle:Film:index }    
+    defaults: { _controller: UKMNtvguiBundle:Film:index }    
     requirements:
         id: ([0-9])+
 
@@ -77,20 +63,16 @@ ukmn_tvgui_festivalen_film:
 #   FYLKESMØNSTRINGER
 ukmn_tvgui_fylke_homepage:
     path:   /fylke/
-    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'homepage' }
-#    defaults: { _controller: UKMNtvguiBundle:Fylke:index }
+    defaults: { _controller: UKMNtvguiBundle:Fylke:index }
 ukmn_tvgui_fylke_years:
     path:   /fylke/{fylke}/
-    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'homepage' }
-#    defaults: { _controller: UKMNtvguiBundle:Fylke:years }
+    defaults: { _controller: UKMNtvguiBundle:Fylke:years }
 ukmn_tvgui_fylke_year:
     path:   /fylke/{fylke}/{year}/
-    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'homepage' }
-#    defaults: { _controller: UKMNtvguiBundle:Fylke:year }
+    defaults: { _controller: UKMNtvguiBundle:Fylke:year }
 ukmn_tvgui_fylke_film:
     path:   /fylke/{fylke}/{year}/{id}-{title}/
-    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'homepage' }
-#    defaults: { _controller: UKMNtvguiBundle:Film:index }
+    defaults: { _controller: UKMNtvguiBundle:Film:index }
     requirements:
         id: ([0-9])+
 
@@ -98,25 +80,21 @@ ukmn_tvgui_fylke_film:
 #   LOKALMØNSTRINGER
 ukmn_tvgui_lokal_homepage:
     path:   /lokal/
-    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'homepage' }
-#    defaults: { _controller: UKMNtvguiBundle:Lokal:index }
+    defaults: { _controller: UKMNtvguiBundle:Lokal:index }
 ukmn_tvgui_lokal_years:
     path:   /lokal/{kommune}-{name}/
-    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'homepage' }
-#    defaults: { _controller: UKMNtvguiBundle:Lokal:years }
+    defaults: { _controller: UKMNtvguiBundle:Lokal:years }
     requirements:
         kommune: ([0-9])+
 ukmn_tvgui_lokal_year:
     path:   /lokal/{kommune}-{name}/{season}/
-    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'homepage' }
-#    defaults: { _controller: UKMNtvguiBundle:Lokal:year }
+    defaults: { _controller: UKMNtvguiBundle:Lokal:year }
     requirements:
         kommune: ([0-9])+
         season: ([0-9])+
 ukmn_tvgui_lokal_film:
     path:   /lokal/{kommune}-{name}/{season}/{id}-{title}/
-    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'homepage' }
-#    defaults: { _controller: UKMNtvguiBundle:Film:index }
+    defaults: { _controller: UKMNtvguiBundle:Film:index }
     requirements:
         kommune: ([0-9])+
         season: ([0-9])+
@@ -126,12 +104,10 @@ ukmn_tvgui_lokal_film:
 #   INFOVIDEOER
 ukmn_tvgui_info_homepage:
     path:   /info/
-    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'homepage' }
-#    defaults: { _controller: UKMNtvguiBundle:Info:index }
+    defaults: { _controller: UKMNtvguiBundle:Info:index }
 ukmn_tvgui_info_film:
     path:   /info/{id}-{title}/
-    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'homepage' }
-#    defaults: { _controller: UKMNtvguiBundle:Film:index }
+    defaults: { _controller: UKMNtvguiBundle:Film:index }
     requirements:
         id: ([0-9])+
 
@@ -141,17 +117,14 @@ ukmn_tvgui_info_film:
 #   SØK
 ukmn_tvgui_search:
     path:   /search/
-    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'homepage' }
-#    defaults: { _controller: UKMNtvguiBundle:Search:index }    
+    defaults: { _controller: UKMNtvguiBundle:Search:index }    
     requirements:
         _method:  GET
 ukmn_tvgui_search_redir:
     path:   /search/
-    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'homepage' }
-#    defaults: { _controller: UKMNtvguiBundle:Search:doSearch }    
+    defaults: { _controller: UKMNtvguiBundle:Search:doSearch }    
     requirements:
         _method:  POST
 ukmn_tvgui_searchfor:
     path:   /search/{doSearchFor}/
-    defaults: { _controller: UKMNtvguiBundle:Redirect:go, goTo: 'homepage' }
-#   defaults: { _controller: UKMNtvguiBundle:Search:result }
+    defaults: { _controller: UKMNtvguiBundle:Search:result }
