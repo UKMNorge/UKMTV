@@ -38,7 +38,7 @@ class DefaultController extends Controller
         $etter_festivalen = true; // AKA quickfix
         
         if( $etter_festivalen ) {
-		    $monstring = new landsmonstring(date("Y")-1);
+		    $monstring = new landsmonstring(date("Y"));
 		    $this->festivalen = $monstring->monstring_get();
 
 	        $festival = array('' => $this->_getFestival());
