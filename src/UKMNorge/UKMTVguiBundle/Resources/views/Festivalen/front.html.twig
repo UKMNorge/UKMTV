@@ -1,5 +1,7 @@
-	<div class="clearfix"></div>
+{#
+<div class="clearfix"></div>
     <h3>Noen populære filmer fra UKM-festivalen <small>Se alle <a href="{{ path('ukmn_tvgui_festivalen_year', {'year':festivalen.year}) }}">filmer fra UKM-festivalen her</small></h3>
 	<div class="row">
         {% embed "UKMNtvguiBundle:Layout:filmList.html.twig" with { 'files': festivalen.filer } %}{% endembed %}
     </div>
+#}
