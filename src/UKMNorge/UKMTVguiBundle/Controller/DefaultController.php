@@ -67,7 +67,6 @@ class DefaultController extends Controller
     private function _getFestival() {
         @include_once('UKM/monstring_tidligere.class.php'); // TODO: hva er riktig - dev-API eller prod-API? (førstnevnte..?)
 	    $tv_files = new tv_files('popular_from_plid', $this->festivalen->get('pl_id'));
-/* DEBUG */	    $tv_files = new tv_files('popular_from_plid', 2723);
 		$files = [];
         while( $file = $tv_files->fetch(6) ) {
             if( !$file->id ) {
