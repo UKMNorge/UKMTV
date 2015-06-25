@@ -58,8 +58,8 @@ class DefaultController extends Controller
 	private function _getFestivalFilm() {
         $id = 7288;	// AKA quickfix 2
         $TV = new tv( $id );
-        $TV->predashtitle = substr( $TV->title, 0, strpos( $TV->title, ' - ') );
-        $TV->postdashtitle = substr( $TV->title, 3+strpos( $TV->title, ' - ') );
+        $TV->predashtitle = $TV->title;#substr( $TV->title, 0, strpos( $TV->title, ' - ') );
+        $TV->postdashtitle = $TV->title;#substr( $TV->title, 3+strpos( $TV->title, ' - ') );
         $TV->full_url = $this->get('router')->generate('ukmn_tvgui_film', array('title' => $TV->title_urlsafe, 'id' => $TV->id) );
 		return $TV;
     }
