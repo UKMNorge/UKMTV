@@ -7,6 +7,7 @@ use stdClass;
 use tv;
 use tv_files;
 use monstring;
+use landsmonstring;
 use sql;
 
 class DefaultController extends Controller
@@ -31,8 +32,55 @@ class DefaultController extends Controller
         $jumbo = new stdClass();
         $jumbo->header = 'UKM-TV';
         $jumbo->content = 'UKM-filmer fra de siste '. (date("Y")-2009 ). ' årene';
-     
-        return $this->render('UKMNtvguiBundle:Front:index.html.twig', array('jumbo' => $jumbo, 'page_nav' => $page_nav, 'popular' => $files, 'events' => $events ));
+        
+        $data = array('jumbo' => $jumbo, 'page_nav' => $page_nav, 'popular' => $files, 'events' => $events);
+        
+        $etter_festivalen = true; // AKA quickfix
+        
+        if( $etter_festivalen ) {
+		    $monstring = new landsmonstring(date("Y")-1);
+		    $this->festivalen = $monstring->monstring_get();
+
+	        $festival = array('' => $this->_getFestival());
+	        $festivalfilm = $this->_getFestivalFilm();
+	        
+	        $data['popular'] = array(''=>$festivalfilm);
+	        
+	        $data['festivalen'] = array('filer' => $festival, 
+	        							'festivalfilm' => $festivalfilm,
+	        							'pl_id' => $this->festivalen->get('pl_id'),
+	        							'year' => $this->festivalen->get('season')
+	        							);
+		}
+        return $this->render('UKMNtvguiBundle:Front:index.html.twig', $data);
+    }
+    
+	private function _getFestivalFilm() {
+        $id = 7288;	// AKA quickfix 2
+        $TV = new tv( $id );
+        $TV->predashtitle = substr( $TV->title, 0, strpos( $TV->title, ' - ') );
+        $TV->postdashtitle = substr( $TV->title, 3+strpos( $TV->title, ' - ') );
+        $TV->full_url = $this->get('router')->generate('ukmn_tvgui_film', array('title' => $TV->title_urlsafe, 'id' => $TV->id) );
+		return $TV;
+    }
+    
+    private function _getFestival() {
+        require_once('UKM/monstring_tidligere.class.php');
+	    $tv_files = new tv_files('popular_from_plid', $this->festivalen->get('pl_id'));
+/* DEBUG */	    $tv_files = new tv_files('popular_from_plid', 2723);
+		$files = [];
+        while( $file = $tv_files->fetch(6) ) {
+            if( !$file->id ) {
+                continue;
+            }       
+            $file->predashtitle = substr( $file->title, 0, strpos( $file->title, ' - ') );
+            $file->postdashtitle = substr( $file->title, 3+strpos( $file->title, ' - ') );
+            $file->full_url = $this->get('router')->generate('ukmn_tvgui_film', array('title' => $file->title_urlsafe, 'id' => $file->id) );
+            $files[] = $file;            
+        }
+
+
+	    return $files;
     }
     
     private function _getPopular() {
@@ -67,32 +115,32 @@ class DefaultController extends Controller
     
     private function _getPageNav() {
         $page_nav = [];
+		$page_nav[] = (object) array( 'url' 			=> $this->get('router')->generate('ukmn_tvgui_search'),
+									  'title'		 	=> 'Søk i UKM-TV',
+									  'icon'			=> 'nav-search',
+									  'description'	=> ''
+									  );
         $page_nav[] = (object) array( 'url' 			=> $this->get('router')->generate('ukmn_tvgui_festivalen_homepage'),
-									  'title'		 	=> 'Festivalen',
+									  'title'		 	=> 'TV fra festivalen',
 									  'icon'			=> 'nav-rocket',
 									  'description'	=> ''
 									  );
 									  
 		$page_nav[] = (object) array( 'url' 			=> $this->get('router')->generate('ukmn_tvgui_fylke_homepage'),
-									  'title'		 	=> 'Fylkesmønstringer',
+									  'title'		 	=> 'TV fra fylkesmønstringer',
 									  'icon'			=> 'file',
 									  'description'	=> ''
 									  );
 
 		$page_nav[] = (object) array( 'url' 			=> $this->get('router')->generate('ukmn_tvgui_lokal_homepage'),
-									  'title'		 	=> 'Lokalmønstringer',
+									  'title'		 	=> 'TV fra lokalmønstringer',
 									  'icon'			=> 'file',
 									  'description'	=> ''
 									  );
 
 		$page_nav[] = (object) array( 'url' 			=> $this->get('router')->generate('ukmn_tvgui_info_homepage'),
-									  'title'		 	=> 'Infovideoer',
+									  'title'		 	=> 'Infovideoer på UKM-TV',
 									  'icon'			=> 'nav-i',
-									  'description'	=> ''
-									  );
-		$page_nav[] = (object) array( 'url' 			=> $this->get('router')->generate('ukmn_tvgui_search'),
-									  'title'		 	=> 'Søk',
-									  'icon'			=> 'nav-search',
 									  'description'	=> ''
 									  );
         return $page_nav;

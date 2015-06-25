@@ -21,9 +21,11 @@
 		</div>
 	</div>
 	
-	<div class="clearfix"></div>
-	
-	<h2>Siste hendelser i UKM-TV</h2>
+    {% if festivalen is defined %}
+    	{% embed "UKMNtvguiBundle:Festivalen:front.html.twig" %}{% endembed %}
+    {% endif %}
+    	
+	<h2>Siste arrangementer i UKM-TV</h2>
 	<div class="row">
         {% embed "UKMNtvguiBundle:Front:events.html.twig" %}{% endembed %}
     </div>
