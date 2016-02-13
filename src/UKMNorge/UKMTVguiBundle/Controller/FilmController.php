@@ -99,10 +99,19 @@ class FilmController extends Controller
                     $metadata->category->parent->title = 'Fylkesmønstringer';
                     break;
                 case 'kommune':
-					$kommune = $request->attributes->get('kommune');
-					$name = $request->attributes->get('name');
-					$season = $request->attributes->get('season');
-					
+                	// URL-hentede attributter:
+                        $kommune = $request->attributes->get('kommune'); // Kommune-ID
+                        $name = $request->attributes->get('name'); // Kommune-name
+                        $season = $request->attributes->get('season'); // Current season
+                        // UKM-tv fix 13.02.16 pga lokalsidelinktull fra innslagsvideoer
+                        // Asgeirsh@ukmmedia.no
+                        if ($metadata->bandrelated) {
+                        	// Fordi $inn ikke finnes for videoreportasjer, men da i URLen.
+                                $kommune = $inn->get('b_kommune');
+                                $season = $inn->get('b_season');
+                        }
+                        $name = $monstring->_sanitize_nordic($monstring->get('pl_name'));
+                        
                     $metadata->category->url = $this->get('router')
                                                     ->generate('ukmn_tvgui_lokal_year', array('kommune' => $kommune, 'name'=>$name,'season'=>$season) );
                     $metadata->category->parent->url = $this->get('router')->generate('ukmn_tvgui_lokal_homepage');
