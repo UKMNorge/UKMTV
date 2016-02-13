@@ -69,17 +69,11 @@ class LokalController extends Controller
     public function yearsAction( $kommune, $name ) {
         
         require_once('UKM/monstring.class.php');
-        require_once('UKM/sql.class.php');
         
         $all_years = array();
         
         $year_start = 2009;
         $year_stop = (int) date('Y')+3;
-        
-        $kommune_navn = new SQL("SELECT `name` FROM `smartukm_kommune` WHERE `id` = '#kommune'",
-        				array('kommune'=>$kommune));
-        $kommune_navn = utf8_encode($kommune_navn->run('field', 'name'));
-        
         
         for( $i = $year_start; $i < $year_stop; $i++ ) {
             $monstring = new \kommune_monstring( $kommune, $i );
@@ -97,7 +91,7 @@ class LokalController extends Controller
         }
 
     
-        return $this->render('UKMNtvguiBundle:Lokal:years.html.twig', array('kommune' => $kommune_navn, 'years' => $all_years ));        
+        return $this->render('UKMNtvguiBundle:Lokal:years.html.twig', array('kommune' => $name, 'years' => $all_years ));        
     }
     
     public function yearAction($kommune, $name, $season) {
