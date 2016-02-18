@@ -3,3 +3,4 @@ var/cache
 var/logs
 vendor/
 web/bundles
+web/
