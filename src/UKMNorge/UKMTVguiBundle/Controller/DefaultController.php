@@ -38,10 +38,7 @@ class DefaultController extends Controller
         $etter_festivalen = true; // AKA quickfix
         
         if( $etter_festivalen ) {
-            $date = date("Y");
-            if (UKM_HOSTNAME == 'ukm.dev')
-                $date = 2014;
-		    $monstring = new landsmonstring($date);
+		    $monstring = new landsmonstring(date("Y"));
 		    $this->festivalen = $monstring->monstring_get();
 
 	        $festival = array('' => $this->_getFestival());
@@ -60,8 +57,6 @@ class DefaultController extends Controller
     
 	private function _getFestivalFilm() {
         $id = 7288;	// AKA quickfix 2
-        if (UKM_HOSTNAME == 'ukm.dev')
-            $id = 4511;
         $TV = new tv( $id );
         $TV->predashtitle = $TV->title;#substr( $TV->title, 0, strpos( $TV->title, ' - ') );
         $TV->postdashtitle = utf8_encode($TV->description);#substr( $TV->title, 3+strpos( $TV->title, ' - ') );
