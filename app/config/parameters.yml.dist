@@ -17,16 +17,3 @@ parameters:
     debug_toolbar:          true
     debug_redirects:        false
     use_assetic_controller: true
-
-    ga_tracking: 'UA-46216680-4'
-    facebook_app_id: ''
-    nav:
-        top:
-            - { url: 'http://ukm.no/', active: false, 'title': 'for ungdom' }
-            - { url: 'http://ukm.no/din_monstring', active: false, 'title': 'der du bor' }
-            - { url: 'http://om.ukm.no/', active: false, 'title': 'for voksne og presse' }
-            - { url: 'http://tv.ukm.no/', active: true, 'title': 'TV' }
-        top_right:
-            - { url: 'http://ukm.no/wp-login.php', active: false, 'title': 'for arrangører' }
-
-
