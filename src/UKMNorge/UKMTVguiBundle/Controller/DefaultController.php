@@ -41,6 +41,7 @@ class DefaultController extends Controller
             $date = date("Y");
             if (UKM_HOSTNAME == 'ukm.dev')
                 $date = 2014;
+            
 		    $monstring = new landsmonstring($date);
 		    $this->festivalen = $monstring->monstring_get();
 

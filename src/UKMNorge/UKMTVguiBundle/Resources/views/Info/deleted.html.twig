@@ -1,0 +1,14 @@
+{% extends "UKMNtvguiBundle:Layout:layout.html.twig" %}
+
+{% block jumbo_header %}
+    UKM-TV
+{% endblock %}
+{% block jumbo_content %}
+{% endblock %}
+
+
+{% block content %}
+    <h1>Denne videoen finnes ikke</h1>
+    <h3>Se andre filmer fra <a href="{{url}}">denne samlingen:</a></h3>
+        {% embed "UKMNtvguiBundle:Layout:filmList.html.twig" %}{% endembed %}
+{% endblock %}

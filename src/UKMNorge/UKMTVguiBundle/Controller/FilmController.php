@@ -4,6 +4,7 @@ namespace UKMNorge\UKMTVguiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use stdClass;
 use tv;
@@ -11,6 +12,8 @@ use tv_files;
 use innslag;
 use person;
 use monstring;
+use Exception;
+use SQL;
 
 class FilmController extends Controller
 { 
@@ -29,6 +32,54 @@ class FilmController extends Controller
         require_once('UKM/person.class.php');
         $TV = new tv( $id );
              
+        if (!$TV->id) {
+            require_once('UKM/sql.class.php');
+            // Videoen er slettet eller finnes ikke
+            #var_dump($request);
+            $fylkeURL = $request->attributes->get('fylke');
+            $kommune = $request->attributes->get('kommune');
+            $name = $request->attributes->get('name');
+            $season = $request->attributes->get('year');
+            if (!$season) 
+                $season = $request->attributes->get('season');
+            $url = 'http://tv.ukm.no/';
+            if ($fylkeURL)
+                $url .= 'fylke/'.$fylkeURL.'/';
+            if ($kommune) 
+                $url .= 'lokal/'.$kommune.'-'.$name.'/';
+            if (!$fylkeURL && !$kommune) 
+                $url .= 'festivalen/';
+            if($season)
+                $url .= $season.'/';
+            #var_dump($fylkeURL);
+            $qry = new SQL("SELECT `tv_category`
+                            FROM `ukm_tv_files`
+                            WHERE ".(is_numeric($id) 
+                                ? "`tv_id` = '#tvid'" 
+                                : "`tv_file` LIKE '%#tvid'"),
+                    array('tvid' => $id ));
+            #echo $qry->debug();
+            $res = $qry->run('array');
+            #var_dump($res);
+            
+            $video = new stdClass();
+            $video->id = $id;
+            $video->set = $res['tv_category'];
+            $rel = new tv_files('related', $video);
+            $rel->limit(12);
+            
+            $fetch = $rel->fetch();
+            #var_dump($fetch);
+            $related[] = $rel->getVideos();
+            #var_dump($related);
+            #throw new Exception('gafdjhgljkfda');
+            #echo 'Videoen er slettet!';
+            #$fylke_urlname = 
+            #$view_data = array('fylke_urlname' => , 'season' => , 'tv_id' => )
+            $view_data = array('tv_id' => $id, 'files' => $related, 'url' => $url);
+            #$view_data[''] = 
+            return $this->render('UKMNtvguiBundle:Info:deleted.html.twig', $view_data);
+        }
         $predashtitle = substr( $TV->title, 0, strpos( $TV->title, ' - ') );
         $postdashtitle = substr( $TV->title, 3+strpos( $TV->title, ' - ') );
         
@@ -126,7 +177,7 @@ class FilmController extends Controller
 		if( !mb_detect_encoding($TV->description, 'UTF-8', true) ) {
 	        $TV->description = mb_convert_encoding($TV->description, 'UTF-8' );
 	    }
-
+        #var_dump($files);
         // RENDER
         return $this->render('UKMNtvguiBundle:Film:index.html.twig', array( 'tv' => $TV, 'jumbo_title' => $predashtitle, 'jumbo_description' => $postdashtitle, 'meta' => $metadata, 'files' => $files ));
     }
