@@ -185,8 +185,7 @@ class FilmController extends Controller
             'jumbo_title' => $predashtitle, 
             'jumbo_description' => $postdashtitle, 
             'meta' => $metadata, 
-            'files' => $files,
-            'fb_embed_url' => $videoURL
+            'files' => $files
         );
         return $this->render('UKMNtvguiBundle:Film:index.html.twig', $view_data);
     }
