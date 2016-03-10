@@ -178,7 +178,20 @@ class FilmController extends Controller
 	        $TV->description = mb_convert_encoding($TV->description, 'UTF-8' );
 	    }
         #var_dump($files);
+
+        // URL til video for facebook-embedding
+        $videoURL = 'http://embed.ukm.no/'.$TV->id;
+
+
         // RENDER
-        return $this->render('UKMNtvguiBundle:Film:index.html.twig', array( 'tv' => $TV, 'jumbo_title' => $predashtitle, 'jumbo_description' => $postdashtitle, 'meta' => $metadata, 'files' => $files ));
+        $view_data = array( 
+            'tv' => $TV, 
+            'jumbo_title' => $predashtitle, 
+            'jumbo_description' => $postdashtitle, 
+            'meta' => $metadata, 
+            'files' => $files,
+            'fb_embed_url' => $videoURL
+        );
+        return $this->render('UKMNtvguiBundle:Film:index.html.twig', $view_data);
     }
 }
