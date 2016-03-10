@@ -12,6 +12,9 @@
 	<meta property="og:title" content="{{ tv.title }}">
     {% if fb_embed_url is defined %}
         <meta property="og:video" content="{{ fb_embed_url }}">
+        <meta property="og:video:width" content="1280">
+        <meta property="og:video:height" content="720">
+        <meta property="og:video:secure_url" content="{{ fb_embed_url }}">
     {% endif %}
 	<meta property="og:description" content="Fra {{ tv.set }}">
 	<meta property="video:actor" content="http://facebook.com/UKMNorge">
@@ -20,7 +23,7 @@
 {% endblock %}
 
 {% block javascript %}
-    <script language="javascript" src="http://embed.ukm.no/info/{{ tv.id }}"></script>
+    <script language="javascript" src="https://embed.ukm.no/info/{{ tv.id }}"></script>
 	<script>
 	window.fbAsyncInit = function() {
 	  FB.init({

@@ -180,7 +180,7 @@ class FilmController extends Controller
         #var_dump($files);
 
         // URL til video for facebook-embedding
-        $videoURL = 'http://embed.ukm.no/'.$TV->id;
+        $videoURL = 'https://embed.ukm.no/'.$TV->id;
 
 
         // RENDER
