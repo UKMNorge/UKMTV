@@ -10,12 +10,6 @@
 	<meta property="og:url" content="http://tv.ukm.no{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}">
 	<meta property="og:image" content="{{ tv.image_url }}">
 	<meta property="og:title" content="{{ tv.title }}">
-    {% if fb_embed_url is defined %}
-        <meta property="og:video" content="{{ fb_embed_url }}">
-        <meta property="og:video:width" content="1280">
-        <meta property="og:video:height" content="720">
-        <meta property="og:video:secure_url" content="{{ fb_embed_url }}">
-    {% endif %}
 	<meta property="og:description" content="Fra {{ tv.set }}">
 	<meta property="video:actor" content="http://facebook.com/UKMNorge">
 	<meta property="video:tag" content="UKM-TV UKM UKM Norge">
