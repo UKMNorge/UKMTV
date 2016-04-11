@@ -70,8 +70,8 @@ class CronController extends Controller
 		$perpage = 500;
 		$stop = $perpage*$page;
 		$start = $stop-$perpage;
-		$perpage++; // Korriger så man ikke hopper over en per pageload
-		$sql = new SQL("SELECT * FROM `ukm_tv_files` WHERE `tv_id` > '$start' AND `tv_id` < '$stop' LIMIT $perpage");
+		$stop++;
+		$sql = new SQL("SELECT * FROM `ukm_tv_files` WHERE `tv_id` > '$start' AND `tv_id` < '$stop'");
 		$res = $sql->run();
 		
 		while( $r = mysql_fetch_assoc( $res ) ) {
