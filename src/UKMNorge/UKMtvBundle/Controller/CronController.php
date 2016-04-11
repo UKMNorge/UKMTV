@@ -64,10 +64,13 @@ class CronController extends Controller
         return $this->render('UKMtvBundle:Cron:sync.html.twig', array());
     }
     
-    public function tagsAction() {
+    public function tagsAction($page=1) {
 	    require_once('UKM/sql.class.php');
 
-		$sql = new SQL("SELECT * FROM `ukm_tv_files`");
+		$perpage = 500;
+		$stop = $perpage*$page;
+		$start = $stop-$perpage;
+		$sql = new SQL("SELECT * FROM `ukm_tv_files` WHERE `tv_id` > '$start' AND `tv_id` < '$stop' LIMIT $perpage");
 		$res = $sql->run();
 		
 		while( $r = mysql_fetch_assoc( $res ) ) {
@@ -111,6 +114,6 @@ class CronController extends Controller
 		    }
 		}
 		
-        return $this->render('UKMtvBundle:Cron:tags.html.twig', array());
+        return $this->render('UKMtvBundle:Cron:tags.html.twig', array( 'nextpage' => $page+1 ));
     }
 }
