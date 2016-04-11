@@ -1,3 +1,7 @@
+uk_mtv:
+    resource: "@UKMtvBundle/Resources/config/routing.yml"
+    prefix:   /
+
 ukm_ntvgui:
     resource: "@UKMNtvguiBundle/Resources/config/routing.yml"
     prefix:   /

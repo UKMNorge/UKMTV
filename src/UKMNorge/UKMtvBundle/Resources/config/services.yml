@@ -1,0 +1,7 @@
+parameters:
+#    uk_mtv.example.class: UKMNorge\UKMtvBundle\Example
+
+services:
+#    uk_mtv.example:
+#        class: %uk_mtv.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,11 @@
+ukmtv_cron_playcount:
+    path: /cron/playcount/
+    defaults: { _controller: UKMtvBundle:Cron:playcount }
+    
+ukmtv_cron_tags:
+    path: /cron/tags/
+    defaults: { _controller: UKMtvBundle:Cron:tags }
+    
+ukmtv_cron_sync:
+    path: /cron/sync/
+    defaults: { _controller: UKMtvBundle:Cron:sync }
