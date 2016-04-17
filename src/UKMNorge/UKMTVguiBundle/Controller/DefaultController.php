@@ -25,7 +25,7 @@ class DefaultController extends Controller
         require_once('UKM/tv.class.php');
         require_once('UKM/monstring.class.php');
 
-        $files = $this->_getPopular();        
+#        $files = $this->_getPopular();        
         $page_nav = $this->_getPageNav();
 #        $events = $this->_getEvents();   
         
@@ -33,9 +33,9 @@ class DefaultController extends Controller
         $jumbo->header = 'UKM-TV';
         $jumbo->content = 'UKM-filmer fra de siste '. (date("Y")-2009 ). ' årene';
         
-        $data = array('jumbo' => $jumbo, 'page_nav' => $page_nav, 'popular' => $files);#, 'events' => $events);
+        $data = array('jumbo' => $jumbo, 'page_nav' => $page_nav);#, 'popular' => $files);#, 'events' => $events);
         
-        $etter_festivalen = true; // AKA quickfix
+        $etter_festivalen = false; // AKA quickfix
         
         if( $etter_festivalen ) {
             $date = date("Y");
