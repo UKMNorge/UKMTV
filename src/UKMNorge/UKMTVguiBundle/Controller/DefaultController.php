@@ -27,13 +27,13 @@ class DefaultController extends Controller
 
         $files = $this->_getPopular();        
         $page_nav = $this->_getPageNav();
-        $events = $this->_getEvents();   
+#        $events = $this->_getEvents();   
         
         $jumbo = new stdClass();
         $jumbo->header = 'UKM-TV';
         $jumbo->content = 'UKM-filmer fra de siste '. (date("Y")-2009 ). ' årene';
         
-        $data = array('jumbo' => $jumbo, 'page_nav' => $page_nav, 'popular' => $files, 'events' => $events);
+        $data = array('jumbo' => $jumbo, 'page_nav' => $page_nav, 'popular' => $files);#, 'events' => $events);
         
         $etter_festivalen = true; // AKA quickfix
         
