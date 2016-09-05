@@ -64,17 +64,25 @@ class CronController extends Controller
         return $this->render('UKMtvBundle:Cron:sync.html.twig', array());
     }
     
-    public function tagsAction($page=1) {
+    public function tagsAction() {
 	    require_once('UKM/sql.class.php');
-
+		
 		$perpage = 500;
-		$stop = $perpage*$page;
-		$start = $stop-$perpage;
-		$stop++;
+
+		if( $this->get('UKMoption')->get('cron.tags.pagination') ) {
+			$start = $this->get('UKMoption')->get('cron.tags.pagination');
+		} else {
+			$start = 0;
+		}
+		echo '<h2>Start pagination at '. $start .' with '. $perpage .' per page</h2>';
+		$stop = $start + $perpage;
+
 		$sql = new SQL("SELECT * FROM `ukm_tv_files` WHERE `tv_id` > '$start' AND `tv_id` < '$stop'");
 		$res = $sql->run();
 		
+		$counter = 0;
 		while( $r = mysql_fetch_assoc( $res ) ) {
+			$counter++;
 		    $tv_id = $r['tv_id'];
 		    
 		    $tags = $r['tv_tags'];
@@ -114,7 +122,14 @@ class CronController extends Controller
 		        $SQLins->run();
 		    }
 		}
+		if( 0 == $counter ) {
+			echo '<h2>Set pagination to 0</h2>';
+			$this->get('UKMoption')->set('cron.tags.pagination', 0);
+		} else {
+			echo '<h2>Set pagination to '. $stop .'</h2>';
+			$this->get('UKMoption')->set('cron.tags.pagination', $stop);
+		}
 		
-        return $this->render('UKMtvBundle:Cron:tags.html.twig', array( 'nextpage' => $page+1 ));
+        return $this->render('UKMtvBundle:Cron:tags.html.twig');
     }
 }

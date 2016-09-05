@@ -3,7 +3,7 @@ ukmtv_cron_playcount:
     defaults: { _controller: UKMtvBundle:Cron:playcount }
     
 ukmtv_cron_tags:
-    path: /cron/tags/{page}/
+    path: /cron/tags/
     defaults: { _controller: UKMtvBundle:Cron:tags }
     
 ukmtv_cron_sync:

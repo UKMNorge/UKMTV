@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new UKMNorge\UKMTVguiBundle\UKMNtvguiBundle(),
             new UKMNorge\UKMtvBundle\UKMtvBundle(),
+            new UKMNorge\OptionBundle\UKMOptionBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
