@@ -49,6 +49,8 @@ class CronController extends Controller
 			$start = 0;
 		}
 		echo '<h1>Start pagination at '. $start .' with '. $perpage .' per page</h1>';
+		$stop = $start + $perpage;
+
 		##################################################
 		echo '<h2>Oppdaterer db for WP_related</h2>';
 		$qry = new SQL("SELECT * 
@@ -64,7 +66,9 @@ class CronController extends Controller
 						)
                     );
 		$res = $qry->run();
-		while($r = mysql_fetch_assoc($res)) {
+		$counter_1 = 0;
+		while( $r = mysql_fetch_assoc( $res ) ) {
+			$counter_1++;
 			$data = video_calc_data('wp_related', $r);
 			tv_update($data);
 		}
@@ -81,10 +85,21 @@ class CronController extends Controller
 						)
                     );
 		$res = $qry->run();
+		$counter_2 = 0;
 		while( $r = mysql_fetch_assoc( $res ) ) {
+    		$counter_2++;
 			$data = video_calc_data('standalone_video', $r );
 			tv_update($data);
 		}
+		
+		if( 0 == $counter_1 && 0 == $counter_2 ) {
+			echo '<h2>Set pagination to 0</h2>';
+			$this->get('UKMoption')->set('cron.sync.pagination', 0);
+		} else {
+			echo '<h2>Set pagination to '. $stop .'</h2>';
+			$this->get('UKMoption')->set('cron.sync.pagination', $stop);
+		}
+
 		
         return $this->render('UKMtvBundle:Cron:sync.html.twig', array());
     }
