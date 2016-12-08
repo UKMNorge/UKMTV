@@ -439,7 +439,7 @@ function video_calc_tag($inn, $pl_type, $pl_id) {
 	$inn->loadGeo();
 	$personer = $inn->personer();
 	
-	$tags .= '|b_'.$inn->g('b_id').'|'
+	$tags = '|b_'.$inn->g('b_id').'|'
 			.'|k_'.$inn->g('kommuneID').'|'
 			.'|f_'.$inn->g('fylkeID').'|'
 			.'|s_'.$inn->g('b_season').'|'
@@ -454,7 +454,7 @@ function video_calc_tag_smartukm_tag($inn, $pl_type, $pl_id, $kommune, $fylke, $
 	$inn->loadGeo();
 	$personer = $inn->personer();
 	
-	$tags .= '|b_'.$inn->g('b_id').'|'
+	$tags = '|b_'.$inn->g('b_id').'|'
 			.'|k_'.$kommune.'|'
 			.'|f_'.$fylke.'|'
 			.'|s_'.$season.'|'
