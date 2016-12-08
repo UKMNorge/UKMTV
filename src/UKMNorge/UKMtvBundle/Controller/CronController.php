@@ -21,10 +21,12 @@ class CronController extends Controller
 		$res = $sql->run();
 		while($r = mysql_fetch_assoc( $res )) {
 			$upd = new SQLins('ukm_tv_plays_cache', array('tv_id' => $r['tv_id']));
+			$upd->disableErrorLog();
 			$upd->add('plays', $r['plays']);
 			$updRES = $upd->run();
 			if($updRES == 0) {
 				$ins = new SQLins('ukm_tv_plays_cache');
+				$ins->disableErrorLog();
 				$ins->add('tv_id', $r['tv_id']);
 				$ins->add('plays', $r['plays']);
 				$insRES = $ins->run();
@@ -154,6 +156,7 @@ class CronController extends Controller
 		            #    die('Mangler støtte for '. $tag_data[0]);
 		        }
 		        $SQLins = new SQLins('ukm_tv_tags');
+		        $SQLins->disableErrorLog();
 		        $SQLins->add('tv_id', $tv_id);
 		        $SQLins->add('type', $type);
 		        $SQLins->add('foreign_id', $tag_data[1]);

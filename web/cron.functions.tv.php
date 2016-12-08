@@ -12,11 +12,12 @@ function tv_update($data) {
 #		echo $test->debug();
 		$tv_id = $test->run('field', 'tv_id');
 		
-		if($tv_id && is_numeric($tv_id) )
+		if($tv_id && is_numeric($tv_id) ) {
 			$ins = new SQLins('ukm_tv_files', array('tv_id' => $tv_id));
-		else
+		} else {
 			$ins = new SQLins('ukm_tv_files');
-		
+		}
+        $ins->disableErrorLog();
 		tv_clean_description($data['description']);
 		
 		$ins->add('tv_title', str_replace("'", "\'", $data['title']));
@@ -61,11 +62,12 @@ function tv_person_update($tags, $tv_id) {
 								  'pid' => $p_id));
 		$sqltest = $sqltest->run('field','tv_p_id');
 		
-		if(is_numeric($sqltest))
+		if(is_numeric($sqltest)) {
 			$sql = new SQLins('ukm_tv_persons', array('tv_id' => $tv_id, 'p_id' => $p_id));
-		else
+		} else {
 			$sql = new SQLins('ukm_tv_persons');
-		
+		}
+		$sql->disableErrorLog();
 		$sql->add('tv_id', $tv_id);
 		$sql->add('p_id', $p_id);
 		$sql->add('p_name', $p->g('name'));
@@ -75,6 +77,7 @@ function tv_person_update($tags, $tv_id) {
 
 function tv_category_update($category) {
 	$qry = new SQLins('ukm_tv_categories');
+	$qry->disableErrorLog();
 	$qry->add('c_name', $category);
 
 	if(strpos($category, 'UKM-F') !== false)
@@ -108,9 +111,9 @@ function video_calc_data($algorithm, $res) {
 			if(!isset($titler[0]))
 				continue;
 			$tittel = $titler[0]->g('tittel');
-			$post_meta = unserialize($res['post_meta']);
+			$post_meta = @unserialize($res['post_meta']);
 			
-			if(empty($post_meta['file']))
+			if( !isset($post_meta['file']) || empty($post_meta['file']))
 				continue;
 			
 			$data['description']= $titler[0]->g('parentes');
