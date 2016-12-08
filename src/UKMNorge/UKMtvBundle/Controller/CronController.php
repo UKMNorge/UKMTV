@@ -40,13 +40,29 @@ class CronController extends Controller
 		require_once('UKM/monstring.class.php');
 		require_once('UKM/person.class.php');
 		require_once('cron.functions.tv.php');
+
+		$perpage = 100;
+
+		if( $this->get('UKMoption')->get('cron.sync.pagination') ) {
+			$start = $this->get('UKMoption')->get('cron.sync.pagination');
+		} else {
+			$start = 0;
+		}
+		echo '<h1>Start pagination at '. $start .' with '. $perpage .' per page</h1>';
 		##################################################
 		echo '<h2>Oppdaterer db for WP_related</h2>';
 		$qry = new SQL("SELECT * 
 						FROM `ukmno_wp_related`
 						WHERE `post_type` = 'video'
 						ORDER BY `rel_id` ASC
-						");
+						LIMIT #limit
+						OFFSET #offset
+						",
+						array(
+						    'limit' => $perpage,
+						    'offset' => $start
+						)
+                    );
 		$res = $qry->run();
 		while($r = mysql_fetch_assoc($res)) {
 			$data = video_calc_data('wp_related', $r);
@@ -54,7 +70,16 @@ class CronController extends Controller
 		}
 		##################################################
 		echo '<h2>Oppdaterer db for UKM standalone video (2013)</h2>';
-		$qry = new SQL("SELECT * FROM `ukm_standalone_video`");
+		$qry = new SQL("SELECT * 
+		                FROM `ukm_standalone_video`
+		                LIMIT #limit
+						OFFSET #offset
+						",
+						array(
+						    'limit' => $perpage,
+						    'offset' => $start
+						)
+                    );
 		$res = $qry->run();
 		while( $r = mysql_fetch_assoc( $res ) ) {
 			$data = video_calc_data('standalone_video', $r );
@@ -67,7 +92,7 @@ class CronController extends Controller
     public function tagsAction() {
 	    require_once('UKM/sql.class.php');
 		
-		$perpage = 500;
+		$perpage = 250;
 
 		if( $this->get('UKMoption')->get('cron.tags.pagination') ) {
 			$start = $this->get('UKMoption')->get('cron.tags.pagination');
