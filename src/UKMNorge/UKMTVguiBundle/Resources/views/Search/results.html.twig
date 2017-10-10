@@ -1,11 +1,22 @@
 {% extends "UKMNtvguiBundle:Layout:layout.html.twig" %}
 
 {% block content %}
-<h1>Søkeresultater</h1>
-<p class="lead">Viser treff for "{{ doSearchFor }}"</p>
-	{% if list|length > 0 %}
-	    {% embed "UKMNtvguiBundle:Layout:filmListContent.html.twig" %}{% endembed %}
-	{% else %}
-		<p class="alert alert-info">Beklager, ingen treff! <a href="{{ url('ukmn_tvgui_search') }}">Prøv et annet søk?</a></p>
-	{% endif %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<h1>Søkeresultater</h1>
+				<p class="lead">Viser treff for "{{ doSearchFor }}"</p>
+				{% if list|length > 0 %}
+					{% embed "UKMNtvguiBundle:Layout:filmListContent.html.twig" %}{% endembed %}
+				{% else %}
+					<p>
+						Beklager, ingen treff!
+					</p>
+					<p>
+						<a href="{{ url('ukmn_tvgui_search') }}" class="btn btn-outline-primary">Prøv et annet søk?</a>
+					</p>
+				{% endif %}
+			</div>
+		</div>
+	</div>
 {% endblock %}

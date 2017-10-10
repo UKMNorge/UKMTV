@@ -1,56 +1,34 @@
 {% extends "UKMNtvguiBundle:Layout:layout.html.twig" %}
 
 {% block content %}
-    <div class="hidden-xs col-md-8 pull-left" id="">
-    	<h2>Velg fra kartet</h2>
-    	<img class="size-medium wp-image-5 aligncenter" style="border: 0px;" alt="" src="http://ukm.no/wp-content/uploads/2011/08/kart1.jpg" usemap="#kartet" />
-    	<map id="kartet" name="kartet" width="561px" height="548px">
-    		<area coords="21,24,112,46" shape="rect" href="troms/" />
-    		<area coords="435,54,521,70" shape="rect" href="finnmark/" />
-    		<area coords="335,83,455,103" shape="rect" href="troms/" />
-    		<area coords="279,165,371,187" shape="rect" href="nordland/" />
-    		<area coords="224,268,346,288" shape="rect" href="nord-trondelag/" />
-    		<area coords="184,320,307,342" shape="rect" href="sor-trondelag/" />
-    		<area coords="207,396,297,415" shape="rect" href="hedmark/" />
-    		<area coords="155,435,212,457" shape="rect" href="oslo/" />
-    		<area coords="137,376,213,396" shape="rect" href="oppland/" />
-    		<area coords="41,320,176,342" shape="rect" href="moreogromsdal/" />
-    		<area coords="9,360,145,377" shape="rect" href="sognogfjordane/" />
-    		<area coords="21,401,110,419" shape="rect" href="hordaland/" />
-    		<area coords="114,413,200,434" shape="rect" href="buskerud/" />
-    		<area coords="184,456,273,474" shape="rect" href="akershus/" />
-    		<area coords="89,454,169,475" shape="rect" href="telemark/" />
-    		<area coords="6,468,93,487" shape="rect" href="rogaland/" />
-    		<area coords="15,491,109,512" shape="rect" href="vest-agder/" />
-    		<area coords="116,500,211,519" shape="rect" href="aust-agder/" />
-    		<area coords="194,479,268,497" shape="rect" href="ostfold/" />
-    		<area coords="118,475,190,493" shape="rect" href="vestfold/" />
-    	</map>
-    </div>
-    <div class="col-xs-12 col-md-4 pull-left" id="dinmonstring">
-    	<h2>Velg fra listen</h2>
-    	<ol class="col-xs-6 col-md-12 list-unstyled">
-    		<li><a href="akershus/">Akershus</a></li>
-    		<li><a href="aust-agder/">Aust-Agder</a></li>
-    		<li><a href="buskerud/">Buskerud</a></li>
-    		<li><a href="finnmark/">Finnmark</a></li>
-    		<li><a href="hedmark/">Hedmark</a></li>
-    		<li><a href="hordaland/">Hordaland</a></li>
-    		<li><a href="moreogromsdal/">Møre og Romsdal</a></li>
-    		<li><a href="nord-trondelag/">Nord-Trøndelag</a></li>
-    		<li><a href="nordland/">Nordland</a></li>
-    	</ol>
-    	<ol class="col-xs-6 col-md-12 list-unstyled">
-    		<li><a href="oppland/">Oppland</a></li>
-    		<li><a href="oslo/">Oslo</a></li>
-    		<li><a href="rogaland/">Rogaland</a></li>
-    		<li><a href="sognogfjordane/">Sogn og Fjordane</a></li>
-    		<li><a href="sor-trondelag/">Sør-Trøndelag</a></li>
-    		<li><a href="telemark/">Telemark</a></li>
-    		<li><a href="troms/">Troms</a></li>
-    		<li><a href="vest-agder/">Vest-Agder</a></li>
-    		<li><a href="vestfold/">Vestfold</a></li>
-    		<li><a href="ostfold/">Østfold</a></li>
-    	</ol>
-    </div>
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<h1>Velg fylke fra listen</h1>
+			</div>
+			<ol class="col-6 list-unstyled my-0">
+				<li><a href="akershus/">Akershus</a></li>
+				<li><a href="aust-agder/">Aust-Agder</a></li>
+				<li><a href="buskerud/">Buskerud</a></li>
+				<li><a href="finnmark/">Finnmark</a></li>
+				<li><a href="hedmark/">Hedmark</a></li>
+				<li><a href="hordaland/">Hordaland</a></li>
+				<li><a href="moreogromsdal/">Møre og Romsdal</a></li>
+				<li><a href="nord-trondelag/">Nord-Trøndelag</a></li>
+				<li><a href="nordland/">Nordland</a></li>
+			</ol>
+			<ol class="col-6 list-unstyled my-0">
+				<li><a href="oppland/">Oppland</a></li>
+				<li><a href="oslo/">Oslo</a></li>
+				<li><a href="rogaland/">Rogaland</a></li>
+				<li><a href="sognogfjordane/">Sogn og Fjordane</a></li>
+				<li><a href="sor-trondelag/">Sør-Trøndelag</a></li>
+				<li><a href="telemark/">Telemark</a></li>
+				<li><a href="troms/">Troms</a></li>
+				<li><a href="vest-agder/">Vest-Agder</a></li>
+				<li><a href="vestfold/">Vestfold</a></li>
+				<li><a href="ostfold/">Østfold</a></li>
+			</ol>
+		</div>
+	</div>
 {% endblock %}

@@ -1,81 +1,46 @@
 {% extends "UKMNtvguiBundle:Layout:layout.html.twig" %}
 
 {% block content %}
-	<div class="row post_top">
-		<div class="col-xs-12 col-md-7">
-            {# % embed "UKMNtvguiBundle:Front:carousel.html.twig" with { sliderId: 'sliderOne', slides: popular } %}{% endembed % #}
-            <h2>Fylkesfestivaler 2017</h2>
-            
-            <div class="col-xs-12 col-sm-6">
-	            <b>17.-19.mars</b>
-	            <ol class="list-unstyled">
-	            	<li><a href="//tv.ukm.no/fylke/finnmark/2017/">Finnmark</a></li>
-	            </ol>
-            </div>
-            
-            <div class="col-xs-12 col-sm-6">
-	            <b>31. mars - 2. april</b>
-	            <ol class="list-unstyled">
-	            	<li><a href="//tv.ukm.no/fylke/moreogromsdal/2017/">Møre og Romsdal</a></li>
-	            	<li><a href="//tv.ukm.no/fylke/nordland/2017/">Nordland</a></li>
-	            	<li><a href="//tv.ukm.no/fylke/oppland/2017/">Oppland</a></li>
-	            	<li><a href="//tv.ukm.no/fylke/sognogfjordane/2017/">Sogn og Fjordane</a></li>
-	            	<li><a href="//tv.ukm.no/fylke/telemark/2017/">Telemark</a></li>
-	            </ol>
-            </div>
-            
-            <div class="clearfix"></div>
-
-            <div class="col-xs-12 col-sm-6">
-	            <b>21. - 23. april</b>
-	            <ol class="list-unstyled">
-	            	<li><a href="//tv.ukm.no/fylke/akershus/2017/">Akershus</a></li>
-	            	<li><a href="//tv.ukm.no/fylke/aust-agder/2017/">Aust-Agder</a></li>
-	            	<li><a href="//tv.ukm.no/fylke/buskerud/2017/">Buskerud</a></li>
-	            	<li><a href="//tv.ukm.no/fylke/hedmark/2017/">Hedmark</a></li>
-	            	<li><a href="//tv.ukm.no/fylke/sor-trondelag/2017/">Sør-Trøndelag</a></li>
-	            	<li><a href="//tv.ukm.no/fylke/troms/2017/">Troms</a></li>
-	            	<li><a href="//tv.ukm.no/fylke/vest-agder/2017/">Vest-Agder</a></li>
-	            	<li><a href="//tv.ukm.no/fylke/ostfold/2017/">Østfold</a></li>
-	            </ol>
-            </div>
-            
-            <div class="col-xs-12 col-sm-6">
-	            <b>28. - 30. april</b>
-	            <ol class="list-unstyled">
-	            	<li><a href="//tv.ukm.no/fylke/hordaland/2017/">Hordaland</a></li>
-	            	<li><a href="//tv.ukm.no/fylke/nord-trondelag/2017/">Nord-Trøndelag</a></li>
-	            	<li><a href="//tv.ukm.no/fylke/oslo/2017/">Oslo</a></li>
-	            	<li><a href="//tv.ukm.no/fylke/rogaland/2017/">Rogaland</a></li>
-	            	<li><a href="//tv.ukm.no/fylke/vestfold/2017/">Vestfold</a></li>
-
-	            </ol>
-            </div>
-		</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-8 pt-3">
+				<p class="lead">
+					UKM-TV er vår egen filmløsning hvor du finner filmklipp av de fleste som har deltatt på UKM...ish
+				</p>
 				
-		<div id="infosquare" class="col-xs-12 col-md-5">
-			<div class="">
-	        	<ol>
-				{% for nav in page_nav %}
-					{% embed "UKMNtvguiBundle:Layout:nav_page.html.twig" %}{% endembed %}
-				{% endfor %}
+				<h2>Søk</h2>
+				{% embed "UKMNtvguiBundle:Search:form.html.twig" %}{% endembed %}
+			</div>
+			<div class="col-12 col-md-4">
+				<h3>Finn filmer fra</h3>
+				<ol class="list-unstyled">
+					<li class="my-2">
+						<a href="{{ url('ukmn_tvgui_festivalen_homepage') }}" class="btn btn-block btn-outline-primary">
+							UKM-Festivalen
+						</a>
+					</li>
+
+					<li class="my-2">
+						<a href="{{ url('ukmn_tvgui_fylke_homepage') }}" class="btn btn-block btn-outline-primary">
+							Fylkesfestivalene
+						</a>
+					</li>
+
+					<li class="my-2">
+						<a href="{{ url('ukmn_tvgui_lokal_homepage') }}" class="btn btn-block btn-outline-primary">
+							Lokalmønstringer
+						</a>
+					</li>
+
+					<li class="my-2">
+						<a href="{{ url('ukmn_tvgui_info_homepage') }}" class="btn btn-block btn-outline-primary">
+							Infovideoer
+						</a>
+					</li>
+
+
 				</ol>
 			</div>
 		</div>
-		<div class="clearfix"></div>
-{#		<div class="visible-xs visible-sm col-md-7">
-            {% embed "UKMNtvguiBundle:Front:carousel.html.twig" with { sliderId: 'sliderTwo', slides: popular } %}{% endembed %}
-		</div>
-#}	</div>
-	
-{#
-    {% if festivalen is defined %}
-    	{% embed "UKMNtvguiBundle:Festivalen:front.html.twig" %}{% endembed %}
-    {% endif %}
-    	
-	<h2>Siste arrangementer i UKM-TV</h2>
-	<div class="row">
-        {% embed "UKMNtvguiBundle:Front:events.html.twig" %}{% endembed %}
-    </div>
-#}
+	</div>
 {% endblock %}

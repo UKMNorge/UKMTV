@@ -26,14 +26,13 @@ class DefaultController extends Controller
         require_once('UKM/monstring.class.php');
 
 #        $files = $this->_getPopular();        
-        $page_nav = $this->_getPageNav();
 #        $events = $this->_getEvents();   
         
         $jumbo = new stdClass();
         $jumbo->header = 'UKM-TV';
         $jumbo->content = 'UKM-filmer fra de siste '. (date("Y")-2009 ). ' årene';
         
-        $data = array('jumbo' => $jumbo, 'page_nav' => $page_nav);#, 'popular' => $files);#, 'events' => $events);
+        $data = array('jumbo' => $jumbo);#, 'popular' => $files);#, 'events' => $events);
         
         $etter_festivalen = false; // AKA quickfix
         
@@ -117,40 +116,6 @@ class DefaultController extends Controller
         }
         return $files;
     }
-    
-    private function _getPageNav() {
-        $page_nav = [];
-		$page_nav[] = (object) array( 'url' 			=> $this->get('router')->generate('ukmn_tvgui_search'),
-									  'title'		 	=> 'Søk i UKM-TV',
-									  'icon'			=> 'nav-search',
-									  'description'	=> ''
-									  );
-        $page_nav[] = (object) array( 'url' 			=> $this->get('router')->generate('ukmn_tvgui_festivalen_homepage'),
-									  'title'		 	=> 'TV fra festivalen',
-									  'icon'			=> 'nav-rocket',
-									  'description'	=> ''
-									  );
-									  
-		$page_nav[] = (object) array( 'url' 			=> $this->get('router')->generate('ukmn_tvgui_fylke_homepage'),
-									  'title'		 	=> 'TV fra fylkesmønstringer',
-									  'icon'			=> 'file',
-									  'description'	=> ''
-									  );
-
-		$page_nav[] = (object) array( 'url' 			=> $this->get('router')->generate('ukmn_tvgui_lokal_homepage'),
-									  'title'		 	=> 'TV fra lokalmønstringer',
-									  'icon'			=> 'file',
-									  'description'	=> ''
-									  );
-
-		$page_nav[] = (object) array( 'url' 			=> $this->get('router')->generate('ukmn_tvgui_info_homepage'),
-									  'title'		 	=> 'Infovideoer på UKM-TV',
-									  'icon'			=> 'nav-i',
-									  'description'	=> ''
-									  );
-        return $page_nav;
-    }
-    
     
     private function _getEvents() {
         // SISTE HENDELSER

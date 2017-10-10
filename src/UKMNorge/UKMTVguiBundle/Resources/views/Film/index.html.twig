@@ -1,30 +1,27 @@
 {% extends "UKMNtvguiBundle:Layout:layout.html.twig" %}
 
-{% block jumbo_header %}UKM-TV{% endblock %}
-{# {% block jumbo_content %}{{ tv.title }}{% endblock %} #}
-
-
 {% block OpenGraph %}
 	<meta property="fb:app_id" content="141016739323676">
 	<meta property="og:type" content="video.other">
-	<meta property="og:url" content="http://tv.ukm.no{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}">
+	<meta property="og:url" content="http://tv.{{ UKM_HOSTNAME }}{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}">
 	<meta property="og:image" content="{{ tv.image_url }}">
 	<meta property="og:title" content="{{ tv.title }}">
 	<meta property="og:description" content="Fra {{ tv.set }}">
 	<meta property="video:actor" content="http://facebook.com/UKMNorge">
 	<meta property="video:tag" content="UKM-TV UKM UKM Norge">
-	<link rel="alternate" type="application/json+oembed" href="http://oembed.ukm.no/?url={{ tv.full_url|url_encode }}" title="UKM-TV oEmbed" />
+	<link rel="alternate" type="application/json+oembed" href="http://oembed.{{ UKM_HOSTNAME }}/?url={{ tv.full_url|url_encode }}" title="UKM-TV oEmbed" />
 {% endblock %}
 
-{% block javascript %}
-    <script language="javascript" src="https://embed.ukm.no/info/{{ tv.id }}"></script>
+{% block javascripts %}
+	{{ parent() }}
+	<script language="javascript" src="//embed.{{ UKM_HOSTNAME }}/info/{{ tv.id }}"></script>
 	<script>
 	window.fbAsyncInit = function() {
 	  FB.init({
-	    appId      : '{{ facebook_app_id }}',
-	    status     : true, 
-	    cookie     : true,
-		xfbml      : true
+		appId	  : '{{ facebook_app_id }}',
+		status	 : true, 
+		cookie	 : true,
+		xfbml	  : true
 	  });
 	};
 	(function(d){
@@ -37,61 +34,65 @@
 {% endblock %}
 
 {% block content %}
-    <div class="col-xs-12 col-lg-8">
-        <div id="my-video" width="100%"></div>
-    </div>
-    <div class="tvDescription col-xs-12 col-lg-4">
-        <h2>{{ tv.title }}</h2>
-		<div class="pull-right">
-			<div class="fb-like" data-send="true" data-layout="box_count" data-width="100" data-show-faces="false" data-font="arial"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-lg-8">
+				<div id="my-video" width="100%"></div>
+			</div>
+			<div class="tvDescription col-12 col-lg-4">
+				<h2>{{ tv.title }}</h2>
+				<div class="pull-right">
+					<div class="fb-like" data-send="true" data-layout="box_count" data-width="100" data-show-faces="false" data-font="arial"></div>
+				</div>
+		
+				<p> {{ tv.description }}</p>
+		
+				{% if meta.personer|length > 0 %}
+					<div class="meta">
+						<h4>Personer</h4>
+						<ol class="list-unstyled">
+						{% for person in meta.personer %}
+							<li class="person">
+								<a href="{{person.url}}">
+								{{person.navn}}
+								</a>
+							</li>
+						{% endfor %}
+						</ol>
+					</div>
+				{% endif %}
+				
+				
+				<div class="meta">
+					<h4>Kategori</h4>
+					{% if meta.category.url is defined %}
+					<a href="{{meta.category.url}}">
+						{{meta.category.title}}
+					</a>
+					i
+					{% endif %}
+					<a href="{{meta.category.parent.url}}">
+						{{meta.category.parent.title}}
+					</a>
+				</div>
+		
+				{% if meta.bandrelated %}
+					<div class="meta">
+						<h4>Innslag</h4>
+						<a href="{{meta.band.url}}">
+							{{meta.band.title}}
+						</a>
+					</div>
+				{% endif %}
+		
+			</div>
+		
+			<div class="clearfix"></div>
+		
+			{% if files|length > 0 %}
+				<h3>Andre anbefalte filmer fra <a href="{{meta.category.url}}">{{ meta.category.title }}</a></h3>
+				{% embed "UKMNtvguiBundle:Layout:filmList.html.twig" %}{% endembed %}
+			{% endif %}
 		</div>
-
-        <p> {{ tv.description }}</p>
-
-        {% if meta.personer|length > 0 %}
-            <div class="meta">
-                <h4>Personer</h4>
-                <ol class="list-unstyled">
-                {% for person in meta.personer %}
-                    <li class="person">
-                        <a href="{{person.url}}">
-                        {{person.navn}}
-                        </a>
-                    </li>
-                {% endfor %}
-                </ol>
-            </div>
-        {% endif %}
-        
-        
-        <div class="meta">
-            <h4>Kategori</h4>
-            {% if meta.category.url is defined %}
-            <a href="{{meta.category.url}}">
-                {{meta.category.title}}
-            </a>
-            i
-            {% endif %}
-            <a href="{{meta.category.parent.url}}">
-                {{meta.category.parent.title}}
-            </a>
-        </div>
-
-        {% if meta.bandrelated %}
-            <div class="meta">
-                <h4>Innslag</h4>
-                <a href="{{meta.band.url}}">
-                    {{meta.band.title}}
-                </a>
-            </div>
-        {% endif %}
-
-    </div>
-
-    <div class="clearfix"></div>
-
-    {% if files|length > 0 %}
-        <h3>Andre anbefalte filmer fra <a href="{{meta.category.url}}">{{ meta.category.title }}</a></h3>
-        {% embed "UKMNtvguiBundle:Layout:filmList.html.twig" %}{% endembed %}
-    {% endif %}
+	</div>
 {% endblock %}
