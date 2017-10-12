@@ -1776,7 +1776,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/UKMNorge/UKMresponsive.git",
-                "reference": "b87bce299240166fc4c40d35e0122b7a1a7a1fa1"
+                "reference": "2e640142f5e3987f2c0924b1ebca4413a01e46b2"
             },
             "require": {
                 "mariusmandal/wpoo": "^1.0",
@@ -1802,7 +1802,7 @@
             ],
             "description": "Felles design for UKM.no og undersider",
             "homepage": "http://github.com/UKMNorge/UKMresponsive",
-            "time": "2017-10-09 10:32:26"
+            "time": "2017-10-12 23:06:52"
         },
         {
             "name": "ukmnorge/optionbundle",
