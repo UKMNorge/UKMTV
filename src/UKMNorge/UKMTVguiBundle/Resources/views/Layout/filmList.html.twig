@@ -1,7 +1,15 @@
 {% for category, list in files %}
-    {% if category != false %}
-        <h2>{{category}}</h2>
-    {% endif %}
-    
-    {% embed "UKMNtvguiBundle:Layout:filmListContent.html.twig" %}{% endembed %}
+	{% if category != false %}
+		<h2 class="mb-4">{{category}}</h2>
+	{% endif %}
+	
+	{% embed "UKMNtvguiBundle:Layout:filmListContent.html.twig" %}{% endembed %}
+{% else %}
+	<h3>Beklager, fant ingen filmer</h3>
+
+	<p class="my-5">
+		<a href="{{ url('ukmn_tvgui_homepage') }}" class="">
+			Til forsiden
+		</a>
+	</p>
 {% endfor %}

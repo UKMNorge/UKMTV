@@ -1,6 +1,8 @@
-<div class="video" id="{{ film.id }}">
-    <a href="{{ film.full_url }}">
-        <img src="{{ film.image_url }}" style="width:100%" />
-        <h5>{{ film.title }}</h5>
-    </a>
-</div>
+<a href="{{ film.full_url }}">
+	<div class="post-grid-default video" id="{{ film.id }}">
+		<div class="image" style="background-image: url('{{ film.image_url }}');"></div>
+		<p class="mb-1 bold">
+			{{ film.title|raw }}
+		</p>
+	</div>
+</a>

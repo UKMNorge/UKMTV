@@ -1,11 +1,17 @@
 {% extends "UKMNtvguiBundle:Layout:layout.html.twig" %}
 
 {% block content %}
-    <h1>Alle filmer av {{ band.name }}</h1>
-    <p class="lead">
-        OBS: det kan være at du finner flere filmer ved å 
-        <a href="{{ path('ukmn_tvgui_searchfor', {'doSearchFor': band.name} ) }}">søke på {{band.name}}</a>
-    </p>
-    
-    {% embed "UKMNtvguiBundle:Layout:filmListContent.html.twig" %}{% endembed %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<h1>Alle filmer av {{ band.name }}</h1>
+				<p class="lead">
+					OBS: det kan være at du finner flere filmer ved å 
+					<a href="{{ path('ukmn_tvgui_searchfor', {'doSearchFor': band.name} ) }}">søke på {{band.name}}</a>
+				</p>
+				
+				{% embed "UKMNtvguiBundle:Layout:filmListContent.html.twig" %}{% endembed %}
+			</div>
+		</div>
+	</div>
 {% endblock %}

@@ -1,9 +1,11 @@
 {% extends "UKMNtvguiBundle:Layout:layout.html.twig" %}
 
-{% block jumbo_header %}
-    {{title}} {{year}}
-{% endblock %}
-
 {% block content %}
-    {% embed "UKMNtvguiBundle:Layout:filmList.html.twig" %}{% endembed %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				{% embed "UKMNtvguiBundle:Layout:filmList.html.twig" %}{% endembed %}
+			</div>
+		</div>
+	</div>
 {% endblock %}

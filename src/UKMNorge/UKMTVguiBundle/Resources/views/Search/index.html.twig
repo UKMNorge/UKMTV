@@ -1,15 +1,12 @@
 {% extends "UKMNtvguiBundle:Layout:layout.html.twig" %}
 
 {% block content %}
-<h1>Søk</h1>
-<p class="lead">Søk etter navn på personer, innslag eller låter</p>
-<div class="col-xs-12">
-	<form action="" method="post">
-		<input id="ukmtvsearch" name="doSearchFor" type="text" class="form-control" placeholder="Søk i UKM-tv">
-		
-		<div class="clearfix"></div>
-		<p></p>
-		<button class="btn btn-md btn-submit" type="submit">Søk</button>
-	</form>
-</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<h1>Søk</h1>
+				{% embed "UKMNtvguiBundle:Search:form.html.twig" %}{% endembed %}
+			</div>
+		</div>
+	</div>
 {% endblock %}

@@ -128,6 +128,6 @@ class LokalController extends Controller
             
         }
       
-        return $this->render('UKMNtvguiBundle:Lokal:year.html.twig', array( 'year' => $monstring->get('season'), 'files' => $files, 'title' => $monstring->get('pl_name') ) );
+        return $this->render('UKMNtvguiBundle:Lokal:year.html.twig', array( 'year' => $monstring->get('season'), 'files' => $files, 'title' => $monstring->get('pl_name'), 'monstring' => $monstring ) );
     }
 }

@@ -16,7 +16,7 @@ class FylkeController extends Controller
     {
     
         $fylke_id = $this->get('ukmnorge.FylkeService')->name_to_id( $fylke );
-        $fylke_name = 'Fylkesmønstringen i '. $this->get('ukmnorge.FylkeService')->id_to_human( $fylke_id );
+        $fylke_name = 'UKM-festivalen i '. $this->get('ukmnorge.FylkeService')->id_to_human( $fylke_id );
        
         require_once('UKM/monstring.class.php');
         
@@ -39,7 +39,7 @@ class FylkeController extends Controller
                 $all_years[] = $year;
             }
         }
-        return $this->render('UKMNtvguiBundle:Festivalen:index.html.twig', array('jumbotitle' => $fylke_name, 'years' => $all_years ));
+        return $this->render('UKMNtvguiBundle:Fylke:years.html.twig', array('fylke_name' => $fylke_name, 'years' => $all_years ));
     }
     
     public function yearAction( $fylke,  $year ) {

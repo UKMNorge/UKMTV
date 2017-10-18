@@ -32,6 +32,11 @@ twig:
         ga_tracking: %ga_tracking%
         nav: %nav%
         facebook_app_id: %facebook_app_id%
+        UKM_HOSTNAME: %UKM_HOSTNAME%
+        SEO: "@ukmdesign.seo"
+        Sitemap: "@ukmdesign.sitemap"
+        THEME: "%ukmdesign.theme%"
+
 
 # Assetic Configuration
 assetic:
