@@ -18,29 +18,27 @@
 				<ol class="list-unstyled">
 					<li class="my-2">
 						<a href="{{ url('ukmn_tvgui_festivalen_homepage') }}" class="btn btn-block btn-outline-primary">
-							UKM-Festivalen
+							{{ Sitemap.getPage('ukmtv', 'festival').getTitle() }}
 						</a>
 					</li>
 
 					<li class="my-2">
 						<a href="{{ url('ukmn_tvgui_fylke_homepage') }}" class="btn btn-block btn-outline-primary">
-							Fylkesfestivalene
+							{{ Sitemap.getPage('ukmtv', 'fylke').getTitle() }}
 						</a>
 					</li>
 
 					<li class="my-2">
 						<a href="{{ url('ukmn_tvgui_lokal_homepage') }}" class="btn btn-block btn-outline-primary">
-							Lokalmønstringer
+							{{ Sitemap.getPage('ukmtv', 'lokal').getTitle() }}
 						</a>
 					</li>
 
 					<li class="my-2">
 						<a href="{{ url('ukmn_tvgui_info_homepage') }}" class="btn btn-block btn-outline-primary">
-							Infovideoer
+							{{ Sitemap.getPage('ukmtv', 'info').getTitle() }}
 						</a>
 					</li>
-
-
 				</ol>
 			</div>
 		</div>
