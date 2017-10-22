@@ -29,7 +29,7 @@
         "sensio/framework-extra-bundle": "~3.0",
         "incenteev/composer-parameter-handler": "~2.0",
         "ukmnorge/optionbundle": "dev-master",
-        "ukmnorge/designbundle": "dev-redesign@dev"
+        "ukmnorge/designbundle": "dev-master@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
