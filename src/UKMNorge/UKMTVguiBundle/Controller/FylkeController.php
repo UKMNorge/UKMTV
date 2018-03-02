@@ -3,16 +3,26 @@
 namespace UKMNorge\UKMTVguiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use stdClass;
 
 class FylkeController extends Controller
 {
-    public function indexAction()
+    public function indexAction( Request $request )
     {
+		/* SET SEO STUFF */
+		$SEO = $this->get('ukmdesign.seo');
+		$SEO->setSiteName('UKM.no');
+		$SEO->setSection('UKM-TV');
+		$SEO->setCanonical( $request->getUri() );
+		
+		$SEO->setTitle( 'Alle fylker i UKM-TV' );
+		$SEO->setDescription( 'UKM-filmer fra fylkesfestivalene 2009 - '. date("Y") );
+
         return $this->render('UKMNtvguiBundle:Fylke:index.html.twig', array( ));
     }
     
-    public function yearsAction( $fylke )
+    public function yearsAction( Request $request, $fylke )
     {
     
         $fylke_id = $this->get('ukmnorge.FylkeService')->name_to_id( $fylke );
@@ -39,10 +49,20 @@ class FylkeController extends Controller
                 $all_years[] = $year;
             }
         }
+        
+		/* SET SEO STUFF */
+		$SEO = $this->get('ukmdesign.seo');
+		$SEO->setSiteName('UKM.no');
+		$SEO->setSection('UKM-TV');
+		$SEO->setCanonical( $request->getUri() );
+		
+		$SEO->setTitle( $fylke_name .' i UKM-TV' );
+		$SEO->setDescription( 'UKM-filmer fra '. $this->get('ukmnorge.FylkeService')->id_to_human( $fylke_id ) .' 2009 - '. date("Y") );
+
         return $this->render('UKMNtvguiBundle:Fylke:years.html.twig', array('fylke_name' => $fylke_name, 'years' => $all_years ));
     }
     
-    public function yearAction( $fylke,  $year ) {
+    public function yearAction( Request $request, $fylke,  $year ) {
 
         $fylke_id = $this->get('ukmnorge.FylkeService')->name_to_id( $fylke );
         
@@ -73,7 +93,16 @@ class FylkeController extends Controller
             $files[ $category ][] = $file;
             
         }
-      
+
+		/* SET SEO STUFF */
+		$SEO = $this->get('ukmdesign.seo');
+		$SEO->setSiteName('UKM.no');
+		$SEO->setSection('UKM-TV');
+		$SEO->setCanonical( $request->getUri() );
+		
+		$SEO->setTitle( 'Fylkesfestivalen i '. $monstring->get('pl_name') .' '. $year );
+		$SEO->setDescription( 'UKM-filmer fra fylkesfestivalen i '. $monstring->get('pl_name') .' '. $year );
+
         return $this->render('UKMNtvguiBundle:Fylke:year.html.twig', array( 'year' => $year, 'fylke' => $monstring->get('fylke_name'), 'files' => $files ) );
     }
 }

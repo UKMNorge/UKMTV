@@ -5,6 +5,8 @@ namespace UKMNorge\UKMTVguiBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use UKMNorge\DesignBundle\Utils\SEO;
+use UKMNorge\DesignBundle\Utils\SEOImage;
 
 use stdClass;
 use tv;
@@ -177,8 +179,23 @@ class FilmController extends Controller
 		if( !mb_detect_encoding($TV->description, 'UTF-8', true) ) {
 	        $TV->description = mb_convert_encoding($TV->description, 'UTF-8' );
 	    }
-        #var_dump($files);
 
+		/* SET SEO STUFF */
+		$SEO = $this->get('ukmdesign.seo');
+		$SEO->setTitle( $TV->title );
+		if( $metadata->bandrelated ) {
+			$SEO->setDescription( $metadata->band->title .' @ '. $metadata->category->title );
+		} else {
+			$SEO->setDescription( $metadata->category->title );
+		}
+		$SEOImage = new SEOimage( $TV->image_url, 1280, 720 );
+		$SEO->setImage( $SEOImage );
+		$SEO->setCanonical( $request->getUri() );
+		$SEO->setType('video.other');
+		$SEO->setSection('UKM-TV');
+		$SEO->setSiteName('UKM.no');
+		$SEO->setOembed( 'https://oembed.'. UKM_HOSTNAME .'/?url='. urlencode( $TV->full_url ) );
+		
         // RENDER
         $view_data = array( 
             'tv' => $TV, 

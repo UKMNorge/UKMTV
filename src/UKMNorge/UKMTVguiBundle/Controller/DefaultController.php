@@ -3,6 +3,7 @@
 namespace UKMNorge\UKMTVguiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use stdClass;
 use tv;
 use tv_files;
@@ -19,20 +20,22 @@ class DefaultController extends Controller
 	}
 
 
-    public function indexAction()
+    public function indexAction( Request $request )
     {
         require_once('UKM/tv_files.class.php');
         require_once('UKM/tv.class.php');
         require_once('UKM/monstring.class.php');
 
-#        $files = $this->_getPopular();        
-#        $events = $this->_getEvents();   
-        
-        $jumbo = new stdClass();
-        $jumbo->header = 'UKM-TV';
-        $jumbo->content = 'UKM-filmer fra de siste '. (date("Y")-2009 ). ' årene';
-        
-        $data = array('jumbo' => $jumbo);#, 'popular' => $files);#, 'events' => $events);
+		/* SET SEO STUFF */
+		$SEO = $this->get('ukmdesign.seo');
+		$SEO->setSiteName('UKM.no');
+		$SEO->setSection('UKM-TV');
+		$SEO->setCanonical( $request->getUri() );
+		
+		$SEO->setTitle( 'UKM-TV' );
+		$SEO->setDescription( 'UKM-filmer fra de siste '. (date("Y")-2009 ). ' årene' );
+
+        $data = [];#array('popular' => $files);#, 'events' => $events);
         
         $etter_festivalen = false; // AKA quickfix
         

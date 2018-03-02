@@ -3,6 +3,7 @@
 namespace UKMNorge\UKMTVguiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use stdClass;
 use monstring;
 use kommune_monstring;
@@ -16,7 +17,7 @@ class LokalController extends Controller
 		$string = preg_replace('/[^a-z0-9A-Z-_]+/', '', $string);
 		return str_replace('--','-', $string);
 	}
-    public function indexAction()
+    public function indexAction( Request $request )
     {
         $kommune_id = "";
 
@@ -61,12 +62,21 @@ class LokalController extends Controller
             
             $monstringer[ $data['fylke_id'] ]->kommuner[] = $kommune;
         }
-        
+
+		/* SET SEO STUFF */
+		$SEO = $this->get('ukmdesign.seo');
+		$SEO->setSiteName('UKM.no');
+		$SEO->setSection('UKM-TV');
+		$SEO->setCanonical( $request->getUri() );
+		
+		$SEO->setTitle( 'Lokalmønstringer i UKM-TV' );
+		$SEO->setDescription( 'UKM-filmer fra lokalmønstringene 2009 - '. date("Y") );
+		
         return $this->render('UKMNtvguiBundle:Lokal:index.html.twig', array( 'monstringer' => $monstringer ));
     }
     
     
-    public function yearsAction( $kommune, $name ) {
+    public function yearsAction( Request $request, $kommune, $name ) {
         
         require_once('UKM/monstring.class.php');
         require_once('UKM/sql.class.php');
@@ -96,11 +106,19 @@ class LokalController extends Controller
             }
         }
 
-    
+		/* SET SEO STUFF */
+		$SEO = $this->get('ukmdesign.seo');
+		$SEO->setSiteName('UKM.no');
+		$SEO->setSection('UKM-TV');
+		$SEO->setCanonical( $request->getUri() );
+		
+		$SEO->setTitle( $kommune_navn .' i UKM-TV' );
+		$SEO->setDescription( 'Alle filmer fra lokalmønstringen i '. $kommune_navn );
+
         return $this->render('UKMNtvguiBundle:Lokal:years.html.twig', array('kommune' => $kommune_navn, 'years' => $all_years ));        
     }
     
-    public function yearAction($kommune, $name, $season) {
+    public function yearAction( Request $request, $kommune, $name, $season) {
         
         require_once('UKM/monstring.class.php');
         $monstring = new kommune_monstring( $kommune, $season );
@@ -127,7 +145,16 @@ class LokalController extends Controller
             $files[ $category ][] = $file;
             
         }
-      
+
+		/* SET SEO STUFF */
+		$SEO = $this->get('ukmdesign.seo');
+		$SEO->setSiteName('UKM.no');
+		$SEO->setSection('UKM-TV');
+		$SEO->setCanonical( $request->getUri() );
+		
+		$SEO->setTitle( $monstring->get('pl_name') .' '. $season .' i UKM-TV' );
+		$SEO->setDescription( 'Alle filmer fra lokalmønstringen i '. $monstring->get('pl_name') .' '. $season );
+
         return $this->render('UKMNtvguiBundle:Lokal:year.html.twig', array( 'year' => $monstring->get('season'), 'files' => $files, 'title' => $monstring->get('pl_name'), 'monstring' => $monstring ) );
     }
 }

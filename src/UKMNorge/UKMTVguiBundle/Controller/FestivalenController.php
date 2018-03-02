@@ -3,11 +3,12 @@
 namespace UKMNorge\UKMTVguiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use stdClass;
 
 class FestivalenController extends Controller
 {
-    public function indexAction()
+    public function indexAction( Request $request )
     {
         require_once('UKM/monstring.class.php');
         
@@ -27,10 +28,20 @@ class FestivalenController extends Controller
                 $all_years[] = $year;
             }
         }
+
+		/* SET SEO STUFF */
+		$SEO = $this->get('ukmdesign.seo');
+		$SEO->setSiteName('UKM.no');
+		$SEO->setSection('UKM-TV');
+		$SEO->setCanonical( $request->getUri() );
+		
+		$SEO->setTitle( 'UKM-festivalen i UKM-TV' );
+		$SEO->setDescription( 'UKM-filmer fra UKM-festivalen 2009 - '. date("Y") );
+
         return $this->render('UKMNtvguiBundle:Festivalen:index.html.twig', array( 'years' => $all_years ));
     }
     
-    public function yearAction( $year ) {
+    public function yearAction( Request $request, $year ) {
     
         require_once('UKM/monstring.class.php');
         $monstring = new \landsmonstring( $year );
@@ -53,7 +64,16 @@ class FestivalenController extends Controller
             $files[ $category ][] = $file;
             
         }
-      
+
+   		/* SET SEO STUFF */
+		$SEO = $this->get('ukmdesign.seo');
+		$SEO->setSiteName('UKM.no');
+		$SEO->setSection('UKM-TV');
+		$SEO->setCanonical( $request->getUri() );
+		
+		$SEO->setTitle( 'UKM-festivalen '. $year .' i UKM-TV' );
+		$SEO->setDescription( 'UKM-filmer fra UKM-festivalen '. $year );
+   
         return $this->render('UKMNtvguiBundle:Festivalen:year.html.twig', array( 'year' => $year, 'files' => $files ) );
     }
 }

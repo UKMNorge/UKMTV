@@ -3,12 +3,13 @@
 namespace UKMNorge\UKMTVguiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use stdClass;
 use tv_files;
 
 class InfoController extends Controller
 {
-    public function indexAction()
+    public function indexAction( Request $request )
     {
         require_once('UKM/tv_files.class.php');
         $tv_files = new \tv_files('place', 0 );
@@ -23,6 +24,16 @@ class InfoController extends Controller
             $files[ $category ][] = $file;
             
         }
+
+		/* SET SEO STUFF */
+		$SEO = $this->get('ukmdesign.seo');
+		$SEO->setSiteName('UKM.no');
+		$SEO->setSection('UKM-TV');
+		$SEO->setCanonical( $request->getUri() );
+		
+		$SEO->setTitle( 'UKM-TV: Infovideoer' );
+		$SEO->setDescription( 'Filmer fra UKM Norge' );
+
         return $this->render('UKMNtvguiBundle:Info:index.html.twig', array( 'files' => $files ) );
     }
 }
