@@ -29,11 +29,13 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     globals:
+        facebook_app_id: "%facebook_client_id%"
         ga_tracking: %ga_tracking%
         UKM_HOSTNAME: %UKM_HOSTNAME%
         SEO: "@ukmdesign.seo"
         Sitemap: "@ukmdesign.sitemap"
-        THEME: "%ukmdesign.theme%"
+        THEME: "%UKMresponsive.theme%"
+        section: "%UKMresponsive.section%"
 
 
 # Assetic Configuration
