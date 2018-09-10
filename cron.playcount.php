@@ -7,7 +7,7 @@ $sql = new SQL("SELECT `tv_id`, COUNT(`p_id`) AS `plays`
 				GROUP BY `tv_id`"
 				);
 $res = $sql->run();
-while($r = mysql_fetch_assoc( $res )) {
+while($r = SQL::fetch( $res )) {
 	$upd = new SQLins('ukm_tv_plays_cache', array('tv_id' => $r['tv_id']));
 	$upd->add('plays', $r['plays']);
 	$updRES = $upd->run();

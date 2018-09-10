@@ -12,7 +12,7 @@ $qry = new SQL("SELECT *
 				ORDER BY `rel_id` ASC
 				");
 $res = $qry->run();
-while($r = mysql_fetch_assoc($res)) {
+while($r = SQL::fetch($res)) {
 	$data = video_calc_data('wp_related', $r);
 	tv_update($data);
 }
@@ -20,7 +20,7 @@ while($r = mysql_fetch_assoc($res)) {
 echo '<h2>Oppdaterer db for UKM standalone video (2013)</h2>';
 $qry = new SQL("SELECT * FROM `ukm_standalone_video`");
 $res = $qry->run();
-while( $r = mysql_fetch_assoc( $res ) ) {
+while( $r = SQL::fetch( $res ) ) {
 	$data = video_calc_data('standalone_video', $r );
 	tv_update($data);
 }
@@ -37,7 +37,7 @@ $qry = new SQL("SELECT `smartukm_tag`.`b_id`,
 				AND `b_id` > 0");
 $res = $qry->run();
 if($res) {
-	while($r = mysql_fetch_assoc($res)) {
+	while($r = SQL::fetch($res)) {
 		$data = video_calc_data('smartukm_tag', $r);
 		if(!$data)
 			continue;

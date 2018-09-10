@@ -19,7 +19,7 @@ class CronController extends Controller
 				GROUP BY `tv_id`"
 				);
 		$res = $sql->run();
-		while($r = mysql_fetch_assoc( $res )) {
+		while($r = SQL::fetch( $res )) {
 			$upd = new SQLins('ukm_tv_plays_cache', array('tv_id' => $r['tv_id']));
 			$upd->disableErrorLog();
 			$upd->add('plays', $r['plays']);
@@ -69,7 +69,7 @@ class CronController extends Controller
                     );
 		$res = $qry->run();
 		$counter_1 = 0;
-		while( $r = mysql_fetch_assoc( $res ) ) {
+		while( $r = SQL::fetch( $res ) ) {
 			$counter_1++;
 			$data = video_calc_data('wp_related', $r);
 			tv_update($data);
@@ -88,7 +88,7 @@ class CronController extends Controller
                     );
 		$res = $qry->run();
 		$counter_2 = 0;
-		while( $r = mysql_fetch_assoc( $res ) ) {
+		while( $r = SQL::fetch( $res ) ) {
     		$counter_2++;
 			$data = video_calc_data('standalone_video', $r );
 			tv_update($data);
@@ -123,7 +123,7 @@ class CronController extends Controller
 		$res = $sql->run();
 		
 		$counter = 0;
-		while( $r = mysql_fetch_assoc( $res ) ) {
+		while( $r = SQL::fetch( $res ) ) {
 			$counter++;
 		    $tv_id = $r['tv_id'];
 		    

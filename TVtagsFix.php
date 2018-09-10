@@ -8,7 +8,7 @@ require_once('UKM/sql.class.php');
 $sql = new SQL("SELECT * FROM `ukm_tv_files`");
 $res = $sql->run();
 
-while( $r = mysql_fetch_assoc( $res ) ) {
+while( $r = SQL::fetch( $res ) ) {
     $tv_id = $r['tv_id'];
     
     $tags = $r['tv_tags'];

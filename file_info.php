@@ -30,20 +30,20 @@ if(isset($_GET['cron'])) {
 	$test = new SQL("SELECT `video_file` FROM `ukm_standalone_video` WHERE `cron_id` = '#id'",
 			array('id' => $_GET['cron']));
 	$test = $test->run();
-	if(!$test || mysql_num_rows( $test ) == 0)
+	if(!$test || SQL::fetch( $test ) == 0)
 	die(json_encode(array('success'=>false, 'cron_id' =>$_POST['cron_id'])));
 	
-	$row = mysql_fetch_assoc($test);
+	$row = SQL::fetch($test);
 	$_GET['file'] = $row['video_file'];
 }
 
 $test = new SQL("SELECT `tv_id` FROM `ukm_tv_files` WHERE `tv_file` LIKE '%#file'",
 			array('file' => $_GET['file']));
 $test = $test->run();
-if(!$test || mysql_num_rows( $test ) == 0)
+if(!$test || SQL::fetch( $test ) == 0)
 	die(json_encode(array('success'=>false, 'cron_id' =>$_POST['cron_id'])));
 
-$row = mysql_fetch_assoc($test);
+$row = SQL::fetch($test);
 $film = videoInfo($row['tv_id']);
 
 die(json_encode(array('success' 	=> true,
