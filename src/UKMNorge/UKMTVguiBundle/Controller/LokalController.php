@@ -88,7 +88,7 @@ class LokalController extends Controller
         
         $kommune_navn = new SQL("SELECT `name` FROM `smartukm_kommune` WHERE `id` = '#kommune'",
         				array('kommune'=>$kommune));
-        $kommune_navn = utf8_encode($kommune_navn->run('field', 'name'));
+        $kommune_navn = $kommune_navn->run('field', 'name');
         
         
         for( $i = $year_start; $i < $year_stop; $i++ ) {
