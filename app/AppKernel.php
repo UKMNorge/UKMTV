@@ -38,12 +38,12 @@ class AppKernel extends Kernel
 
     public function getCacheDir()
     {
-        return '/tmp/symfony/ukmtv/'.$this->environment.'/cache';
+        return '~/cache/symfony/ukmtv/'.$this->environment;
     }
     
     public function getLogDir()
     {
-        return '/tmp/symfony/ukmtv/'.$this->environment.'/logs';
+        return '~/logs/symfony/ukmtv/'.$this->environment;
     }
 
 }
