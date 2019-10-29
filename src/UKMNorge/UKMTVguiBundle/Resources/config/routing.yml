@@ -36,22 +36,26 @@ ukmn_tvgui_homepage:
     defaults: { _controller: UKMNtvguiBundle:Default:index }
 
 #   RELATERTE FILMER
-#       Person
+# Person
 ukmn_tvgui_person:
     path:   /person/{id}-{name}/
-    defaults: { _controller: UKMNtvguiBundle:Related:person }
-#       Innslag
+    defaults: { _controller: UKMNtvguiBundle:Search:index }
+    #defaults: { _controller: UKMNtvguiBundle:Related:person }
+# Innslag
 ukmn_tvgui_band:
     path:   /innslag/{id}-{name}/
-    defaults: { _controller: UKMNtvguiBundle:Related:band }
+    defaults: { _controller: UKMNtvguiBundle:Search:index }
+    #defaults: { _controller: UKMNtvguiBundle:Related:band }
 
 #  FESTIVALEN
 ukmn_tvgui_festivalen_homepage:
     path:   /festivalen/
-    defaults: { _controller: UKMNtvguiBundle:Festivalen:index }
+    defaults: { _controller: UKMNtvguiBundle:Search:index }
+    #defaults: { _controller: UKMNtvguiBundle:Festivalen:index }
 ukmn_tvgui_festivalen_year:
     path:   /festivalen/{year}/
-    defaults: { _controller: UKMNtvguiBundle:Festivalen:year }
+    defaults: { _controller: UKMNtvguiBundle:Search:index }
+    #defaults: { _controller: UKMNtvguiBundle:Festivalen:year }
 ukmn_tvgui_festivalen_film:
     path:   /festivalen/{year}/{id}-{title}/
     defaults: { _controller: UKMNtvguiBundle:Film:index }    
@@ -63,13 +67,16 @@ ukmn_tvgui_festivalen_film:
 #   FYLKESMØNSTRINGER
 ukmn_tvgui_fylke_homepage:
     path:   /fylke/
-    defaults: { _controller: UKMNtvguiBundle:Fylke:index }
+    defaults: { _controller: UKMNtvguiBundle:Search:index }
+    #defaults: { _controller: UKMNtvguiBundle:Fylke:index }
 ukmn_tvgui_fylke_years:
     path:   /fylke/{fylke}/
-    defaults: { _controller: UKMNtvguiBundle:Fylke:years }
+    defaults: { _controller: UKMNtvguiBundle:Search:index }
+    #defaults: { _controller: UKMNtvguiBundle:Fylke:years }
 ukmn_tvgui_fylke_year:
     path:   /fylke/{fylke}/{year}/
-    defaults: { _controller: UKMNtvguiBundle:Fylke:year }
+    defaults: { _controller: UKMNtvguiBundle:Search:index }
+    #defaults: { _controller: UKMNtvguiBundle:Fylke:year }
 ukmn_tvgui_fylke_film:
     path:   /fylke/{fylke}/{year}/{id}-{title}/
     defaults: { _controller: UKMNtvguiBundle:Film:index }
@@ -80,18 +87,21 @@ ukmn_tvgui_fylke_film:
 #   LOKALMØNSTRINGER
 ukmn_tvgui_lokal_homepage:
     path:   /lokal/
-    defaults: { _controller: UKMNtvguiBundle:Lokal:index }
+    defaults: { _controller: UKMNtvguiBundle:Search:index }
+    #defaults: { _controller: UKMNtvguiBundle:Lokal:index }
 ukmn_tvgui_lokal_years:
     path:   /lokal/{kommune}-{name}/
-    defaults: { _controller: UKMNtvguiBundle:Lokal:years }
-    requirements:
-        kommune: ([0-9])+
+    defaults: { _controller: UKMNtvguiBundle:Search:index }
+    #defaults: { _controller: UKMNtvguiBundle:Lokal:years }
+    #requirements:
+    #    kommune: ([0-9])+
 ukmn_tvgui_lokal_year:
     path:   /lokal/{kommune}-{name}/{season}/
-    defaults: { _controller: UKMNtvguiBundle:Lokal:year }
-    requirements:
-        kommune: ([0-9])+
-        season: ([0-9])+
+    defaults: { _controller: UKMNtvguiBundle:Search:index }
+    #defaults: { _controller: UKMNtvguiBundle:Lokal:year }
+    #requirements:
+    #    kommune: ([0-9])+
+    #    season: ([0-9])+
 ukmn_tvgui_lokal_film:
     path:   /lokal/{kommune}-{name}/{season}/{id}-{title}/
     defaults: { _controller: UKMNtvguiBundle:Film:index }
@@ -104,7 +114,8 @@ ukmn_tvgui_lokal_film:
 #   INFOVIDEOER
 ukmn_tvgui_info_homepage:
     path:   /info/
-    defaults: { _controller: UKMNtvguiBundle:Info:index }
+    defaults: { _controller: UKMNtvguiBundle:Search:index }
+    #defaults: { _controller: UKMNtvguiBundle:Info:index }
 ukmn_tvgui_info_film:
     path:   /info/{id}-{title}/
     defaults: { _controller: UKMNtvguiBundle:Film:index }
