@@ -9,7 +9,9 @@ use tv;
 use tv_files;
 use monstring;
 use landsmonstring;
-use sql;
+use UKMNorge\Database\SQL\Query;
+
+require_once('UKM/Autoloader.php');
 
 class DefaultController extends Controller
 {
@@ -154,8 +156,8 @@ class DefaultController extends Controller
 	                require_once('UKM/sql.class.php');
                     $route = 'ukmn_tvgui_lokal_year';
 					$kommune_id = $TV->tag('k');					
-		            $kommune_qry = new SQL( "SELECT `name` FROM `smartukm_kommune` WHERE `id` = '#id'", array('id'=> $kommune_id) );
-		            $kommune = $this->_safeURL($kommune_qry->run('field','name'));
+		            $kommune_qry = new Query( "SELECT `name` FROM `smartukm_kommune` WHERE `id` = '#id'", array('id'=> $kommune_id) );
+		            $kommune = $this->_safeURL($kommune_qry->getField());
                     
                     $route_data = array('kommune' => $TV->tag('k') , 'name' => $kommune, 'season' => $TV->tag('s'));
                     $title = 'UKM '. $monstring->get('pl_name') .' '. $monstring->get('season');
