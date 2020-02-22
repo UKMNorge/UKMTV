@@ -1,0 +1,22 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+index:
+  path: /
+  controller: App\Controller\HomeController::index
+
+search:
+  path: /search/
+  controller: App\Controller\SearchController::index
+
+
+festival_ar:
+  path: /festivalen/
+  controller: App\Controller\FestivalenController::years
+
+festival:
+  path: /festivalen/{year}/
+  controller: App\Controller\FestivalenController::year
+  requirements:
+        id: ([0-9]{4}) 

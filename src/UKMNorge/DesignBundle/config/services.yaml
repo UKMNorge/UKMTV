@@ -1,0 +1,6 @@
+services:
+    App\UKMNorge\DesignBundle\Twig\AppExtension:
+        public: false
+        tags: ['twig.extension']
+    App\UKMNorge\UKMDesign\Services\UKMDesign:
+        public: true

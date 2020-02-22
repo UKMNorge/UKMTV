@@ -1,0 +1,8 @@
+twig:
+    cache: false
+    default_path: '%kernel.project_dir%/templates'
+    paths:
+        '%kernel.project_dir%/vendor/ukmnorge/design/Resources/views/UKMDesign': UKMDesign
+    globals:
+      UKMDesign: '@App\UKMNorge\UKMDesign\Services\UKMDesign'
+      UKM_HOSTNAME: 'ukm.dev'
