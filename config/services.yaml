@@ -32,4 +32,7 @@ services:
         tags: ['twig.extension']
     App\UKMNorge\UKMDesign\Services\UKMDesign:
         public: true
-
+        arguments:
+            - "@file_locator"
+            - '%kernel.cache_dir%'
+            - '%kernel.project_dir%'
