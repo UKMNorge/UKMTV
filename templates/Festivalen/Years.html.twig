@@ -1,4 +1,4 @@
-{% extends "@UKMDesign/Layout/base.html.twig" %}
+{% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
 
 {% block content %}
 	<div class="container">
@@ -7,13 +7,7 @@
 				<h1>Filmer fra UKM-festivalen</h1>
 			</div>
 			
-			{% for year in years %}
-				<div class="col-6 col-sm-4 col-md-3 col-lg-2 year p-3" id="year-{{year}}">
-					<a href="{{year}}/" class="btn btn-outline-primary btn-block">
-						{{year}}
-					</a>
-				</div>
-			{% endfor %}
+			{% include "Filmer/Years.html.twig" %}
 			</div>
 		</div>
 	</div>

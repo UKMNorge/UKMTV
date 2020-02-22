@@ -1,0 +1,42 @@
+{% extends "UKMDesign/Layout/Base.html.twig"|UKMpath %}
+
+{% block content %}
+	<div class="container sitemap">
+		<div class="row">
+            <div class="col-12">
+                <h1 class="mt-0 mb-1">Fylkesfestivaler i {{ fylke.getNavn() }}</h1>
+            </div>
+        </div>
+		<div class="row">
+		    {% include "Filmer/Years.html.twig" with {years: sesonger } %}
+        </div>
+
+        {% if fylke.erOvertatt() %}
+            <div class="row">
+                <div class="col-12">
+                    {{ fylke.getNavn() }} har blitt overtatt av 
+                    <a href="{{ url('fylke_ar', {fylkekey: fylke.getOvertattAv().getLink()}) }}" class="btn btn-sm btn-outline-primary">{{ fylke.getOvertattAv().getNavn() }}</a>
+                </div>
+            </div>
+        {% endif %}
+
+		<div class="row">
+            <div class="col-12">
+                <h2>Velg {{ fylke.erOslo() ? 'bydel' : 'kommune' }}</h2>
+				<ol class="list-group">
+					{% for kommune in kommuner %}
+						<li class="list-group-item">
+							<a href="{{ url('kommune_ar', {kommunekey: kommune.getPath()|trim('/'), kommuneid: kommune.getId()}) }}">
+								{{ kommune.getNavn()}}
+							</a>
+						</li>
+                    {% else %}
+                        <li class="list-group-item">
+                            Beklager, fant ingen {{ fylke.erOslo() ? 'bydeler' : 'kommuner' }} som har lastet opp film.
+                        </li>
+					{% endfor %}
+				</ol>
+			</div>
+		</div>
+	</div>
+{% endblock %}

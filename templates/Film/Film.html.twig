@@ -1,12 +1,12 @@
-{% extends "UKMNtvguiBundle:Layout:layout.html.twig" %}
+{% extends "UKMDesign/Layout/Base.html.twig"|UKMpath %}
 
 {% block javascripts %}
 	{{ parent() }}
-	<script language="javascript" src="//embed.{{ UKM_HOSTNAME }}/info/{{ tv.id }}"></script>
+	<script language="javascript" src="//embed.{{ UKM_HOSTNAME }}/info/{{ film.getId() }}"></script>
 	<script>
 	window.fbAsyncInit = function() {
 	  FB.init({
-		appId	  : '{{ facebook_app_id }}',
+		appId	  : '{{ UKMDesign.getConfig("facebook.app_id") }}',
 		status	 : true, 
 		cookie	 : true,
 		xfbml	  : true
@@ -28,14 +28,14 @@
 				<div id="my-video" width="100%"></div>
 			</div>
 			<div class="tvDescription col-12 col-lg-4">
-				<h2>{{ tv.title }}</h2>
+				<h2>{{ film.getTitle() }}</h2>
 				<div class="pull-right">
 					<div class="fb-like" data-send="true" data-layout="box_count" data-width="100" data-show-faces="false" data-font="arial"></div>
 				</div>
 		
-				<p> {{ tv.description }}</p>
-		
-				{% if meta.personer|length > 0 %}
+				<p> {{ film.getDescription() }}</p>
+    
+				{# if meta.personer|length > 0 %}
 					<div class="meta">
 						<h4>Personer</h4>
 						<ol class="list-unstyled">
@@ -48,9 +48,9 @@
 						{% endfor %}
 						</ol>
 					</div>
-				{% endif %}
+				{% endif %#}
 				
-				
+				{#}
 				<div class="meta">
 					<h4>Kategori</h4>
 					{% if meta.category.url is defined %}
@@ -72,15 +72,15 @@
 						</a>
 					</div>
 				{% endif %}
-		
+                #}
 			</div>
 		
 			<div class="clearfix"></div>
 		
-			{% if files|length > 0 %}
+			{#% if files|length > 0 %}
 				<h3>Andre anbefalte filmer fra <a href="{{meta.category.url}}">{{ meta.category.title }}</a></h3>
 				{% embed "UKMNtvguiBundle:Layout:filmList.html.twig" %}{% endembed %}
-			{% endif %}
+			{% endif %#}
 		</div>
 	</div>
 {% endblock %}

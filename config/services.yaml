@@ -23,16 +23,7 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
+    #\\:
+    #    resource: '../vendor/ukmnorge/designsymfony5/DesignBundle/Services/*'
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
-    
-    # UKMDesignBundle
-    App\UKMNorge\DesignBundle\Twig\AppExtension:
-        public: false
-        tags: ['twig.extension']
-    App\UKMNorge\UKMDesign\Services\UKMDesign:
-        public: true
-        arguments:
-            - "@file_locator"
-            - '%kernel.cache_dir%'
-            - '%kernel.project_dir%'

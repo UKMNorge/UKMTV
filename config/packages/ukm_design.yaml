@@ -1,0 +1,5 @@
+ukm_design:
+  hostname: ukm.dev
+  section_id: tv
+  section_name: UKM-TV
+  section_url: 'https://tv.ukm.dev'

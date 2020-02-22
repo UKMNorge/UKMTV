@@ -1,16 +1,16 @@
-{% extends "UKMNtvguiBundle:Layout:layout.html.twig" %}
+{% extends "UKMDesign/Layout/Base.html.twig"|UKMpath %}
 
 {% block content %}
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
-				<h1>Filmer fra {{ fylke_name }}</h1>
+				<h1>Filmer fra UKM-festivalen i {{ fylke.getNavn() }}</h1>
 			</div>
 			
 			{% for year in years %}
-				<div class="col-6 col-sm-4 col-md-3 col-lg-2 year p-3" id="year-{{year.year}}">
-					<a href="{{year.url}}" class="btn btn-outline-primary btn-block">
-						{{year.year}}
+				<div class="col-6 col-sm-4 col-md-3 col-lg-2 year p-3" id="year-{{year}}">
+					<a href="{{year}}/" class="btn btn-outline-primary btn-block">
+						{{year}}
 					</a>
 				</div>
 			{% endfor %}

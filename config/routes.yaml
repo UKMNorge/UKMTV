@@ -10,6 +10,12 @@ search:
   path: /search/
   controller: App\Controller\SearchController::index
 
+film:
+  path: /{title}/{id}
+  controller: App\Controller\FilmController::film
+  requirements:
+    id: ([0-9]{1,11})
+
 
 festival_ar:
   path: /festivalen/
@@ -19,4 +25,28 @@ festival:
   path: /festivalen/{year}/
   controller: App\Controller\FestivalenController::year
   requirements:
-        id: ([0-9]{4}) 
+    year: ([0-9]){4}
+
+fylker:
+  path: /fylke/
+  controller: App\Controller\FylkeController::fylker
+
+fylke_ar:
+  path: /fylke/{fylkekey}/
+  controller: App\Controller\FylkeController::fylke
+  requirements:
+    fylkekey: ([a-z-])+
+
+fylke:
+  path: /fylke/{fylkekey}/{year}/
+  controller: App\Controller\FylkeController::year
+  requirements:
+    fylkekey: ([a-z-])+
+    year: ([0-9]{4}) 
+
+kommune_ar:
+  path: /kommune/{kommunekey}-{kommuneid}/
+  controller: App\Controller\KommuneController::years
+  requirements:
+    kommunekey: ([a-z-])+
+    kommuneid: ([0-9]{4})

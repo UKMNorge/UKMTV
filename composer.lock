@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "16ab890e012fbd1b93e06869d72c1b75",
+    "content-hash": "0e154034cab865c2b239c672be0dc6f4",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -6014,6 +6014,42 @@
             "time": "2020-02-19T19:00:48+00:00"
         },
         {
+            "name": "ukmnorge/designsymfony5",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/UKMNorge/UKMDesignSymfony5.git",
+                "reference": "cca1e77b415abf0afb86df6c902aa0ae0895f905"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/UKMNorge/UKMDesignSymfony5/zipball/cca1e77b415abf0afb86df6c902aa0ae0895f905",
+                "reference": "cca1e77b415abf0afb86df6c902aa0ae0895f905",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/yaml": ">=2.0",
+                "ukmnorge/design": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "UKMNorge\\DesignBundle\\": "DesignBundle/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Marius Mandal",
+                    "email": "mariusmandal@ukm.no",
+                    "role": "Lead Developer"
+                }
+            ],
+            "description": "Wrapper for UKM Design, brukt med Symfony 5x-rammeverket",
+            "homepage": "https://github.com/UKMNorge/UKMDesignSymfony5",
+            "time": "2020-02-22T13:44:09+00:00"
+        },
+        {
             "name": "webmozart/assert",
             "version": "1.7.0",
             "source": {
@@ -6806,7 +6842,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "ukmnorge/design": 20
+        "ukmnorge/design": 20,
+        "ukmnorge/designsymfony5": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

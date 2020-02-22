@@ -530,6 +530,9 @@
     "ukmnorge/design": {
         "version": "dev-master"
     },
+    "ukmnorge/designsymfony5": {
+        "version": "dev-master"
+    },
     "webmozart/assert": {
         "version": "1.7.0"
     },
