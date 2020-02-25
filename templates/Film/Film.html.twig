@@ -2,6 +2,8 @@
 
 {% block javascripts %}
 	{{ parent() }}
+    <script src="//embed.ukm.no/jwplayer-7.9.3/jwplayer.js"></script>
+    <script>jwplayer.key="O8fn25zm2lKsP+6rv/8DC//tszaOMt9kNWEFwA==";</script>
 	<script language="javascript" src="//embed.{{ UKM_HOSTNAME }}/info/{{ film.getId() }}"></script>
 	<script>
 	window.fbAsyncInit = function() {

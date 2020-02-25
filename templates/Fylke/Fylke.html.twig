@@ -20,23 +20,25 @@
             </div>
         {% endif %}
 
-		<div class="row">
-            <div class="col-12">
-                <h2>Velg {{ fylke.erOslo() ? 'bydel' : 'kommune' }}</h2>
-				<ol class="list-group">
-					{% for kommune in kommuner %}
-						<li class="list-group-item">
-							<a href="{{ url('kommune_ar', {kommunekey: kommune.getPath()|trim('/'), kommuneid: kommune.getId()}) }}">
-								{{ kommune.getNavn()}}
-							</a>
-						</li>
-                    {% else %}
-                        <li class="list-group-item">
-                            Beklager, fant ingen {{ fylke.erOslo() ? 'bydeler' : 'kommuner' }} som har lastet opp film.
-                        </li>
-					{% endfor %}
-				</ol>
-			</div>
-		</div>
+        {% if kommuner|length > 0 %}
+            <div class="row">
+                <div class="col-12">
+                    <h2>Velg {{ fylke.erOslo() ? 'bydel' : 'kommune' }}</h2>
+                    <ol class="list-group">
+                        {% for kommune in kommuner %}
+                            <li class="list-group-item">
+                                <a href="{{ url('kommune_ar', {kommunekey: kommune.getPath()|trim('/'), kommuneid: kommune.getId()}) }}">
+                                    {{ kommune.getNavn()}}
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="list-group-item">
+                                Beklager, fant ingen {{ fylke.erOslo() ? 'bydeler' : 'kommuner' }} som har lastet opp film.
+                            </li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            </div>
+        {% endif %}
 	</div>
 {% endblock %}

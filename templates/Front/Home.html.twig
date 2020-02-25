@@ -29,13 +29,13 @@
 					</li>
 
 					<li class="my-2">
-						<a href="{#{ url('ukmn_tvgui_lokal_homepage') }#}" class="btn btn-block btn-outline-primary">
+						<a href="{{ UKMDesign.getSitemap().getPage('ukmtv', 'fylke').getUrl() }}" class="btn btn-block btn-outline-primary">
 							{{ UKMDesign.getSitemap().getPage('ukmtv', 'lokal').getTitle() }}
 						</a>
 					</li>
 
 					<li class="my-2">
-						<a href="{#{ url('ukmn_tvgui_info_homepage') }#}" class="btn btn-block btn-outline-primary">
+						<a href="{{ UKMDesign.getSitemap().getPage('ukmtv', 'info').getUrl() }}" class="btn btn-block btn-outline-primary">
 							{{ UKMDesign.getSitemap().getPage('ukmtv', 'info').getTitle() }}
 						</a>
 					</li>

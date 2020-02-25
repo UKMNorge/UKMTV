@@ -1,0 +1,12 @@
+{% extends "UKMDesign/Layout/Base.html.twig"|UKMpath %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<h1>Søk</h1>
+				{% embed "Sok/Form.html.twig"|UKMpath %}{% endembed %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

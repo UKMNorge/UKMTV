@@ -32,13 +32,11 @@ class FylkeController extends AbstractController
     {   
         $fylke = Fylker::getByLink($fylkekey);
 
-        
-
         $sesonger = [];
         for ($sesong = 2009; $sesong < intval(date('Y') + 1); $sesong++) {
             $tags = [
                 new Tag('arrangement_type', Tags::getArrangementTypeId('fylke')),
-                new Tag('fylke', $fylke->getId()),
+                $this->_getFylkeTag($fylke),
                 new Tag('sesong', $sesong)
             ];
 
@@ -49,10 +47,19 @@ class FylkeController extends AbstractController
 
         $kommuner = [];
         foreach( $fylke->getKommuner()->getAll() as $kommune ) {
+            
+            if( !empty($kommune->getTidligereIdList())) {
+                $kommuneId = explode(',', $kommune->getTidligereIdList());
+                $kommuneId[] = $kommune->getId();
+            } else {
+                $kommuneId = $kommune->getId();
+            }
+            
             $tags = [
                 new Tag('arrangement_type', Tags::getArrangementTypeId('kommune') ),
-                new Tag('kommune', $kommune->getId())
+                new Tag('kommune', $kommuneId)
             ];
+            
             if( Filmer::harTagsFilmer($tags)) {
                 $kommuner[] = $kommune;
             }
@@ -81,7 +88,7 @@ class FylkeController extends AbstractController
         $filmer = Filmer::getByTags(
             [
                 new Tag('arrangement_type', Tags::getArrangementTypeId('fylke')),
-                new Tag('fylke', $fylke->getId()),
+                $this->_getFylkeTag($fylke),
                 new Tag('sesong', $year)
             ]
         );
@@ -94,5 +101,22 @@ class FylkeController extends AbstractController
                 'year' => $year
             ]
         );
+    }
+
+    /**
+     * Hent tag for gitt fylke
+     *
+     * @param Fylke $fylke
+     * @return Tag
+     */
+    private function _getFylkeTag($fylke) {
+        if( $fylke->harOvertatt() ) {
+            $fylkeId = array_keys($fylke->getOvertattFor());
+            $fylkeId[] = $fylke->getId();
+        } else {
+            $fylkeId = $fylke->getId();
+        }
+
+        return new Tag('fylke', $fylkeId);
     }
 }

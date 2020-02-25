@@ -1,0 +1,22 @@
+{% extends "Filmer/Filmer.html.twig" %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<h1>Søkeresultater</h1>
+				<p class="lead">Viser treff for "{{ soker }}"</p>
+			</div>
+		</div>
+	</div>
+	{{parent()}}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <p class="mt-5">
+                    <a href="{{ url('search') }}" class="btn btn-outline-primary">Prøv et annet søk?</a>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
