@@ -1,0 +1,32 @@
+{% extends "UKMDesign/Layout/Base.html.twig"|UKMpath %}
+
+{% block content %}
+	<div class="container sitemap">
+		<div class="row">
+            <div class="col-12 col-lg-8">
+                <h1 class="mt-0 mb-1">Velg fylke</h1>
+			    <div class="row pageContainer">
+                    {% for fylke in fylker|filter(fylke => fylke.erAktivt()) %}
+                        <div class="col-12 col-sm-6 col-lg-4">
+                            <div class="page p-2 px-4 m-2 center white">
+                                <a href="{{ fylke.getLink() }}/" class="autoshrink">{{ fylke.getNavn() }}</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-12 col-lg-3 offset-lg-1 mt-5">
+                <span class="bold uppercase text-muted small">Eller velg et gammelt fylke</span>
+				<ol class="list-group">
+					{% for fylke in fylker|filter(fylke => not fylke.erAktivt() ) %}
+						<li class="list-group-item small">
+							<a href="{{fylke.getLink()}}">
+								{{ fylke.getNavn()}}
+							</a>
+						</li>
+					{% endfor %}
+				</ol>
+			</div>
+		</div>
+	</div>
+{% endblock %}

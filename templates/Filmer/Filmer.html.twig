@@ -1,0 +1,23 @@
+{% extends "UKMDesign/Layout/Base.html.twig"|UKMpath %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<h2>Innslag</h2>
+			</div>
+		</div>
+		<div class="row">
+			{% include "Filmer/Liste.html.twig" with {filmer: filmer.getAll()|filter(film => film.getInnslagId() > 0 )} %}
+		</div>
+
+		<div class="row">
+			<div class="col-12 mt-5">
+				<h2>Reportasjer</h2>
+			</div>
+		</div>
+		<div class="row">
+			{% include "Filmer/Liste.html.twig" with {filmer: filmer.getAll()|filter(film => film.getInnslagId() == 0 )} %}
+		</div>
+	</div>
+{% endblock %}

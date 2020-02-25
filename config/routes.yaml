@@ -1,0 +1,77 @@
+ukmtvv1:
+  resource: v1_routes.yaml
+ukmtvv2:
+  resource: v2_routes.yaml
+
+index:
+  path: /
+  controller: App\Controller\HomeController::index
+
+search:
+  path: /search/
+  controller: App\Controller\SearchController::home
+  methods: [GET]
+
+search_results:
+  path: /search/
+  controller: App\Controller\SearchController::treff
+  methods: [POST]
+
+festival_ar:
+  path: /festivalen/
+  controller: App\Controller\FestivalenController::years
+
+festival:
+  path: /festivalen/{year}/
+  controller: App\Controller\FestivalenController::year
+  requirements:
+    year: ([0-9]){4}
+
+info:
+  path: /info/
+  controller: App\Controller\InfoController::filmer
+
+fylker:
+  path: /fylke/
+  controller: App\Controller\FylkeController::fylker
+
+fylke_ar:
+  path: /fylke/{fylkekey}/
+  controller: App\Controller\FylkeController::fylke
+  requirements:
+    fylkekey: ([a-z-])+
+
+fylke:
+  path: /fylke/{fylkekey}/{year}/
+  controller: App\Controller\FylkeController::year
+  requirements:
+    fylkekey: ([a-z-])+
+    year: ([0-9]{4}) 
+
+kommune_ar:
+  path: /kommune/{kommunekey}-{kommuneid}/
+  controller: App\Controller\KommuneController::years
+  requirements:
+    kommunekey: ([a-z-])+
+    kommuneid: ([0-9]{3,4})
+
+kommune:
+  path: /kommune/{kommunekey}-{kommuneid}/{year}
+  controller: App\Controller\KommuneController::year
+  requirements:
+    kommunekey: ([a-z-])+
+    kommuneid: ([0-9]{3,4})
+    year: ([0-9]{4})
+
+tag:
+  path: /tag/{key}-{id}/
+  controller: App\Controller\TagController::tag
+  requirements:
+    kommunekey: ([a-z-])+
+    kommuneid: ([0-9])+
+
+film:
+  path: /{title}/{id}
+  controller: App\Controller\FilmController::film
+  requirements:
+    id: ([0-9]{1,11})

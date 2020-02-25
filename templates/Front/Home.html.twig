@@ -1,0 +1,46 @@
+{% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-8 pt-3">
+				<p class="lead">
+					I UKM-TV finner du en rekke filmer av deltakere på UKM. 
+					Vi har opptak helt tilbake fra 2009, først og fremst fra fylkes- og UKM-festivalen. 
+					Kanskje finner du deg selv eller noen du kjenner?
+				</p>
+				
+				<h2>Søk</h2>
+				{% embed "Sok/Form.html.twig" %}{% endembed %}
+			</div>
+			<div class="col-12 col-md-4">
+				<h3>Finn filmer fra</h3>
+				<ol class="list-unstyled">
+					<li class="my-2">
+						<a href="{{ url('festival_ar') }}" class="btn btn-block btn-outline-primary">
+							{{ UKMDesign.getSitemap().getPage('ukmtv', 'festival').getTitle() }}
+						</a>
+					</li>
+
+					<li class="my-2">
+						<a href="{{ UKMDesign.getSitemap().getPage('ukmtv', 'fylke').getUrl() }}" class="btn btn-block btn-outline-primary">
+							{{ UKMDesign.getSitemap().getPage('ukmtv', 'fylke').getTitle() }}
+						</a>
+					</li>
+
+					<li class="my-2">
+						<a href="{{ UKMDesign.getSitemap().getPage('ukmtv', 'fylke').getUrl() }}" class="btn btn-block btn-outline-primary">
+							{{ UKMDesign.getSitemap().getPage('ukmtv', 'lokal').getTitle() }}
+						</a>
+					</li>
+
+					<li class="my-2">
+						<a href="{{ UKMDesign.getSitemap().getPage('ukmtv', 'info').getUrl() }}" class="btn btn-block btn-outline-primary">
+							{{ UKMDesign.getSitemap().getPage('ukmtv', 'info').getTitle() }}
+						</a>
+					</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,77 @@
+# Person
+ukmn_tvgui_person:
+  path: /person/{id}-{name}/
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+  defaults:
+    route: tag
+    key: 'person'
+    id: id
+
+# Innslag
+ukmn_tvgui_band:
+  path: /innslag/{id}-{name}/
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+  defaults:
+    route: tag
+    key: 'innslag'
+    id: id
+
+# Lokalmønstringer
+ukmn_tvgui_lokal_homepage:
+  path:   /lokal/
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+  defaults:
+    route: fylker
+
+ukmn_tvgui_lokal_years:
+  path:   /lokal/{kommune}-{name}/
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+  defaults:
+    route: fylker
+
+ukmn_tvgui_lokal_year:
+  path:   /lokal/{kommune}-{name}/{year}/
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+  defaults:
+    route: fylker
+
+
+
+# Film på festivalen
+ukmn_tvgui_festivalen_film:
+  path: /festivalen/{year}/{id}-{title}/
+  controller: App\Controller\FilmController::film
+  requirements:
+    id: ([0-9])+
+    year: ([0-9]{4})
+
+# Film på fylke
+ukmn_tvgui_fylke_film:
+  path: /fylke/{fylkekey}/{year}/{id}-{title}/
+  controller: App\Controller\FilmController::film
+  requirements:
+    fylkekey: ([a-z-])+
+    year: ([0-9]{4}) 
+
+# Film i kommune
+ukmn_tvgui_lokal_film:
+  path:   /lokal/{kommune}-{name}/{season}/{id}-{title}/
+  controller: App\Controller\FilmController::film
+  requirements:
+    kommune: ([0-9])+
+    season: ([0-9])+
+    id: ([0-9])+
+
+# Film i info
+ukmn_tvgui_info_film:
+  path: /info/{id}-{title}/
+  controller: App\Controller\FilmController::film
+  requirements:
+    id: ([0-9])+
+
+
+ukmn_tvgui_searchfor:
+  path: /search/{doSearchFor}/
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+  defaults:
+    route: search_results

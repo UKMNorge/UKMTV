@@ -1,0 +1,14 @@
+{% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<h1>Filmer fra UKM {{ kommune.getNavn() }}</h1>
+			</div>
+			
+			{% include "Filmer/Years.html.twig" %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

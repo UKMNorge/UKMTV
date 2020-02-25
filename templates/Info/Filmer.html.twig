@@ -1,0 +1,14 @@
+{% extends "Filmer/Filmer.html.twig" %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<h1>Infovideoer</h1>
+			</div>
+		</div>
+        <div class="row">
+            {% include "Filmer/Liste.html.twig" with {filmer: filmer.getAll()|filter(film => film.getInnslagId() == 0 )} %}
+        </div>
+	</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+old_redirect_kategorier:
+  path: /kategorier/
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+  defaults:
+    route: index
+    permanent: true
+
+old_redirect_festivaler:
+  path: kategorier/UKM-Festivaler/
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+  defaults:
+    route: festival_ar
+
+old_redirect_fylkesmonstringer:
+  path: /kategorier/Fylkesm{nordic}nstringer/
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+  defaults:
+    route: fylker
+
+old_redirect_lokalmonstringer:    
+  path: /kategorier/Lokalm{nordic}nstringer/
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+  defaults:
+    route: fylker
+
+old_redirect_samling:
+  path: /samling/{samling}
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+  defaults:
+    route: index
+    
+old_redirect_infovideoer:
+  path: kategorier/Infovideoer/
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+  defaults:
+    route: info
+
+ukmn_tvgui_film:
+  path: /{id}-{title}/
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+  defaults:
+    route: film
+  requirements:
+    id: ([0-9])+
