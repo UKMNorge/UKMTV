@@ -56,7 +56,7 @@ class KommuneController extends AbstractController
 
         $filmer = Filmer::getByTags(
             [
-                new Tag('arrangement_type', Tags::getArrangementTypeId('fylke')),
+                new Tag('arrangement_type', Tags::getArrangementTypeId('kommune')),
                 $this->_getKommuneTag($kommune),
                 new Tag('sesong', $year)
             ]
