@@ -3,10 +3,9 @@
 {% block content %}
 	<div class="container">
 		<div class="row">
-			<div class="col-12 ukm-tv-hoved-search">
+			<div class="col-12">
 				<h2>UKM TV</h2>
 				<br>
-				{% embed "Sok/Form.html.twig" %}{% endembed %}
 			</div>
 			<div class="col-12">
 				<p class="lead">
@@ -15,10 +14,17 @@
 					Kanskje finner du deg selv eller noen du kjenner?
 				</p>
 			</div>
+			<div class="col-12 ukm-tv-hoved-search">
+				<br>
+				{% embed "Sok/Form.html.twig" %}{% endembed %}
+			</div>
+			<div class="col-12">
+				<h3 class="nom">Siste filmene</h3>
+			</div>
 			<div class="row col-12 ukm-tv-siste-filmer">
 				{% include "Filmer/Liste.html.twig" with {filmer: filmer} %}
 			</div>
-			<div class="col-12 col-md-4">
+			<div class="col-12 col-md-4 ukmtv-footer-meny">
 				<h3>Finn filmer fra</h3>
 				<ol class="list-unstyled">
 					<li class="my-2">
@@ -55,6 +61,10 @@
 		}
 		.ukm-tv-siste-filmer {
 			width: 100% !important;
+		}
+		.ukmtv-footer-meny {
+			margin: auto;
+			margin-top: 50px;
 		}
 	</style>
 {% endblock %}
