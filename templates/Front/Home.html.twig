@@ -1,17 +1,22 @@
-{% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
+{% extends "UKMDesign/Layout/ukmtvbase.html.twig"|UKMpath %}
 
 {% block content %}
 	<div class="container">
 		<div class="row">
-			<div class="col-12 col-md-8 pt-3">
+			<div class="col-12 ukm-tv-hoved-search">
+				<h2>UKM TV</h2>
+				<br>
+				{% embed "Sok/Form.html.twig" %}{% endembed %}
+			</div>
+			<div class="col-12">
 				<p class="lead">
 					I UKM-TV finner du en rekke filmer av deltakere på UKM. 
 					Vi har opptak helt tilbake fra 2009, først og fremst fra fylkes- og UKM-festivalen. 
 					Kanskje finner du deg selv eller noen du kjenner?
 				</p>
-				
-				<h2>Søk</h2>
-				{% embed "Sok/Form.html.twig" %}{% endembed %}
+			</div>
+			<div class="row col-12 ukm-tv-siste-filmer">
+				{% include "Filmer/Liste.html.twig" with {filmer: filmer} %}
 			</div>
 			<div class="col-12 col-md-4">
 				<h3>Finn filmer fra</h3>
@@ -43,4 +48,13 @@
 			</div>
 		</div>
 	</div>
+	
+	<style>
+		.ukm-tv-hoved-search {
+			margin-bottom: 50px;
+		}
+		.ukm-tv-siste-filmer {
+			width: 100% !important;
+		}
+	</style>
 {% endblock %}

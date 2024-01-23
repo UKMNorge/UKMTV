@@ -1,11 +1,24 @@
 <p class="lead">Søk etter navn på personer, innslag eller låter</p>
 
 <form action="{{ url('search') }}" method="post">
-	<div class="form-group">
-		<input id="ukmtvsearch" name="doSearchFor" type="text" class="form-control" placeholder="Søk i UKM-tv" />
-	</div>
-	
-	<div class="my-3">
-		<button class="btn btn-outline-primary" type="submit">Søk</button>
+	<div class="ukmtv-search-div">
+		<div class="form-group ukmtv-search-field">
+			<input id="ukmtvsearch" name="doSearchFor" type="text" class="form-control" placeholder="Søk i UKM-tv" />
+		</div>
+		
+		<div id="ukmTvSearchBtn">
+			<button class="btn btn-outline-primary" type="submit">Søk</button>
+		</div>
 	</div>
 </form>
+<style>
+	.ukmtv-search-div {
+		display: flex;
+	}
+	.ukmtv-search-div .ukmtv-search-field {
+		width: 100%;
+	}
+	#ukmTvSearchBtn {
+		margin-left: 10px;
+	}
+</style>
