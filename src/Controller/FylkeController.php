@@ -9,6 +9,8 @@ use UKMNorge\Filmer\UKMTV\Tags\Tags;
 use UKMNorge\Geografi\Fylker;
 
 require_once('UKM/Autoloader.php');
+require_once('UKMconfig.inc.php');
+
 
 class FylkeController extends AbstractController
 {

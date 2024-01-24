@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use UKMNorge\Filmer\UKMTV\Filmer;
 
 require_once('UKM/Autoloader.php');
+require_once('UKMconfig.inc.php');
+
 
 class HomeController extends AbstractController{
     public function index() {

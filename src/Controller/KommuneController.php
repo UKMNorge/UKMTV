@@ -9,6 +9,7 @@ use UKMNorge\Filmer\UKMTV\Tags\Tags;
 use UKMNorge\Geografi\Kommune;
 
 require_once('UKM/Autoloader.php');
+require_once('UKMconfig.inc.php');
 
 class KommuneController extends AbstractController
 {

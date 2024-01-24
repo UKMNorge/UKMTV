@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use UKMNorge\Filmer\UKMTV\Filmer;
 
 require_once('UKM/Autoloader.php');
+require_once('UKMconfig.inc.php');
 
 class SearchController extends AbstractController
 {

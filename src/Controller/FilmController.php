@@ -9,6 +9,9 @@ use UKMNorge\Filmer\UKMTV\Tags\Tag;
 use UKMNorge\Filmer\UKMTV\Tags\Tags;
 
 require_once('UKM/Autoloader.php');
+require_once('UKMconfig.inc.php');
+
+
 
 class FilmController extends AbstractController
 {
