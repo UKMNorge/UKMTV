@@ -7526,12 +7526,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/UKMNorge/UKMDesign.git",
-                "reference": "c3ac5d9b2d6d77378516ab8b512c81325745e372"
+                "reference": "422d8a7537aa12170d893bc196d9f9d48bf6cbd1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UKMNorge/UKMDesign/zipball/c3ac5d9b2d6d77378516ab8b512c81325745e372",
-                "reference": "c3ac5d9b2d6d77378516ab8b512c81325745e372",
+                "url": "https://api.github.com/repos/UKMNorge/UKMDesign/zipball/422d8a7537aa12170d893bc196d9f9d48bf6cbd1",
+                "reference": "422d8a7537aa12170d893bc196d9f9d48bf6cbd1",
                 "shasum": ""
             },
             "require": {
@@ -7564,7 +7564,7 @@
                 "issues": "https://github.com/UKMNorge/UKMDesign/issues",
                 "source": "https://github.com/UKMNorge/UKMDesign/tree/master"
             },
-            "time": "2023-06-29T21:13:22+00:00"
+            "time": "2024-01-24T15:50:15+00:00"
         },
         {
             "name": "ukmnorge/designsymfony5",
@@ -7572,12 +7572,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/UKMNorge/UKMDesignSymfony5.git",
-                "reference": "95f3333ab69058bcf6d1e6b532ae8c9a1d2b1764"
+                "reference": "77275eb941b56dde7fbc4d8728b91657c0c55672"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UKMNorge/UKMDesignSymfony5/zipball/95f3333ab69058bcf6d1e6b532ae8c9a1d2b1764",
-                "reference": "95f3333ab69058bcf6d1e6b532ae8c9a1d2b1764",
+                "url": "https://api.github.com/repos/UKMNorge/UKMDesignSymfony5/zipball/77275eb941b56dde7fbc4d8728b91657c0c55672",
+                "reference": "77275eb941b56dde7fbc4d8728b91657c0c55672",
                 "shasum": ""
             },
             "require": {
@@ -7605,7 +7605,7 @@
                 "issues": "https://github.com/UKMNorge/UKMDesignSymfony5/issues",
                 "source": "https://github.com/UKMNorge/UKMDesignSymfony5/tree/master"
             },
-            "time": "2020-02-25T13:56:55+00:00"
+            "time": "2024-01-24T17:16:18+00:00"
         },
         {
             "name": "webmozart/assert",
