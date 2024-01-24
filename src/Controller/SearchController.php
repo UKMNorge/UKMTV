@@ -22,12 +22,13 @@ class SearchController extends AbstractController
             'Sok/Resultat.html.twig',
             [
                 'soker' => $sok,
-                'filmer' => Filmer::getBySearchString( $sok )
+                'filmer' => Filmer::getBySearchString( $sok ),
+                'ukmHostname' => UKM_HOSTNAME
             ]
         );
     }
 
     public function home() {
-        return $this->render('Sok/Home.html.twig',[]);
+        return $this->render('Sok/Home.html.twig', ['ukmHostname' => UKM_HOSTNAME]);
     }
 }

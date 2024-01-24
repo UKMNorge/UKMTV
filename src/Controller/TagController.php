@@ -20,7 +20,8 @@ class TagController extends AbstractController
         return $this->render(
             'Tag/Filmer.html.twig',
             [
-                'filmer' => Filmer::getByTag( $key, $id )
+                'filmer' => Filmer::getByTag( $key, $id ),
+                'ukmHostname' => UKM_HOSTNAME
             ]
         );
     }

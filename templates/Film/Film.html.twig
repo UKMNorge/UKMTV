@@ -4,7 +4,7 @@
 	{{ parent() }}
     <script src="//embed.ukm.no/jwplayer-7.9.3/jwplayer.js"></script>
     <script>jwplayer.key="O8fn25zm2lKsP+6rv/8DC//tszaOMt9kNWEFwA==";</script>
-	<script language="javascript" src="//embed.{{ UKM_HOSTNAME }}/info/{{ film.getId() }}"></script>
+	<script language="javascript" src="//embed.{{ ukmHostname }}/info/{{ film.getId() }}"></script>
 	<script>
 	window.fbAsyncInit = function() {
 	  FB.init({
@@ -22,7 +22,7 @@
 	 }(document));
 	</script>
     <link rel="alternate" type="application/json+oembed"
-  href="https://oembed.{{UKM_HOSTNAME}}?url={{film.getTvUrl()|url_encode }}&format=json" />
+  href="https://oembed.{{ ukmHostname }}?url={{film.getTvUrl()|url_encode }}&format=json" />
 {% endblock %}
 
 {% block content %}

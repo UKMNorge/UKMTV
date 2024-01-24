@@ -25,6 +25,6 @@ class InfoController extends AbstractController
                 
             ]
         );
-        return $this->render('Info/Filmer.html.twig', ['filmer' => $filmer]);
+        return $this->render('Info/Filmer.html.twig', ['filmer' => $filmer, 'ukmHostname' => UKM_HOSTNAME]);
     }
 }

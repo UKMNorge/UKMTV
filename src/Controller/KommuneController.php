@@ -39,7 +39,8 @@ class KommuneController extends AbstractController
             'Kommune/Years.html.twig',
             [
                 'kommune' => $kommune,
-                'years' => $sesonger
+                'years' => $sesonger,
+                'ukmHostname' => UKM_HOSTNAME
             ]
         );
     }
@@ -67,7 +68,8 @@ class KommuneController extends AbstractController
             [
                 'filmer' => $filmer,
                 'kommune' => $kommune,
-                'year' => $year
+                'year' => $year,
+                'ukmHostname' => UKM_HOSTNAME
             ]
         );
     }

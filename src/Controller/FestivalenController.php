@@ -30,7 +30,7 @@ class FestivalenController extends AbstractController
         }
 
         
-        return $this->render('Festivalen/Years.html.twig', ['years' => $sesonger]);
+        return $this->render('Festivalen/Years.html.twig', ['years' => $sesonger, 'ukmHostname' => UKM_HOSTNAME]);
     }
 
     /**

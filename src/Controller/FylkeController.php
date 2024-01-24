@@ -19,7 +19,7 @@ class FylkeController extends AbstractController
      */
     public function fylker()
     {
-        return $this->render('Fylke/Fylker.html.twig', ['fylker' => Fylker::getAllInkludertDeaktiverte()]);
+        return $this->render('Fylke/Fylker.html.twig', ['fylker' => Fylker::getAllInkludertDeaktiverte(), 'ukmHostname' => UKM_HOSTNAME]);
     }
 
     /**
@@ -70,7 +70,8 @@ class FylkeController extends AbstractController
             [
                 'fylke' => $fylke,
                 'sesonger' => $sesonger,
-                'kommuner' => $kommuner
+                'kommuner' => $kommuner,
+                'ukmHostname' => UKM_HOSTNAME
             ]
         );
     }
@@ -98,7 +99,8 @@ class FylkeController extends AbstractController
             [
                 'filmer' => $filmer,
                 'fylke' => $fylke,
-                'year' => $year
+                'year' => $year,
+                'ukmHostname' => UKM_HOSTNAME
             ]
         );
     }

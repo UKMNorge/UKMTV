@@ -21,6 +21,6 @@ class FilmController extends AbstractController
     {
         $film = Filmer::getById($id);
 
-        return $this->render('Film/Film.html.twig', ['film' => $film]);
+        return $this->render('Film/Film.html.twig', ['film' => $film, 'ukmHostname' => UKM_HOSTNAME]);
     }
 }
