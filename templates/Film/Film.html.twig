@@ -1,4 +1,6 @@
-{% extends "UKMDesign/Layout/ukmtvbase.html.twig"|UKMpath %}
+{% extends "UKMDesign/Layout/base.html.twig"|UKMpath %}
+
+
 {% block javascripts %}
 	{{ parent() }}
 {# <script src="//embed.{{ ukmHostname }}/video-js-8.11.7/video.js"></script> #}
@@ -37,27 +39,45 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-lg-8">
-				<div class="mistvideo" id="myvideo" width="100%"></div
+				<div class="mistvideo" id="helloWorldId" width="100%"></div
 			</div>
 			<div class="tvDescription col-12 col-lg-4">
 				<h2>{{ film.getTitle() }}</h2>
 				<div class="pull-right">
 					<div class="fb-like" data-send="true" data-layout="box_count" data-width="100" data-show-faces="false" data-font="arial"></div>
 				</div>
-
+		
 				<p> {{ film.getDescription() }}</p>
-	<noscript>
-		<video controls autoplay="false">
-            <source src="/hls/library+{{ film.getPathMistsServer() }}/index.m3u8" type="application/vnd.apple.mpegurl">
-            <source src="/library+{{ film.getPathMistsServer() }}.mp4" type="video/mp4">
-            <a href="/hls/library+{{ film.getPathMistsServer() }}/index.m3u8">Click here to play the video [Apple]</a></br>
-			<a href="/library+{{ film.getPathMistsServer() }}.mp4">Click here to play the video [MP4]</a>
-    	</video>
-	</noscript>
-          <script>
-		  var mv = { reference: false }; 
-		  mistPlay('library+{{ film.getPathMistsServer() }}', { host: 'https://videostreamer.ukm.no/', target: document.getElementById('myvideo'), MistVideoObject: mv, urlappend: "?stream=library+{{ film.getPathMistsServer() }}"  });
-		  </script>
+  <noscript>
+    <a  target="_blank">
+      Click here to play this video
+    </a>
+  </noscript>
+  <script>
+    var a = async function(){
+			mistPlay("library+{{ film.getPathMistsServer() }}",{
+				target: document.getElementById("helloWorldId"),
+				autoplay: true,
+				poster: "{{ film.getBildeUrl() }}",
+				monitor: {
+					action: function(){
+						this.MistVideo.log("Switching to nextCombo because of poor playback in "+this.MistVideo.source.type+" ("+Math.round(this.vars.score*1000)/10+"%)");
+						this.MistVideo.nextCombo();
+					}
+				}
+			});
+
+      
+    };
+    {# if (!window.mistplayers) {
+      var p = document.createElement("script");
+      if (location.protocol == "https:") { p.src = "https://videostreamer.ukm.no/player.js" } 
+      else { p.src = "http://videostreamer.ukm.no:8080/player.js" } 
+      document.head.appendChild(p);
+      p.onload = a;
+    } #}
+    a();
+  </script>
 </div>
     
 				{# if meta.personer|length > 0 %}
