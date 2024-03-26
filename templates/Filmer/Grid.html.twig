@@ -1,5 +1,24 @@
 <a href="{{ film.getTvUrl() }}">
-    <p>Test 1333</p>
-    <img src="{{ film.getBildeUrl() }}"/>
-    {{ film.getTitle() }}
+    <div class="image-thumbnail-ukm-film">
+        <img src="{{ film.getBildeUrl() }}"/>
+    </div>
+    <h6 class="title-film-ukm-film">
+        {{ film.getTitle() }}
+    </h6>
 </a>
+
+<style>
+.title-film-ukm-film {
+    margin-top: 4px;
+}
+.image-thumbnail-ukm-film {
+    display: flex;
+    box-shadow: 0px 0px 7px -4px #6b6b6b;
+}
+.image-thumbnail-ukm-film img {
+    margin: auto;
+    height: 100px;
+    object-fit: cover;
+    width: 100%;
+}
+</style>
