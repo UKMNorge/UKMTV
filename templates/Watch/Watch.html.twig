@@ -1,10 +1,10 @@
 {% extends "UKMDesign/Layout/ukmtvbase.html.twig"|UKMpath %}
 
-{% block meta %}
+{% block tagsmeta %}
     <meta property="og:type" content="video.other" />
     <meta property="og:title" content="{{ film.getTitle() }}" />
     <meta property="og:description" content="{{ film.getDescription() }}" />
-    <meta property="og:url" content="{{ film.getUrl() }}" />
+    <meta property="og:url" content="{{ film.getTvUrl() }}" />
     <meta property="og:image" content="{{ film.getThumbnail() }}" />
     <meta property="og:video" content="{{ film.getUrl() }}" />
     <meta property="og:video:type" content="video/mp4" />
