@@ -1,0 +1,48 @@
+{% extends "UKMDesign/Layout/ukmtvbase.html.twig"|UKMpath %}
+
+{% block meta %}
+    <meta property="og:type" content="video.other" />
+    <meta property="og:title" content="{{ film.getTitle() }}" />
+    <meta property="og:description" content="{{ film.getDescription() }}" />
+    <meta property="og:url" content="{{ film.getUrl() }}" />
+    <meta property="og:image" content="{{ film.getThumbnail() }}" />
+    <meta property="og:video" content="{{ film.getUrl() }}" />
+    <meta property="og:video:type" content="video/mp4" />
+    <meta property="og:video:width" content="1280" />
+    <meta property="og:video:height" content="720" />
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid" style="padding: 0">
+
+    <iframe id="iframePlayer"
+        src="{{ film.getUrl() }}"
+        width="100%"
+        height="auto"
+        frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+    ></iframe>
+</div>
+<div class="container">
+    <h1 class="film-title">{{ film.getTitle() }}</h1>
+    <h4>{{ film.getDescription() }}</h4>
+    <p>Sesong: {{ film.getSeason() }}</p>
+</div>
+
+<style>
+.film-title {
+    margin-top: 10px;
+}
+#iframePlayer {
+    min-height: 600px;
+}
+@media (max-width: 768px) {
+    #iframePlayer {
+        min-height: 300px;
+    }
+}
+</style>
+
+{% endblock %}
+

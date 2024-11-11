@@ -75,3 +75,7 @@ film:
   controller: App\Controller\FilmController::film
   requirements:
     id: ([0-9]{1,11})
+
+watchFilm:
+  path: /watch/film/{id}
+  controller: App\Controller\WatchController::watch
