@@ -1,9 +1,9 @@
-{% for year in years %}
-	<div class="col-6 col-sm-4 col-md-3 col-lg-2 year p-3" id="year-{{year}}">
-		<a href="{{year}}/" class="btn btn-outline-primary btn-block">
-			{{year}}
-		</a>
-	</div>
+{% for year in years|filter(y => y >= "now"|date("Y") - 2)|sort|reverse %}
+    <div class="col-6 col-sm-4 col-md-3 col-lg-2 year p-3" id="year-{{year}}">
+        <a href="{{year}}/" class="btn btn-outline-primary btn-block">
+            {{year}}
+        </a>
+    </div>
 {% else %}
     <div class="col-12">
         Beklager, fant ikke noen filmer.
