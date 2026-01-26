@@ -1,59 +1,227 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# UKM TV - Modern Laravel Frontend
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Oversikt
 
-## About Laravel
+Dette er en modernisert versjon av UKM TV bygget med Laravel 12, Vue 3, Inertia.js, og Tailwind CSS. Systemet bruker UKMNorges biblioteker direkte for å hente filmdata, slik som det originale systemet.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Arkitektur
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Backend
+- **Framework**: Laravel 12
+- **Datasource**: UKMNorge Filmer-bibliotek (fra php.ini includes)
+- **API Routes**: RESTful API endpoints for filmdata
+- **Controllers**: 
+  - `HomeController` - Forsiden med siste innslag
+  - `FilmController` - Filmdetaljer og søk
+  - `FestivalController` - Festival (land) arrangementer  
+  - `FylkeController` - Fylke (county) browsing
+  - `SearchController` - Søkefunksjonalitet
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Frontend
+- **Framework**: Vue 3
+- **Ruting**: Inertia.js (server-side routing med client-side rendering)
+- **Styling**: Tailwind CSS
+- **Design**: Inspirert av ukm.no med lilla, blå og grønn fargeskjema
 
-## Learning Laravel
+## Filstruktur
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+```
+/var/www/html/sites/newukmtv/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/ (HomeController, FilmController, etc.)
+│   │   └── Middleware/HandleInertiaRequests.php
+│   └── Services/
+│       └── FilmService.php (wrapper for UKMNorge Filmer library)
+├── resources/
+│   ├── js/
+│   │   ├── Pages/
+│   │   │   ├── Home.vue
+│   │   │   ├── Film/Show.vue
+│   │   │   ├── Festival/
+│   │   │   ├── Fylke/
+│   │   │   └── Search/
+│   │   ├── Components/FilmCard.vue
+│   │   └── app.js
+│   ├── css/
+│   │   └── app.css (Tailwind)
+│   └── views/
+│       └── app.blade.php (Inertia root template)
+├── routes/
+│   └── web.php (all routes defined here)
+└── bootstrap/
+    └── ukm.php (UKMNorge library initialization)
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Ruter
 
-## Laravel Sponsors
+### Web Routes
+- `GET /` - Forsiden (Home)
+- `GET /film/{id}` - Filmdetaljer
+- `GET /festival` - Festival år
+- `GET /festival/{year}` - Filmer fra festival år
+- `GET /fylke` - Alle fylker
+- `GET /fylke/{fylkeKey}` - Fylke detaljer
+- `GET /fylke/{fylkeKey}/{year}` - Filmer fra fylke år
+- `GET /search` - Søkeside
+- `GET /search/results` - Søkeresultater
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### API Routes (under `/api`)
+- `GET /films/latest` - Siste 50 innslag
+- `GET /festival/years` - Alle festival år
+- `GET /festival/{year}/films` - Filmer fra festival år
+- `GET /fylke` - Alle fylker
+- `GET /fylke/{fylkeKey}/years` - År med innslag for fylke
+- `GET /fylke/{fylkeKey}/{year}/films` - Filmer for fylke år
+- `GET /search?q=query` - Søk på query
 
-### Premium Partners
+## Vue Komponenter
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### Pages
+- **Home.vue** - Forsiden med siste innslag, navigasjonsknapper til festival, fylke, søk
+- **Festival/Years.vue** - Grid av år med innslag
+- **Festival/Show.vue** - Filmer fra spesifikt festival år
+- **Fylke/Index.vue** - Grid av alle fylker
+- **Fylke/Show.vue** - Fylke detaljer med år og kommuner
+- **Fylke/Year.vue** - Filmer fra fylke + år
+- **Film/Show.vue** - Filmdetaljer med video player og info
+- **Search/Index.vue** - Søkeinput
+- **Search/Results.vue** - Søkeresultater
 
-## Contributing
+### Components
+- **FilmCard.vue** - Gjennbrukbar filmkort (thumbnail, tittel, år, views, varighet)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## UKMNorge Filmer Service
 
-## Code of Conduct
+`app/Services/FilmService.php` er en wrapper omkring UKMNorge Filmer-biblioteket som tilbyr:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```php
+// Filmhenting
+FilmService::getLatest($limit);
+FilmService::getById($id);
+FilmService::search($searchString);
 
-## Security Vulnerabilities
+// Festival
+FilmService::getFestivalYears();
+FilmService::getFestivalYearFilms($year);
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+// Fylke
+FilmService::getFylker();
+FilmService::getFylkeByLink($fylkeKey);
+FilmService::getFylkeYears($fylke);
+FilmService::getFylkeYearFilms($fylke, $year);
+FilmService::getFylkeKommunerWithFilms($fylke);
 
-## License
+// Utility
+FilmService::filmToArray($film); // konverter Film-objekt til array
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Oppstart
+
+### 1. Forutsetninger
+- PHP 8.3+
+- MySQL/MariaDB
+- Node.js 18+
+- Composer
+
+### 2. Installasjon
+```bash
+cd /var/www/html/sites/newukmtv
+
+# Installer PHP dependencies
+composer install
+
+# Installer npm packages
+npm install
+
+# Build frontend assets
+npm run build
+
+# For development med watch mode:
+npm run dev
+```
+
+### 3. Konfigurering
+
+`.env` fil er allerede konfigurert for:
+- MySQL database: `ukmtv_new`
+- User: `root`
+- Password: `devonly`
+- Session driver: `file`
+
+### 4. Start server
+```bash
+php artisan serve --port=8001
+```
+
+Besøk `http://127.0.0.1:8001`
+
+## Design Inspirasjon
+
+Designet er inspirert av ukm.no med:
+- **Fargepalett**: 
+  - Lilla (#8b5cf6) for primary actions
+  - Blå (#3b82f6) for secondary
+  - Grønn (#10b981) for tertiary/search
+- **Dark mode**: Dunkle slag (slate-900, slate-800) for bakgrunn
+- **Modern gradients**: Gradient bakgrunner for visual interest
+- **Responsive grid**: 1-2-4 kolonner basert på skjermstørrelse
+
+## Utvidelse
+
+### Legge til nye sider
+1. Opprett Vue fil i `resources/js/Pages/`
+2. Opprett controller method som bruker `Inertia::render()`
+3. Legg til rute i `routes/web.php`
+
+Eksempel:
+```php
+// Route
+Route::get('/ny-side', [NewController::class, 'show']);
+
+// Controller
+public function show() {
+    return Inertia::render('NewPage', ['data' => $data]);
+}
+
+// Vue page
+<script setup>
+defineProps({
+    data: Object,
+});
+</script>
+<template>...</template>
+```
+
+### Legge til API endpoints
+Alle nye endpoints legges under `/api` prefixen med JSON responses.
+
+## Troubleshooting
+
+### Session errors
+Sjekk at `SESSION_DRIVER=file` i `.env`
+
+### UKMNorge library errors
+Sjekk at `/etc/php-includes/UKM/` finnes og er tilgjengelig
+Sjekk at `bootstrap/ukm.php` initialiseres i `bootstrap/app.php`
+
+### Build errors
+```bash
+npm install @vitejs/plugin-vue
+npm install @inertiajs/vue3
+npm run build
+```
+
+## Neste steg
+
+- [ ] Testing av alle features med ekte data
+- [ ] Performance optimalisering
+- [ ] Accessibility audit
+- [ ] Mobile testing
+- [ ] Caching av API responses
+- [ ] Error handling og logging
+- [ ] Admin panel for filmhandstering (hvis ønskelig)
+
+## Kontakt & Support
+
+For spørsmål om systemet, kontakt UKM IT-team.
