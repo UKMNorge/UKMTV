@@ -1,0 +1,62 @@
+@import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'TWK Burns', 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+        'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+    /* UKM brand palette */
+    --color-ukm-brown: #241211;
+    --color-ukm-offwhite: #f5eee4;
+    --color-ukm-orange: #ff520e;
+    --color-ukm-purple: #ad83ff;
+    --color-ukm-gold: #ffbf00;
+    --color-ukm-rose: #ff78a0;
+    --color-ukm-green: #c0cd3a;
+    --color-ukm-brown-alt: #a56800;
+
+    /* Map commonly used Tailwind tokens to UKM brand hues */
+    --color-slate-950: #1a0d0c;
+    --color-slate-900: #241211;
+    --color-slate-800: #2f1a17;
+    --color-slate-700: #3a201b;
+    --color-slate-600: #4b2b23;
+    --color-slate-500: #6a4234;
+    --color-slate-400: #8c5b48;
+    --color-slate-300: #b17f65;
+    --color-slate-200: #d8b8a0;
+    --color-slate-100: #f5eee4;
+    --color-slate-50: #fbf8f2;
+
+    --color-purple-900: #4f2c7a;
+    --color-purple-800: #6a3fa0;
+    --color-purple-700: #8f63df;
+    --color-purple-600: #ad83ff;
+    --color-purple-500: #c19eff;
+    --color-purple-400: #d7bfff;
+    --color-purple-300: #e6d8ff;
+
+    --color-blue-700: #d6450d; /* mapped to UKM orange depth */
+    --color-blue-600: #ff520e;
+    --color-blue-500: #ff6e35;
+
+    --color-amber-600: #e0a700;
+    --color-amber-500: #ffbf00;
+
+    --color-green-900: #4f5b14;
+    --color-green-700: #839425;
+    --color-green-600: #9ab42d;
+    --color-green-500: #c0cd3a;
+    --color-green-400: #d3df70;
+}
+
+:root {
+    background-color: var(--color-ukm-offwhite);
+    color: var(--color-ukm-brown);
+    font-family: var(--font-sans);
+}
