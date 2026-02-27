@@ -91,7 +91,11 @@ class FylkeController extends Controller
 
         foreach ($films as $film) {
             try {
-                $data[] = FilmService::filmToArray($film);
+                $filmArr = FilmService::filmToArray($film);
+                // Trust the context (fylke page) for location to avoid mismatches from legacy metadata
+                $filmArr['fylke'] = $fylke->getNavn();
+                $filmArr['fylke_id'] = $fylke->getId();
+                $data[] = $filmArr;
             } catch (\Throwable $e) {
                 continue;
             }
@@ -166,7 +170,10 @@ class FylkeController extends Controller
 
         foreach ($films as $film) {
             try {
-                $data[] = FilmService::filmToArray($film);
+                $filmArr = FilmService::filmToArray($film);
+                $filmArr['fylke'] = $fylke->getNavn();
+                $filmArr['fylke_id'] = $fylke->getId();
+                $data[] = $filmArr;
             } catch (\Throwable $e) {
                 continue;
             }

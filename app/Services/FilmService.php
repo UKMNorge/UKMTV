@@ -9,6 +9,7 @@ use UKMNorge\Filmer\UKMTV\Tags\Tags;
 use UKMNorge\Geografi\Fylker;
 use UKMNorge\Arrangement\Arrangement;
 use UKMNorge\Innslag\Innslag;
+use UKMNorge\Geografi\Kommune;
 
 class FilmService
 {
@@ -742,11 +743,16 @@ class FilmService
     {
         $isCloudflare = strpos(get_class($film), 'CloudflareFilm') !== false;
 
-        // Prefer Cloudflare ID (stable) then tvId then internal id for routing and fallbacks
+        // Prefer IDs that will resolve with full metadata
         $cfId = method_exists($film, 'getCloudflareId') ? $film->getCloudflareId() : null;
         $tvId = method_exists($film, 'getTvId') ? $film->getTvId() : null;
         $filmId = method_exists($film, 'getId') ? $film->getId() : null;
-        $routeId = $cfId ?: ($tvId ?: $filmId);
+        // For CloudflareFilm, favor cfId first; for legacy Film, favor tvId
+        if ($isCloudflare) {
+            $routeId = $cfId ?: ($tvId ?: $filmId);
+        } else {
+            $routeId = $tvId ?: ($filmId ?: $cfId);
+        }
 
         // If Cloudflare ID is missing but route id looks like one, reuse it for media fallbacks
         $effectiveCfId = $cfId;
@@ -856,15 +862,15 @@ class FilmService
                         // ignore
                     }
                 }
-                // Festival films can lack explicit geo tags, so derive kommune/fylke from innslag when available
-                if ((!$kommuneName || !$fylkeName) && $tags && method_exists($tags, 'getInnslag')) {
+                // Festival films can lack explicit geo tags, so derive kommune/fylke from innslag when available (prefer innslag data even if tags exist)
+                if ($tags && method_exists($tags, 'getInnslag')) {
                     try {
                         $innslag = $tags->getInnslag();
                         if ($innslag && method_exists($innslag, 'getKommune')) {
                             $innslagKommune = $innslag->getKommune();
                             if ($innslagKommune) {
-                                $kommuneName = $kommuneName ?: (method_exists($innslagKommune, 'getNavn') ? $innslagKommune->getNavn() : null);
-                                $kommuneId = $kommuneId ?: (method_exists($innslagKommune, 'getId') ? $innslagKommune->getId() : null);
+                                $kommuneName = method_exists($innslagKommune, 'getNavn') ? $innslagKommune->getNavn() : $kommuneName;
+                                $kommuneId = method_exists($innslagKommune, 'getId') ? $innslagKommune->getId() : $kommuneId;
                                 $innslagFylke = null;
                                 if (method_exists($innslagKommune, 'getFylke')) {
                                     $innslagFylke = $innslagKommune->getFylke();
@@ -875,8 +881,8 @@ class FilmService
                                     }
                                 }
                                 if ($innslagFylke) {
-                                    $fylkeName = $fylkeName ?: (method_exists($innslagFylke, 'getNavn') ? $innslagFylke->getNavn() : null);
-                                    $fylkeId = $fylkeId ?: (method_exists($innslagFylke, 'getId') ? $innslagFylke->getId() : null);
+                                    $fylkeName = method_exists($innslagFylke, 'getNavn') ? $innslagFylke->getNavn() : $fylkeName;
+                                    $fylkeId = method_exists($innslagFylke, 'getId') ? $innslagFylke->getId() : $fylkeId;
                                 }
                             }
                         }
@@ -907,7 +913,7 @@ class FilmService
                     }
                 }
                 // If innslag_id is set on the film, derive geo from the innslag directly
-                if ((!$kommuneName || !$fylkeName) && method_exists($film, 'getInnslagId')) {
+                if (method_exists($film, 'getInnslagId')) {
                     try {
                         $innslagId = $film->getInnslagId();
                         if ($innslagId) {
@@ -915,8 +921,8 @@ class FilmService
                             if (method_exists($innslag, 'getKommune')) {
                                 $innslagKommune = $innslag->getKommune();
                                 if ($innslagKommune) {
-                                    $kommuneName = $kommuneName ?: (method_exists($innslagKommune, 'getNavn') ? $innslagKommune->getNavn() : null);
-                                    $kommuneId = $kommuneId ?: (method_exists($innslagKommune, 'getId') ? $innslagKommune->getId() : null);
+                                    $kommuneName = method_exists($innslagKommune, 'getNavn') ? $innslagKommune->getNavn() : $kommuneName;
+                                    $kommuneId = method_exists($innslagKommune, 'getId') ? $innslagKommune->getId() : $kommuneId;
                                     $innslagFylke = null;
                                     if (method_exists($innslagKommune, 'getFylke')) {
                                         $innslagFylke = $innslagKommune->getFylke();
@@ -927,8 +933,8 @@ class FilmService
                                         }
                                     }
                                     if ($innslagFylke) {
-                                        $fylkeName = $fylkeName ?: (method_exists($innslagFylke, 'getNavn') ? $innslagFylke->getNavn() : null);
-                                        $fylkeId = $fylkeId ?: (method_exists($innslagFylke, 'getId') ? $innslagFylke->getId() : null);
+                                        $fylkeName = method_exists($innslagFylke, 'getNavn') ? $innslagFylke->getNavn() : $fylkeName;
+                                        $fylkeId = method_exists($innslagFylke, 'getId') ? $innslagFylke->getId() : $fylkeId;
                                     }
                                 }
                             }
@@ -964,6 +970,35 @@ class FilmService
                 }
             } catch (\Throwable $e) {
                 // ignore tag errors
+            }
+        }
+
+        // Fallback using kommune id on film (if present) to derive correct kommune/fylke
+        if ((!$kommuneName || !$fylkeName) && method_exists($film, 'getKommuneId')) {
+            try {
+                $kommuneIdValue = $film->getKommuneId();
+                if ($kommuneIdValue) {
+                    $kommuneObj = Kommune::getById((int) $kommuneIdValue);
+                    if ($kommuneObj) {
+                        $kommuneName = $kommuneName ?: (method_exists($kommuneObj, 'getNavn') ? $kommuneObj->getNavn() : null);
+                        $kommuneId = $kommuneId ?: (method_exists($kommuneObj, 'getId') ? $kommuneObj->getId() : null);
+                        $kommuneFylke = null;
+                        if (method_exists($kommuneObj, 'getFylke')) {
+                            $kommuneFylke = $kommuneObj->getFylke();
+                        } elseif (method_exists($kommuneObj, 'getFylkeId')) {
+                            $fId = $kommuneObj->getFylkeId();
+                            if ($fId) {
+                                $kommuneFylke = Fylker::getById((int) $fId);
+                            }
+                        }
+                        if ($kommuneFylke) {
+                            $fylkeName = $fylkeName ?: (method_exists($kommuneFylke, 'getNavn') ? $kommuneFylke->getNavn() : null);
+                            $fylkeId = $fylkeId ?: (method_exists($kommuneFylke, 'getId') ? $kommuneFylke->getId() : null);
+                        }
+                    }
+                }
+            } catch (\Throwable $e) {
+                // ignore
             }
         }
 

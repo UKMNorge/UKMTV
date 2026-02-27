@@ -91,15 +91,12 @@ onBeforeUnmount(() => {
     <div class="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800">
         <!-- Hero Section -->
         <div class="relative pt-20 pb-16 px-4 sm:px-6 lg:px-8">
-            <div class="absolute left-4 top-4 sm:left-8 sm:top-6 z-20">
-                <img src="/favicon.svg" alt="UKM" class="h-10 w-10" loading="lazy" />
-            </div>
             <div class="max-w-4xl mx-auto text-center">
                 <h1 class="text-5xl sm:text-6xl font-bold text-white mb-4">
                     Videoarkiv
                 </h1>
                 <p class="text-xl text-slate-200 mb-6">
-                    Her finner du filmer av innslag fra UKM-festivalen og fylkes- og lokalfestivaler – fra 2023 og fram til i dag.
+                    Her finner du filmer av innslag fra 2024 og fram til i dag.
                 </p>
                 
                 <!-- Search Bar -->
@@ -142,10 +139,10 @@ onBeforeUnmount(() => {
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
                     <a href="/festival" class="min-w-[180px] bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition">
-                        🎪 Festival
+                        🎪 UKM-festivalen
                     </a>
                     <a href="/fylke" class="min-w-[180px] bg-amber-600 hover:bg-amber-700 text-slate-900 px-6 py-3 rounded-lg font-semibold transition">
-                        📍 Fylke
+                        📍 Fylkesfestivaler
                     </a>
                     <a href="/lokal" class="min-w-[180px] bg-purple-700 hover:bg-purple-800 text-white px-6 py-3 rounded-lg font-semibold transition">
                         🏘 Lokalfestivaler
