@@ -1,5 +1,5 @@
 <script setup>
-const placeholder = 'data:image/svg+xml,%3Csvg%20xmlns="http://www.w3.org/2000/svg"%20width="640"%20height="360"%20viewBox="0%200%20640%20360"%20fill="none"%3E%3Crect%20width="640"%20height="360"%20rx="8"%20fill="%23241211"/%3E%3Ctext%20x="50%25"%20y="50%25"%20dominant-baseline="middle"%20text-anchor="middle"%20fill="%23FF520E"%20font-family="Arial"%20font-size="32"%20font-weight="bold"%3EUKM%3C/text%3E%3C/svg%3E';
+const placeholder = '/logo.svg';
 
 defineProps({
     film: Object,
@@ -8,6 +8,8 @@ defineProps({
 const onImgError = (event) => {
     event.target.onerror = null;
     event.target.src = placeholder;
+    event.target.classList.remove('object-cover');
+    event.target.classList.add('object-contain', 'p-8', 'bg-slate-900');
 };
 </script>
 
@@ -21,7 +23,10 @@ const onImgError = (event) => {
                     :alt="film.title"
                     crossorigin="anonymous"
                     loading="lazy"
-                    class="absolute inset-0 w-full h-full object-cover"
+                    :class="[
+                        'absolute inset-0 w-full h-full',
+                        film.thumbnail_url ? 'object-cover' : 'object-contain p-8 bg-slate-900'
+                    ]"
                     style="display: block !important;"
                     @error="onImgError"
                 />
