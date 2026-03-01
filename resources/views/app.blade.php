@@ -6,7 +6,7 @@
         <meta http-equiv="Content-Security-Policy" content="img-src 'self' data: https://customer-554chiv4hi7wraol.cloudflarestream.com https://*.cloudflarestream.com https://videodelivery.net;">
         
         <title inertia>UKM TV</title>
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+        <link rel="icon" type="image/svg+xml" href="/logo.svg">
 
         <!-- Vite -->
         @vite(['resources/js/app.js', 'resources/css/app.css'])

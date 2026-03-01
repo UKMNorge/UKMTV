@@ -7,7 +7,7 @@
             rel="noopener noreferrer"
             aria-label="Gå til UKM.no"
         >
-            <img src="/favicon.svg" alt="UKM" class="h-10 w-10" loading="lazy" />
+            <img src="/logo.svg" alt="UKM" class="h-12 w-12" loading="lazy" />
         </a>
         <slot />
     </div>
