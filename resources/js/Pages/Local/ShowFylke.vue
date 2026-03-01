@@ -10,11 +10,17 @@ defineProps({
 <template>
     <Head :title="`${fylke.name} - Lokalfestivaler`" />
     <div class="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-            <div class="mb-6">
-                <h1 class="text-3xl font-bold text-white mb-1">{{ fylke.name }}</h1>
-                <p class="text-slate-300 text-sm">Lokalfestivaler</p>
+        <div class="bg-slate-800 border-b border-slate-700">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <Link href="/lokal" class="text-purple-300 hover:text-purple-200 text-sm mb-2 inline-block">
+                    ← Lokalfestivaler
+                </Link>
+                <h1 class="text-4xl font-bold text-white mb-1">{{ fylke.name }}</h1>
+                <p class="text-slate-300 text-sm">Kommuner i lokalfestivalen</p>
             </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
             <div class="mb-8">
                 <h2 class="text-xl text-white font-semibold mb-2">Kommuner med filmer</h2>

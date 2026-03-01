@@ -27,7 +27,7 @@ class FilmService
 
         $filtered = [];
         foreach ($items as $film) {
-            if (self::isRecent($film)) {
+            if (self::isRecent($film) && self::isCloudflareFilm($film)) {
                 $filtered[] = $film;
             }
             if (count($filtered) >= $limit) {
@@ -46,7 +46,8 @@ class FilmService
         // If non-numeric, treat as Cloudflare ID first
         if (!is_numeric($id)) {
             try {
-                return Filmer::getByCFId((string) $id);
+                $film = Filmer::getByCFId((string) $id);
+                return self::isCloudflareFilm($film) ? $film : null;
             } catch (\Throwable $e) {
                 return null;
             }
@@ -61,7 +62,7 @@ class FilmService
             $film = null;
         }
 
-        if ($film) {
+        if ($film && self::isCloudflareFilm($film)) {
             return $film;
         }
 
@@ -72,14 +73,15 @@ class FilmService
             } catch (\Throwable $e) {
                 $film = null;
             }
-            if ($film) {
+            if ($film && self::isCloudflareFilm($film)) {
                 return $film;
             }
         }
 
         // Then try Cloudflare id (string) using numeric as string
         try {
-            return Filmer::getByCFId((string) $numericId);
+            $film = Filmer::getByCFId((string) $numericId);
+            return self::isCloudflareFilm($film) ? $film : null;
         } catch (\Throwable $e) {
             return null;
         }
@@ -439,6 +441,9 @@ class FilmService
                 if (!$film) {
                     continue;
                 }
+                if (!self::isCloudflareFilm($film)) {
+                    continue;
+                }
                 $films[] = $film;
             }
         } catch (\Throwable $e) {
@@ -481,7 +486,7 @@ class FilmService
      */
     private static function pushUniqueRecent(array &$list, array &$seen, $film, ?int $targetYear = null): void
     {
-        if (!$film || !self::isRecent($film)) {
+        if (!$film || !self::isRecent($film) || !self::isCloudflareFilm($film)) {
             return;
         }
 
@@ -727,6 +732,25 @@ class FilmService
         $year = self::getFilmYearValue($film);
 
         return $year === null ? false : ((int) $year >= self::MIN_YEAR);
+    }
+
+    private static function isCloudflareFilm($film): bool
+    {
+        if (!$film) {
+            return false;
+        }
+
+        $className = get_class($film);
+        if (str_contains($className, 'CloudflareFilm')) {
+            return true;
+        }
+
+        if (method_exists($film, 'getCloudflareId')) {
+            $cfId = $film->getCloudflareId();
+            return is_string($cfId) && trim($cfId) !== '';
+        }
+
+        return false;
     }
 
     // Expose for controllers where needed

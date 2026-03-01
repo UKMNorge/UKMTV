@@ -14,19 +14,21 @@ defineProps({
 <template>
     <Head :title="`${kommune.name} - ${year} - Lokalfestivaler`" />
     <div class="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div class="flex items-center justify-between mb-6">
-                <div>
-                    <p class="text-sm text-slate-300 mb-1">Lokalfestivaler</p>
-                    <h1 class="text-3xl font-bold text-white">{{ kommune.name }} – {{ year }}</h1>
-                    <p class="text-slate-300 text-sm">{{ fylke.name }}</p>
+        <div class="bg-slate-800 border-b border-slate-700">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <Link :href="`/lokal/${fylke.link}`" class="text-purple-300 hover:text-purple-200 text-sm mb-2 inline-block">
+                    ← {{ fylke.name }}
+                </Link>
+                <div class="flex items-center gap-3 text-sm mb-1">
+                    <Link href="/lokal" class="text-slate-300 hover:text-slate-100">Lokalfestivaler</Link>
+                    <span class="text-slate-500">/</span>
+                    <span class="text-slate-300">{{ fylke.name }}</span>
                 </div>
-                <div class="flex gap-3">
-                    <Link :href="`/lokal/${fylke.link}`" class="text-purple-300 hover:text-purple-200 text-sm">← Til fylke</Link>
-                    <Link href="/lokal" class="text-slate-300 hover:text-slate-100 text-sm">Lokalfestivaler</Link>
-                </div>
+                <h1 class="text-4xl font-bold text-white">{{ kommune.name }} – {{ year }}</h1>
             </div>
+        </div>
 
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div class="mb-6">
                 <h2 class="text-xl text-white font-semibold mb-2">År</h2>
                 <div class="flex flex-wrap gap-2">
