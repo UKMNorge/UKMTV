@@ -17,11 +17,8 @@ defineProps({
                     ← Hjem
                 </Link>
                 <h1 class="text-4xl font-bold text-white">
-                    📍 Fylker
+                    📍 Fylkesfestivaler
                 </h1>
-                <p class="text-slate-300 mt-2">
-                    Se innslag fra ditt fylke
-                </p>
             </div>
         </div>
 
