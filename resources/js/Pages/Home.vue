@@ -96,7 +96,7 @@ onBeforeUnmount(() => {
                     Videoarkiv
                 </h1>
                 <p class="text-xl text-slate-200 mb-6">
-                    Her finner du filmer av innslag fra 2024 og fram til i dag.
+                    Her finner du filmer av innslag fra 2023 og fram til i dag.
                 </p>
                 
                 <!-- Search Bar -->

@@ -7,7 +7,7 @@ defineProps({
 </script>
 
 <template>
-    <Head title="Festival - Videoarkiv" />
+    <Head title="UKM-festivalen - Videoarkiv" />
     
     <div class="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800">
         <!-- Header -->
@@ -17,11 +17,8 @@ defineProps({
                     ← Hjem
                 </Link>
                 <h1 class="text-4xl font-bold text-white">
-                    🎪 Festivalen
+                    🎪 Den nasjonale UKM-festivalen
                 </h1>
-                <p class="text-slate-300 mt-2">
-                    Se innslag fra UKMs årlige festival
-                </p>
             </div>
         </div>
 
